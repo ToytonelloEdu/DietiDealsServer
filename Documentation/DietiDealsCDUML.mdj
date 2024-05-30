@@ -34614,7 +34614,7 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 2002,
+											"left": 2285,
 											"top": 1561,
 											"height": 13,
 											"alpha": 1.5707963267948966,
@@ -34635,7 +34635,7 @@
 											},
 											"visible": null,
 											"font": "Arial;13;0",
-											"left": 1987,
+											"left": 2270,
 											"top": 1561,
 											"height": 13,
 											"alpha": 1.5707963267948966,
@@ -34656,7 +34656,7 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 2032,
+											"left": 2314,
 											"top": 1562,
 											"height": 13,
 											"alpha": -1.5707963267948966,
@@ -34740,8 +34740,8 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 2002,
-											"top": 1187,
+											"left": 2285,
+											"top": 1539,
 											"height": 13,
 											"alpha": -0.5235987755982988,
 											"distance": 30,
@@ -34760,8 +34760,8 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 1988,
-											"top": 1190,
+											"left": 2271,
+											"top": 1542,
 											"height": 13,
 											"alpha": -0.7853981633974483,
 											"distance": 40,
@@ -34780,8 +34780,8 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 2029,
-											"top": 1183,
+											"left": 2312,
+											"top": 1535,
 											"height": 13,
 											"alpha": 0.5235987755982988,
 											"distance": 25,
@@ -34824,12 +34824,12 @@
 									],
 									"font": "Arial;13;0",
 									"head": {
-										"$ref": "AAAAAAGPviFFeld60kM="
+										"$ref": "AAAAAAGPviFFelej400="
 									},
 									"tail": {
 										"$ref": "AAAAAAGPvyHuWh64bi4="
 									},
-									"points": "1080:1568;2017:1568;2017:1168",
+									"points": "1080:1568;2300:1568;2300:1520",
 									"showVisibility": true,
 									"nameLabel": {
 										"$ref": "AAAAAAGPvz+6McEipdU="
@@ -38151,7 +38151,7 @@
 											"$ref": "AAAAAAGPvz+6McEdQSo="
 										},
 										"reference": {
-											"$ref": "AAAAAAGOwm/erI7dDiI="
+											"$ref": "AAAAAAGOwoNtabTsZZU="
 										},
 										"navigable": "navigable"
 									}
