@@ -1,0 +1,2102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   version="1.1"
+   width="1532"
+   height="1204"
+   id="svg1434"
+   sodipodi:docname="createNewAuction SeqDiag.svg"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1436"
+     pagecolor="#ffffff"
+     bordercolor="#999999"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="0.66611296"
+     inkscape:cx="743.86783"
+     inkscape:cy="606.50374"
+     inkscape:window-width="1920"
+     inkscape:window-height="974"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g1432" />
+  <defs
+     id="defs2">
+    <rect
+       x="1624.3491"
+       y="783.65087"
+       width="168.13965"
+       height="189.15711"
+       id="rect1823" />
+  </defs>
+  <g
+     id="g1432">
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g662">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 16 8 L 1528 8 L 1528 1192 L 16 1192 L 16 8"
+         stroke-miterlimit="10"
+         id="path660" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g666">
+      <path
+         fill="#ffffff"
+         stroke="none"
+         d="M 16 8 L 16 30 L 204.70703125 30 L 215.70703125 19 L 215.70703125 8 L 16 8"
+         id="path664" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g670">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 16 8 L 16 30 L 204.70703125 30 L 215.70703125 19 L 215.70703125 8 L 16 8 L 16 8"
+         stroke-miterlimit="10"
+         id="path668" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g678">
+      <g
+         id="g676">
+        <path
+           fill="none"
+           stroke="none"
+           id="path672" />
+        <text
+           fill="#000000"
+           stroke="none"
+           font-family="Arial"
+           font-size="13px"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="none"
+           x="40.72998046875"
+           y="24"
+           id="text674">createNewAuction SeqDiag</text>
+      </g>
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g686">
+      <g
+         id="g684">
+        <path
+           fill="none"
+           stroke="none"
+           id="path680" />
+        <text
+           fill="#000000"
+           stroke="none"
+           font-family="Arial"
+           font-size="13px"
+           font-style="normal"
+           font-weight="bold"
+           text-decoration="none"
+           x="20.279541015625"
+           y="24"
+           id="text682">sd</text>
+      </g>
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g690">
+      <rect
+         fill="#C0C0C0"
+         stroke="none"
+         x="279"
+         y="47"
+         width="136.685546875"
+         height="39"
+         opacity="0.2"
+         id="rect688" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g694">
+      <rect
+         fill="#ffffff"
+         stroke="none"
+         x="272"
+         y="40"
+         width="136.685546875"
+         height="39"
+         id="rect692" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g698">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 272 40 L 408.685546875 40 L 408.685546875 79 L 272 79 L 272 40 Z Z"
+         stroke-miterlimit="10"
+         id="path696" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g706">
+      <g
+         id="g704">
+        <path
+           fill="none"
+           stroke="none"
+           id="path700" />
+        <text
+           fill="#000000"
+           stroke="none"
+           font-family="Arial"
+           font-size="13px"
+           font-style="normal"
+           font-weight="bold"
+           text-decoration="none"
+           x="281.5"
+           y="58"
+           id="text702">button: PlusButton</text>
+      </g>
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g710">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 341.5 80 L 341.5 1160"
+         stroke-miterlimit="10"
+         stroke-dasharray="3"
+         id="path708" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g714">
+      <rect
+         fill="#C0C0C0"
+         stroke="none"
+         x="511"
+         y="139"
+         width="262.39453125"
+         height="39"
+         opacity="0.2"
+         id="rect712" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g718">
+      <rect
+         fill="#ffffff"
+         stroke="none"
+         x="504"
+         y="132"
+         width="262.39453125"
+         height="39"
+         id="rect716" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g722">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 504 132 L 766.39453125 132 L 766.39453125 171 L 504 171 L 504 132 Z Z"
+         stroke-miterlimit="10"
+         id="path720" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g730">
+      <g
+         id="g728">
+        <path
+           fill="none"
+           stroke="none"
+           id="path724" />
+        <text
+           fill="#000000"
+           stroke="none"
+           font-family="Arial"
+           font-size="13px"
+           font-style="normal"
+           font-weight="bold"
+           text-decoration="none"
+           x="513.5"
+           y="150"
+           id="text726">newAuctionControl: CreateNewAuction</text>
+      </g>
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g734">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 636.5 172 L 636.5 1168"
+         stroke-miterlimit="10"
+         stroke-dasharray="3"
+         id="path732" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g738">
+      <path
+         fill="#ffffff"
+         stroke="none"
+         d="M 82.7449813565341 47.3 C 82.7449813565341 43.82060576 85.62338307871592 41 89.174072265625 41 C 92.72476145253408 41 95.6031631747159 43.82060576 95.6031631747159 47.3 C 95.6031631747159 50.779394239999995 92.72476145253408 53.6 89.174072265625 53.6 C 85.62338307871592 53.6 82.7449813565341 50.779394239999995 82.7449813565341 47.3 Z"
+         id="path736" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g742">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 82.7449813565341 47.3 C 82.7449813565341 43.82060576 85.62338307871592 41 89.174072265625 41 C 92.72476145253408 41 95.6031631747159 43.82060576 95.6031631747159 47.3 C 95.6031631747159 50.779394239999995 92.72476145253408 53.6 89.174072265625 53.6 C 85.62338307871592 53.6 82.7449813565341 50.779394239999995 82.7449813565341 47.3 Z"
+         stroke-miterlimit="10"
+         id="path740" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g746">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 89.174072265625 53.6 L 89.174072265625 66.4"
+         stroke-miterlimit="10"
+         id="path744" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g750">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 82.36679953835227 58.4 L 95.98134499289773 58.4"
+         stroke-miterlimit="10"
+         id="path748" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g754">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 89.174072265625 66.4 L 79.71952681107955 79"
+         stroke-miterlimit="10"
+         id="path752" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g758">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 89.174072265625 66.4 L 98.62861772017045 79"
+         stroke-miterlimit="10"
+         id="path756" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g766">
+      <g
+         id="g764">
+        <path
+           fill="none"
+           stroke="none"
+           id="path760" />
+        <text
+           fill="#000000"
+           stroke="none"
+           font-family="Arial"
+           font-size="13px"
+           font-style="normal"
+           font-weight="bold"
+           text-decoration="none"
+           x="41.13818359375"
+           y="98"
+           id="text762">user: Auctioner</text>
+      </g>
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g770">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 90.5 105 L 90.5 1176"
+         stroke-miterlimit="10"
+         stroke-dasharray="3"
+         id="path768" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g774">
+      <rect
+         fill="#C0C0C0"
+         stroke="none"
+         x="815"
+         y="211"
+         width="182.99169921875"
+         height="39"
+         opacity="0.2"
+         id="rect772" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g778">
+      <rect
+         fill="#ffffff"
+         stroke="none"
+         x="808"
+         y="204"
+         width="182.99169921875"
+         height="39"
+         id="rect776" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g782">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 808 204 L 990.99169921875 204 L 990.99169921875 243 L 808 243 L 808 204 Z Z"
+         stroke-miterlimit="10"
+         id="path780" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g790">
+      <g
+         id="g788">
+        <path
+           fill="none"
+           stroke="none"
+           id="path784" />
+        <text
+           fill="#000000"
+           stroke="none"
+           font-family="Arial"
+           font-size="13px"
+           font-style="normal"
+           font-weight="bold"
+           text-decoration="none"
+           x="817.5"
+           y="222"
+           id="text786">screen: NewAuctionFrame</text>
+      </g>
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g794">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 900.5 244 L 900.5 1160"
+         stroke-miterlimit="10"
+         stroke-dasharray="3"
+         id="path792" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g798">
+      <rect
+         fill="#C0C0C0"
+         stroke="none"
+         x="1039"
+         y="267"
+         width="234.033203125"
+         height="39"
+         opacity="0.2"
+         id="rect796" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g802">
+      <rect
+         fill="#ffffff"
+         stroke="none"
+         x="1032"
+         y="260"
+         width="234.033203125"
+         height="39"
+         id="rect800" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g806">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 1032 260 L 1266.033203125 260 L 1266.033203125 299 L 1032 299 L 1032 260 Z Z"
+         stroke-miterlimit="10"
+         id="path804" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g814">
+      <g
+         id="g812">
+        <path
+           fill="none"
+           stroke="none"
+           id="path808" />
+        <text
+           fill="#000000"
+           stroke="none"
+           font-family="Arial"
+           font-size="13px"
+           font-style="normal"
+           font-weight="bold"
+           text-decoration="none"
+           x="1041.5"
+           y="278"
+           id="text810">typeSelector: AuctionTypeSelector</text>
+      </g>
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g818">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 1150.5 300 L 1150.5 1128"
+         stroke-miterlimit="10"
+         stroke-dasharray="3"
+         id="path816" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g822">
+      <rect
+         fill="#C0C0C0"
+         stroke="none"
+         x="1207"
+         y="315"
+         width="208.17919921875"
+         height="39"
+         opacity="0.2"
+         id="rect820" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g826">
+      <rect
+         fill="#ffffff"
+         stroke="none"
+         x="1200"
+         y="308"
+         width="208.17919921875"
+         height="39"
+         id="rect824" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g830">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 1200 308 L 1408.17919921875 308 L 1408.17919921875 347 L 1200 347 L 1200 308 Z Z"
+         stroke-miterlimit="10"
+         id="path828" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g838">
+      <g
+         id="g836">
+        <path
+           fill="none"
+           stroke="none"
+           id="path832" />
+        <text
+           fill="#000000"
+           stroke="none"
+           font-family="Arial"
+           font-size="13px"
+           font-style="normal"
+           font-weight="bold"
+           text-decoration="none"
+           x="1209.5"
+           y="326"
+           id="text834">confirmButton: ConfirmButton</text>
+      </g>
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g842">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 1305.5 348 L 1305.5 1142"
+         stroke-miterlimit="10"
+         stroke-dasharray="3"
+         id="path840" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g846">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 90 120 L 334 120"
+         stroke-miterlimit="10"
+         id="path844" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g850">
+      <path
+         fill="#000000"
+         stroke="none"
+         d="M 323.83732514237585 124.20951775601598 L 334 120 L 323.83732514237585 115.79048224398402"
+         id="path848" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g854">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 323.83732514237585 124.20951775601598 L 334 120 L 323.83732514237585 115.79048224398402 L 323.83732514237585 124.20951775601598"
+         stroke-miterlimit="10"
+         id="path852" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g862">
+      <g
+         id="g860">
+        <path
+           fill="none"
+           stroke="none"
+           id="path856" />
+        <text
+           fill="#000000"
+           stroke="none"
+           font-family="Arial"
+           font-size="13px"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="none"
+           x="177.62451171875"
+           y="115"
+           id="text858">1 : onClick()</text>
+      </g>
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g866">
+      <rect
+         fill="#ffffff"
+         stroke="none"
+         x="334"
+         y="120"
+         width="13"
+         height="96"
+         id="rect864" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g870">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 334 120 L 347 120 L 347 216 L 334 216 L 334 120 Z Z"
+         stroke-miterlimit="10"
+         id="path868" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g874">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 347 152 L 504 152"
+         stroke-miterlimit="10"
+         stroke-dasharray="3"
+         id="path872" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g878">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 493.83732514237585 156.209517756016 L 504 152 L 493.83732514237585 147.790482243984"
+         stroke-miterlimit="10"
+         id="path876" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g886">
+      <g
+         id="g884">
+        <path
+           fill="none"
+           stroke="none"
+           id="path880" />
+        <text
+           fill="#000000"
+           stroke="none"
+           font-family="Arial"
+           font-size="13px"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="none"
+           x="415.53076171875"
+           y="147"
+           id="text882">2 : </text>
+      </g>
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g894">
+      <g
+         id="g892">
+        <path
+           fill="none"
+           stroke="none"
+           id="path888" />
+        <text
+           fill="#000000"
+           stroke="none"
+           font-family="Arial"
+           font-size="13px"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="none"
+           x="399.5"
+           y="131.5"
+           id="text890">«create»</text>
+      </g>
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g898">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 347 200 L 629 200"
+         stroke-miterlimit="10"
+         id="path896" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g902">
+      <path
+         fill="#000000"
+         stroke="none"
+         d="M 618.8373251423759 204.209517756016 L 629 200 L 618.8373251423758 195.790482243984"
+         id="path900" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g906">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 618.8373251423759 204.209517756016 L 629 200 L 618.8373251423758 195.790482243984 L 618.8373251423759 204.209517756016"
+         stroke-miterlimit="10"
+         id="path904" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g914">
+      <g
+         id="g912">
+        <path
+           fill="none"
+           stroke="none"
+           id="path908" />
+        <text
+           fill="#000000"
+           stroke="none"
+           font-family="Arial"
+           font-size="13px"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="none"
+           x="357.5"
+           y="195"
+           id="text910">3 : startAuctionCreation(auctioner: Auctioner)</text>
+      </g>
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g918">
+      <rect
+         fill="#ffffff"
+         stroke="none"
+         x="629"
+         y="200"
+         width="13"
+         height="84"
+         id="rect916" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g922">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 629 200 L 642 200 L 642 284 L 629 284 L 629 200 Z Z"
+         stroke-miterlimit="10"
+         id="path920" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g926">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 642 224 L 808 224"
+         stroke-miterlimit="10"
+         stroke-dasharray="3"
+         id="path924" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g930">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 797.8373251423759 228.209517756016 L 808 224 L 797.8373251423758 219.790482243984"
+         stroke-miterlimit="10"
+         id="path928" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g938">
+      <g
+         id="g936">
+        <path
+           fill="none"
+           stroke="none"
+           id="path932" />
+        <text
+           fill="#000000"
+           stroke="none"
+           font-family="Arial"
+           font-size="13px"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="none"
+           x="715.5"
+           y="219"
+           id="text934">4 : </text>
+      </g>
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g946">
+      <g
+         id="g944">
+        <path
+           fill="none"
+           stroke="none"
+           id="path940" />
+        <text
+           fill="#000000"
+           stroke="none"
+           font-family="Arial"
+           font-size="13px"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="none"
+           x="699.5"
+           y="203.5"
+           id="text942">«create»</text>
+      </g>
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g950">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 900 280 L 1032 280"
+         stroke-miterlimit="10"
+         stroke-dasharray="3"
+         id="path948" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g954">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 1021.8373251423759 284.209517756016 L 1032 280 L 1021.8373251423758 275.790482243984"
+         stroke-miterlimit="10"
+         id="path952" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g962">
+      <g
+         id="g960">
+        <path
+           fill="none"
+           stroke="none"
+           id="path956" />
+        <text
+           fill="#000000"
+           stroke="none"
+           font-family="Arial"
+           font-size="13px"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="none"
+           x="956.489501953125"
+           y="275"
+           id="text958">5 : </text>
+      </g>
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g970">
+      <g
+         id="g968">
+        <path
+           fill="none"
+           stroke="none"
+           id="path964" />
+        <text
+           fill="#000000"
+           stroke="none"
+           font-family="Arial"
+           font-size="13px"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="none"
+           x="940.5"
+           y="259.5"
+           id="text966">«create»</text>
+      </g>
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g974">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 900 328 L 1200 328"
+         stroke-miterlimit="10"
+         stroke-dasharray="3"
+         id="path972" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g978">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 1189.837325142376 332.209517756016 L 1200 328 L 1189.837325142376 323.790482243984"
+         stroke-miterlimit="10"
+         id="path976" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g986">
+      <g
+         id="g984">
+        <path
+           fill="none"
+           stroke="none"
+           id="path980" />
+        <text
+           fill="#000000"
+           stroke="none"
+           font-family="Arial"
+           font-size="13px"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="none"
+           x="948.489501953125"
+           y="322"
+           id="text982">6 : </text>
+      </g>
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g994">
+      <g
+         id="g992">
+        <path
+           fill="none"
+           stroke="none"
+           id="path988" />
+        <text
+           fill="#000000"
+           stroke="none"
+           font-family="Arial"
+           font-size="13px"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="none"
+           x="934.5"
+           y="305.5"
+           id="text990">«create»</text>
+      </g>
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g998">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 90 416 L 893 416"
+         stroke-miterlimit="10"
+         id="path996" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1002">
+      <path
+         fill="#000000"
+         stroke="none"
+         d="M 882.8373251423759 420.209517756016 L 893 416 L 882.8373251423758 411.790482243984"
+         id="path1000" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1006">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 882.8373251423759 420.209517756016 L 893 416 L 882.8373251423758 411.790482243984 L 882.8373251423759 420.209517756016"
+         stroke-miterlimit="10"
+         id="path1004" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1014">
+      <g
+         id="g1012">
+        <path
+           fill="none"
+           stroke="none"
+           id="path1008" />
+        <text
+           fill="#000000"
+           stroke="none"
+           font-family="Arial"
+           font-size="13px"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="none"
+           x="444.5"
+           y="411"
+           id="text1010">7 : submitData()</text>
+      </g>
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1018">
+      <rect
+         fill="#ffffff"
+         stroke="none"
+         x="893"
+         y="416"
+         width="13"
+         height="28"
+         id="rect1016" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1022">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 893 416 L 906 416 L 906 444 L 893 444 L 893 416 Z Z"
+         stroke-miterlimit="10"
+         id="path1020" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1026">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 90 456 L 1143 456"
+         stroke-miterlimit="10"
+         id="path1024" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1030">
+      <path
+         fill="#000000"
+         stroke="none"
+         d="M 1132.837325142376 460.209517756016 L 1143 456 L 1132.837325142376 451.790482243984"
+         id="path1028" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1034">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 1132.837325142376 460.209517756016 L 1143 456 L 1132.837325142376 451.790482243984 L 1132.837325142376 460.209517756016"
+         stroke-miterlimit="10"
+         id="path1032" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1042">
+      <g
+         id="g1040">
+        <path
+           fill="none"
+           stroke="none"
+           id="path1036" />
+        <text
+           fill="#000000"
+           stroke="none"
+           font-family="Arial"
+           font-size="13px"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="none"
+           x="663.930419921875"
+           y="451"
+           id="text1038">8 : onClick()</text>
+      </g>
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1046">
+      <rect
+         fill="#ffffff"
+         stroke="none"
+         x="1143"
+         y="456"
+         width="13"
+         height="28"
+         id="rect1044" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1050">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 1143 456 L 1156 456 L 1156 484 L 1143 484 L 1143 456 Z Z"
+         stroke-miterlimit="10"
+         id="path1048" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1054">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 1150 488 L 900 488"
+         stroke-miterlimit="10"
+         stroke-dasharray="3"
+         id="path1052" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1058">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 910.1626748576241 483.790482243984 L 900 488 L 910.1626748576241 492.209517756016"
+         stroke-miterlimit="10"
+         id="path1056" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1066">
+      <g
+         id="g1064">
+        <path
+           fill="none"
+           stroke="none"
+           id="path1060" />
+        <text
+           fill="#000000"
+           stroke="none"
+           font-family="Arial"
+           font-size="13px"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="none"
+           x="935.5"
+           y="503"
+           id="text1062">9 : show auction-specific forms</text>
+      </g>
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1070">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 90 528 L 893 528"
+         stroke-miterlimit="10"
+         id="path1068" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1074">
+      <path
+         fill="#000000"
+         stroke="none"
+         d="M 882.8373251423759 532.209517756016 L 893 528 L 882.8373251423758 523.790482243984"
+         id="path1072" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1078">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 882.8373251423759 532.209517756016 L 893 528 L 882.8373251423758 523.790482243984 L 882.8373251423759 532.209517756016"
+         stroke-miterlimit="10"
+         id="path1076" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1086">
+      <g
+         id="g1084">
+        <path
+           fill="none"
+           stroke="none"
+           id="path1080" />
+        <text
+           fill="#000000"
+           stroke="none"
+           font-family="Arial"
+           font-size="13px"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="none"
+           x="418.851318359375"
+           y="523"
+           id="text1082">10 : submitSpecificData()</text>
+      </g>
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1090">
+      <rect
+         fill="#ffffff"
+         stroke="none"
+         x="893"
+         y="528"
+         width="13"
+         height="28"
+         id="rect1088" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1094">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 893 528 L 906 528 L 906 556 L 893 556 L 893 528 Z Z"
+         stroke-miterlimit="10"
+         id="path1092" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1098">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 90 596 L 1298 596"
+         stroke-miterlimit="10"
+         id="path1096" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1102">
+      <path
+         fill="#000000"
+         stroke="none"
+         d="M 1287.837325142376 600.209517756016 L 1298 596 L 1287.837325142376 591.790482243984"
+         id="path1100" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1106">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 1287.837325142376 600.209517756016 L 1298 596 L 1287.837325142376 591.790482243984 L 1287.837325142376 600.209517756016"
+         stroke-miterlimit="10"
+         id="path1104" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1114">
+      <g
+         id="g1112">
+        <path
+           fill="none"
+           stroke="none"
+           id="path1108" />
+        <text
+           fill="#000000"
+           stroke="none"
+           font-family="Arial"
+           font-size="13px"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="none"
+           x="655.84814453125"
+           y="591"
+           id="text1110">11 : onClick()</text>
+      </g>
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1118">
+      <rect
+         fill="#ffffff"
+         stroke="none"
+         x="1298"
+         y="596"
+         width="13"
+         height="28"
+         id="rect1116" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1122">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 1298 596 L 1311 596 L 1311 624 L 1298 624 L 1298 596 Z Z"
+         stroke-miterlimit="10"
+         id="path1120" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1126">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 1298 623 L 642 623"
+         stroke-miterlimit="10"
+         id="path1124" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1130">
+      <path
+         fill="#000000"
+         stroke="none"
+         d="M 652.1626748576241 618.790482243984 L 642 623 L 652.1626748576241 627.209517756016"
+         id="path1128" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1134">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 652.1626748576241 618.790482243984 L 642 623 L 652.1626748576241 627.209517756016 L 652.1626748576241 618.790482243984"
+         stroke-miterlimit="10"
+         id="path1132" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1142">
+      <g
+         id="g1140">
+        <path
+           fill="none"
+           stroke="none"
+           id="path1136" />
+        <text
+           fill="#000000"
+           stroke="none"
+           font-family="Arial"
+           font-size="13px"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="none"
+           x="926.5"
+           y="637"
+           id="text1138">12 : createAuctionByType()</text>
+      </g>
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1146">
+      <rect
+         fill="#ffffff"
+         stroke="none"
+         x="629"
+         y="623"
+         width="13"
+         height="505"
+         id="rect1144" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1150">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 629 623 L 642 623 L 642 1128 L 629 1128 L 629 623 Z Z"
+         stroke-miterlimit="10"
+         id="path1148" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1154">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 642 666 L 893 666"
+         stroke-miterlimit="10"
+         id="path1152" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1158">
+      <path
+         fill="#000000"
+         stroke="none"
+         d="M 882.8373251423759 670.209517756016 L 893 666 L 882.8373251423758 661.790482243984"
+         id="path1156" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1162">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 882.8373251423759 670.209517756016 L 893 666 L 882.8373251423758 661.790482243984 L 882.8373251423759 670.209517756016"
+         stroke-miterlimit="10"
+         id="path1160" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1170">
+      <g
+         id="g1168">
+        <path
+           fill="none"
+           stroke="none"
+           id="path1164" />
+        <text
+           fill="#000000"
+           stroke="none"
+           font-family="Arial"
+           font-size="13px"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="none"
+           x="689.107666015625"
+           y="661"
+           id="text1166">13 : getType():AuctionType</text>
+      </g>
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1174">
+      <rect
+         fill="#ffffff"
+         stroke="none"
+         x="893"
+         y="666"
+         width="13"
+         height="28"
+         id="rect1172" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1178">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 893 666 L 906 666 L 906 694 L 893 694 L 893 666 Z Z"
+         stroke-miterlimit="10"
+         id="path1176" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1182">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 893 686 L 642 686"
+         stroke-miterlimit="10"
+         stroke-dasharray="3"
+         id="path1180" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1186">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 652.1626748576241 681.790482243984 L 642 686 L 652.1626748576241 690.209517756016"
+         stroke-miterlimit="10"
+         id="path1184" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1194">
+      <g
+         id="g1192">
+        <path
+           fill="none"
+           stroke="none"
+           id="path1188" />
+        <text
+           fill="#000000"
+           stroke="none"
+           font-family="Arial"
+           font-size="13px"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="none"
+           x="741.5"
+           y="701"
+           id="text1190">14 : type</text>
+      </g>
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1198">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 642 776 L 672 776 L 672 796 L 649 796"
+         stroke-miterlimit="10"
+         id="path1196" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1202">
+      <path
+         fill="#000000"
+         stroke="none"
+         d="M 659.1626748576241 791.790482243984 L 649 796 L 659.1626748576241 800.209517756016"
+         id="path1200" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1206">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 659.1626748576241 791.790482243984 L 649 796 L 659.1626748576241 800.209517756016 L 659.1626748576241 791.790482243984"
+         stroke-miterlimit="10"
+         id="path1204" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1214">
+      <g
+         id="g1212">
+        <path
+           fill="none"
+           stroke="none"
+           id="path1208" />
+        <text
+           fill="#000000"
+           stroke="none"
+           font-family="Arial"
+           font-size="13px"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="none"
+           x="646.5"
+           y="771"
+           id="text1210">15 : createIncrementalAuction(auctionInit: Start, auctioner: Auctioner)</text>
+      </g>
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1218">
+      <rect
+         fill="#ffffff"
+         stroke="none"
+         x="636"
+         y="796"
+         width="13"
+         height="28"
+         id="rect1216" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1222">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 636 796 L 649 796 L 649 824 L 636 824 L 636 796 Z Z"
+         stroke-miterlimit="10"
+         id="path1220" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1226">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 642 864 L 672 864 L 672 884 L 649 884"
+         stroke-miterlimit="10"
+         id="path1224" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1230">
+      <path
+         fill="#000000"
+         stroke="none"
+         d="M 659.1626748576241 879.790482243984 L 649 884 L 659.1626748576241 888.209517756016"
+         id="path1228" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1234">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 659.1626748576241 879.790482243984 L 649 884 L 659.1626748576241 888.209517756016 L 659.1626748576241 879.790482243984"
+         stroke-miterlimit="10"
+         id="path1232" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1242">
+      <g
+         id="g1240">
+        <path
+           fill="none"
+           stroke="none"
+           id="path1236" />
+        <text
+           fill="#000000"
+           stroke="none"
+           font-family="Arial"
+           font-size="13px"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="none"
+           x="646.5"
+           y="859"
+           id="text1238">16 : createSilentAuction(auctionInit: Period, auctioner: Auctioner)</text>
+      </g>
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1246">
+      <rect
+         fill="#ffffff"
+         stroke="none"
+         x="636"
+         y="884"
+         width="13"
+         height="28"
+         id="rect1244" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1250">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 636 884 L 649 884 L 649 912 L 636 912 L 636 884 Z Z"
+         stroke-miterlimit="10"
+         id="path1248" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1254">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 642 969 L 893 969"
+         stroke-miterlimit="10"
+         id="path1252" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1258">
+      <path
+         fill="#000000"
+         stroke="none"
+         d="M 882.8373251423759 973.209517756016 L 893 969 L 882.8373251423758 964.790482243984"
+         id="path1256" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1262">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 882.8373251423759 973.209517756016 L 893 969 L 882.8373251423758 964.790482243984 L 882.8373251423759 973.209517756016"
+         stroke-miterlimit="10"
+         id="path1260" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1266">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 890 1150 L 910 1170"
+         stroke-miterlimit="10"
+         id="path1264" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1270">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 910 1150 L 890 1170"
+         stroke-miterlimit="10"
+         id="path1268" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1278">
+      <g
+         id="g1276">
+        <path
+           fill="none"
+           stroke="none"
+           id="path1272" />
+        <text
+           fill="#000000"
+           stroke="none"
+           font-family="Arial"
+           font-size="13px"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="none"
+           x="754.5"
+           y="964"
+           id="text1274">17 : </text>
+      </g>
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1286">
+      <g
+         id="g1284">
+        <path
+           fill="none"
+           stroke="none"
+           id="path1280" />
+        <text
+           fill="#000000"
+           stroke="none"
+           font-family="Arial"
+           font-size="13px"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="none"
+           x="738.5"
+           y="949"
+           id="text1282">«destroy»</text>
+      </g>
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1290">
+      <rect
+         fill="#ffffff"
+         stroke="none"
+         x="893"
+         y="969"
+         width="13"
+         height="63"
+         id="rect1288" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1294">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 893 969 L 906 969 L 906 1032 L 893 1032 L 893 969 Z Z"
+         stroke-miterlimit="10"
+         id="path1292" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1298">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 906 979 L 1143 979"
+         stroke-miterlimit="10"
+         id="path1296" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1302">
+      <path
+         fill="#000000"
+         stroke="none"
+         d="M 1132.837325142376 983.209517756016 L 1143 979 L 1132.837325142376 974.790482243984"
+         id="path1300" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1306">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 1132.837325142376 983.209517756016 L 1143 979 L 1132.837325142376 974.790482243984 L 1132.837325142376 983.209517756016"
+         stroke-miterlimit="10"
+         id="path1304" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1310">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 1140 1118 L 1160 1138"
+         stroke-miterlimit="10"
+         id="path1308" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1314">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 1160 1118 L 1140 1138"
+         stroke-miterlimit="10"
+         id="path1312" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1322">
+      <g
+         id="g1320">
+        <path
+           fill="none"
+           stroke="none"
+           id="path1316" />
+        <text
+           fill="#000000"
+           stroke="none"
+           font-family="Arial"
+           font-size="13px"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="none"
+           x="1011.5"
+           y="974"
+           id="text1318">18 : </text>
+      </g>
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1330">
+      <g
+         id="g1328">
+        <path
+           fill="none"
+           stroke="none"
+           id="path1324" />
+        <text
+           fill="#000000"
+           stroke="none"
+           font-family="Arial"
+           font-size="13px"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="none"
+           x="995.5"
+           y="959"
+           id="text1326">«destroy»</text>
+      </g>
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1334">
+      <rect
+         fill="#ffffff"
+         stroke="none"
+         x="1143"
+         y="979"
+         width="13"
+         height="28"
+         id="rect1332" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1338">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 1143 979 L 1156 979 L 1156 1007 L 1143 1007 L 1143 979 Z Z"
+         stroke-miterlimit="10"
+         id="path1336" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1342">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 906 1024 L 1298 1024"
+         stroke-miterlimit="10"
+         id="path1340" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1346">
+      <path
+         fill="#000000"
+         stroke="none"
+         d="M 1287.837325142376 1028.2095177560159 L 1298 1024 L 1287.837325142376 1019.790482243984"
+         id="path1344" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1350">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 1287.837325142376 1028.2095177560159 L 1298 1024 L 1287.837325142376 1019.790482243984 L 1287.837325142376 1028.2095177560159"
+         stroke-miterlimit="10"
+         id="path1348" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1354">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 1295 1132 L 1315 1152"
+         stroke-miterlimit="10"
+         id="path1352" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1358">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 1315 1132 L 1295 1152"
+         stroke-miterlimit="10"
+         id="path1356" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1366">
+      <g
+         id="g1364">
+        <path
+           fill="none"
+           stroke="none"
+           id="path1360" />
+        <text
+           fill="#000000"
+           stroke="none"
+           font-family="Arial"
+           font-size="13px"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="none"
+           x="1031.5"
+           y="1018"
+           id="text1362">19 : </text>
+      </g>
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1374">
+      <g
+         id="g1372">
+        <path
+           fill="none"
+           stroke="none"
+           id="path1368" />
+        <text
+           fill="#000000"
+           stroke="none"
+           font-family="Arial"
+           font-size="13px"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="none"
+           x="1023.5"
+           y="1003"
+           id="text1370">«destroy»</text>
+      </g>
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1378">
+      <rect
+         fill="#ffffff"
+         stroke="none"
+         x="1298"
+         y="1024"
+         width="13"
+         height="28"
+         id="rect1376" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1382">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 1298 1024 L 1311 1024 L 1311 1052 L 1298 1052 L 1298 1024 Z Z"
+         stroke-miterlimit="10"
+         id="path1380" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1386">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 464 752 L 1063 752 L 1063 928 L 464 928 L 464 752"
+         stroke-miterlimit="10"
+         id="path1384" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1390">
+      <path
+         fill="#ffffff"
+         stroke="none"
+         d="M 464 752 L 464 774 L 573.21533203125 774 L 584.21533203125 763 L 584.21533203125 752 L 464 752"
+         id="path1388" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1394">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 464 752 L 464 774 L 573.21533203125 774 L 584.21533203125 763 L 584.21533203125 752 L 464 752 L 464 752"
+         stroke-miterlimit="10"
+         id="path1392" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1402">
+      <g
+         id="g1400">
+        <path
+           fill="none"
+           stroke="none"
+           id="path1396" />
+        <text
+           fill="#000000"
+           stroke="none"
+           font-family="Arial"
+           font-size="13px"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="none"
+           x="488.72998046875"
+           y="768"
+           id="text1398">createByType</text>
+      </g>
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1410">
+      <g
+         id="g1408">
+        <path
+           fill="none"
+           stroke="none"
+           id="path1404" />
+        <text
+           fill="#000000"
+           stroke="none"
+           font-family="Arial"
+           font-size="13px"
+           font-style="normal"
+           font-weight="bold"
+           text-decoration="none"
+           x="468.279541015625"
+           y="768"
+           id="text1406">alt</text>
+      </g>
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1418">
+      <g
+         id="g1416">
+        <path
+           fill="none"
+           stroke="none"
+           id="path1412" />
+        <text
+           fill="#000000"
+           stroke="none"
+           font-family="Arial"
+           font-size="13px"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="none"
+           x="483.5"
+           y="801"
+           id="text1414">[type == Incremental]</text>
+      </g>
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1422">
+      <path
+         fill="none"
+         stroke="#000000"
+         d="M 464 841 L 1063 841"
+         stroke-miterlimit="10"
+         stroke-dasharray="10,3"
+         id="path1420" />
+    </g>
+    <g
+       transform="translate(-6,2) scale(1,1)"
+       id="g1430">
+      <g
+         id="g1428">
+        <path
+           fill="none"
+           stroke="none"
+           id="path1424" />
+        <text
+           fill="#000000"
+           stroke="none"
+           font-family="Arial"
+           font-size="13px"
+           font-style="normal"
+           font-weight="normal"
+           text-decoration="none"
+           x="483.5"
+           y="867"
+           id="text1426">[type == Silent]</text>
+      </g>
+    </g>
+    <text
+       xml:space="preserve"
+       id="text1821"
+       style="fill:#666666;font-size:89.33333333px;text-align:center;stroke-width:0.4;white-space:pre;shape-inside:url(#rect1823)" />
+  </g>
+</svg>
