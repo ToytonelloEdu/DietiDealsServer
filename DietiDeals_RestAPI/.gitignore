@@ -12,6 +12,7 @@ target/
 *.iml
 *.ipr
 *.crt
+*.pem
 truststore_client
 truststore_server
 keystore_client

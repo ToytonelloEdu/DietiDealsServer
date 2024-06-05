@@ -1,1 +1,5 @@
 node_modules
+*.crt
+*.pem
+DietiDeals_RestAPI/keystore_server
+DietiDeals_RestAPI/keystore_client
