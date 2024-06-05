@@ -15,7 +15,7 @@ import java.net.URI;
  */
 public class Main {
     // Base URI the Grizzly HTTP server will listen on
-    public static final String BASE_URI = "https://0.0.0.0:8080/api/1.0";
+    public static final String BASE_URI = "http://0.0.0.0:8080/api/1.0";
     private static final String KEYSTORE_LOC = "./keystore_server";
     private static final String KEYSTORE_PASS= "antojava";
 
@@ -43,12 +43,12 @@ public class Main {
         // exposing the Jersey application at BASE_URI
         return GrizzlyHttpServerFactory.createHttpServer(
                 URI.create(BASE_URI),
-                rc,
-                true,
-                new SSLEngineConfigurator(sslCon)
-                        .setClientMode(false)
-                        .setNeedClientAuth(false)
-                        .setWantClientAuth(false)
+                rc
+//                true,
+//                new SSLEngineConfigurator(sslCon)
+//                        .setClientMode(false)
+//                        .setNeedClientAuth(false)
+//                        .setWantClientAuth(false)
         );
     }
 
