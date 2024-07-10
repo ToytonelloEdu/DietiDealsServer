@@ -13,10 +13,10 @@ target/
 *.ipr
 *.crt
 *.pem
-truststore_client
-truststore_server
-keystore_client
-keystore_server
+certificates/truststore_client
+certificates/truststore_server
+certificates/keystore_client
+certificates/keystore_server
 
 ### Eclipse ###
 .apt_generated
