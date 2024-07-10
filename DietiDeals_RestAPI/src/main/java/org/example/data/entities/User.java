@@ -1,23 +1,30 @@
-package org.example.data;
+package org.example.data.entities;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import org.hibernate.annotations.NaturalId;
+
+@Entity(name = "User")
 public class User {
+    @Id @NaturalId
     private String username;
+    private String email;
+
     private String password;
 
-    public String getUsername() {
-        return username;
-    }
+    private String firstName;
+    private String lastName;
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    private String bio;
+    private String nationality;
+
 
     public String getPassword() {
-        return password;
+        return /*TODO: Decrypt*/ password;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = /*TODO: Encrypt*/ password;
     }
 
     public User() {
