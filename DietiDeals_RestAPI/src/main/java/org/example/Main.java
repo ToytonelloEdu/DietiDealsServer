@@ -2,7 +2,6 @@ package org.example;
 
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.grizzly.ssl.SSLContextConfigurator;
-import org.glassfish.grizzly.ssl.SSLEngineConfigurator;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 
@@ -16,10 +15,10 @@ import java.net.URI;
 public class Main {
     // Base URI the Grizzly HTTP server will listen on
     public static final String BASE_URI = "http://0.0.0.0:8080/api/1.0";
-    private static final String KEYSTORE_LOC = "./keystore_server";
+    private static final String KEYSTORE_LOC = "./certificates/keystore_server";
     private static final String KEYSTORE_PASS= "antojava";
 
-    private static final String TRUSTSTORE_LOC = "./truststore_server";
+    private static final String TRUSTSTORE_LOC = "./certificates/truststore_server";
     private static final String TRUSTSTORE_PASS = "antojava";
 
     /**
@@ -64,5 +63,7 @@ public class Main {
         System.in.read();
         server.stop();
     }
+
+
 }
 
