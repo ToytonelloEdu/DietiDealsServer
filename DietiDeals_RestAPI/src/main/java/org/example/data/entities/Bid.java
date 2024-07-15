@@ -16,6 +16,30 @@ public class Bid {
     @ManyToOne(fetch = LAZY)
     private Auction auction;
 
-    @ManyToOne
+    @ManyToOne(fetch = LAZY)
     private Buyer buyer;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Auction getAuction() {
+        return auction;
+    }
+
+    public void setAuction(Auction auction) {
+        this.auction = auction;
+    }
+
+    public Buyer getBuyer() {
+        return buyer;
+    }
+
+    public void setBuyer(Buyer buyer) {
+        this.buyer = buyer;
+    }
 }
