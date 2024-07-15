@@ -14,12 +14,12 @@ public class DatabaseSession {
 
     public static final SessionFactory sessionFactory =
             new Configuration()
-                    .addAnnotatedClass(Auction.class)
-                    .addAnnotatedClass(Bid.class)
-                    .addAnnotatedClass(Tag.class)
                     .addAnnotatedClass(User.class)
                     .addAnnotatedClass(Auctioner.class)
                     .addAnnotatedClass(Buyer.class)
+                    .addAnnotatedClass(Auction.class)
+                    .addAnnotatedClass(Bid.class)
+                    .addAnnotatedClass(Tag.class)
                     // PostgreSQL
                     .setProperty(AvailableSettings.JAKARTA_JDBC_URL, "jdbc:postgresql://localhost:5433/dietideals")
                     // Credentials
