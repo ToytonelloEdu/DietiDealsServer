@@ -1,9 +1,11 @@
 package org.example;
 
+import org.example.data.DatabaseSession;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.grizzly.ssl.SSLContextConfigurator;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
+import org.hibernate.SessionFactory;
 
 import java.io.IOException;
 import java.net.URI;
@@ -57,6 +59,7 @@ public class Main {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException {
+        SessionFactory sessionFactory = DatabaseSession.sessionFactory;
         final HttpServer server = startServer();
         System.out.println(String.format("Jersey app started with endpoints available at "
                 + "%s%nHit Ctrl-C to stop it...", BASE_URI));
