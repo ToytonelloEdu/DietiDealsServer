@@ -32,10 +32,8 @@ public class AuctionsDbRepository implements AuctionsRepository {
 
     @Override
     public Auction addAuction(Auction auction) {
-        //TODO: Check documentation for correct design
         sessionFactory.inTransaction(session -> {
             session.persist(auction);
-            session.flush();
         });
         return auction;
     }
@@ -43,7 +41,9 @@ public class AuctionsDbRepository implements AuctionsRepository {
     @Override
     public Auction deleteAuction(int id) {
         Auction auction = getAuctionByID(id);
-        System.out.println(auction.toString());
+        sessionFactory.inTransaction(session -> {
+            session.detach(auction);
+        });
         return auction;
     }
 

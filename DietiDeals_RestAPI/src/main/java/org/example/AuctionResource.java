@@ -9,9 +9,9 @@ import org.example.data.repos.AuctionsDbRepository;
 
 import java.util.List;
 
-@Path("auction")
+@Path("auctions")
 public class AuctionResource {
-    AuctionsRepository auctionsRepo;
+    final AuctionsRepository auctionsRepo;
 
     public AuctionResource(){
         auctionsRepo = AuctionsDbRepository.getInstance();
