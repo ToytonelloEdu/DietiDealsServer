@@ -1,14 +1,16 @@
 package org.example.data.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import org.example.auth.AuthCredentials;
 
 @Entity(name = "Users")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="usertype", discriminatorType = DiscriminatorType.STRING)
 public class User {
     @Id @Column(length = 50)
     private String username;
-
+    @Column(name = "usertype", insertable = false, updatable = false)
+    private String userType;
     @Column(length = 50, nullable = false, unique = true)
     private String email;
     @Column(length = 20, nullable = false)
@@ -31,6 +33,14 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 
     public String getEmail() {
@@ -81,7 +91,7 @@ public class User {
         this.nationality = nationality;
     }
 
-    public String getPassword() {
+    protected String getPassword() {
         return /*TODO: Decrypt*/ password;
     }
 
@@ -95,7 +105,9 @@ public class User {
         this.setPassword(password);
     }
 
-
+    public Boolean checkCredentials(AuthCredentials auth){
+        return username.equals(auth.getUsername()) && password.equals(auth.getPassword());
+    }
 
     @Override
     public String toString() {
