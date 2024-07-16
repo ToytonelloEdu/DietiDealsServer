@@ -9,6 +9,7 @@ import org.example.auth.AuthCredentials;
 import org.example.data.repos.UsersDbRepository;
 import org.example.data.repos.UsersRepository;
 
+//TODO: Separate auth for Buyer and Auctioneer
 @Path("auth")
 public class AuthResource {
     UsersRepository usersRepo;
@@ -20,6 +21,18 @@ public class AuthResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response auth(AuthCredentials auth) {
-        return null;
+        System.out.println(auth);
+        if(usersRepo.verifyCredentials(auth)){
+            return Response
+                    .ok()
+                    //JWT
+                    .build();
+        } else {
+            return Response
+                    .status(Response.Status.UNAUTHORIZED)
+                    .build();
+        }
     }
+
+
 }

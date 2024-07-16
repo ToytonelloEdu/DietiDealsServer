@@ -7,7 +7,7 @@ import org.example.data.entities.User;
 import org.example.data.repos.UsersDbRepository;
 import org.example.data.repos.UsersRepository;
 
-@Path("user")
+@Path("users")
 public class UserResource {
     UsersRepository usersRepo;
 
@@ -16,16 +16,16 @@ public class UserResource {
     public UserResource(final UsersRepository usersRepo) {this.usersRepo = usersRepo;}
 
     @GET
-    @Path("{id}")
+    @Path("{username}")
     @Produces(MediaType.APPLICATION_JSON)
-    public User getUser(@PathParam("id") int id) {
-        return usersRepo.getUserByID(id);
+    public User getUser(@PathParam("username") String username) {
+        return usersRepo.getUserByUsername(username);
     }
 
     @PUT
-    @Path("{id}")
+    @Path("{username}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response updateUser(@PathParam("id") int id, User user) {
+    public Response updateUser(@PathParam("username") String username) {
         //TODO
         return null;
     }
