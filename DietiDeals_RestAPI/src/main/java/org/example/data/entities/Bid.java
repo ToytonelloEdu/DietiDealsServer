@@ -1,9 +1,6 @@
 package org.example.data.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 import static jakarta.persistence.FetchType.LAZY;
 
@@ -13,11 +10,24 @@ public class Bid {
     @Id @GeneratedValue
     private int id;
 
-    @ManyToOne(fetch = LAZY)
+    @ManyToOne(fetch = LAZY, optional = false, cascade = CascadeType.ALL)
     private Auction auction;
 
-    @ManyToOne(fetch = LAZY)
+    @ManyToOne(fetch = LAZY, optional = false, cascade = CascadeType.ALL)
     private Buyer buyer;
+
+    @Column(nullable = false)
+    private double amount;
+
+    @Transient
+    private String bidder; //buyer.username
+
+    public Bid() {}
+    public Bid(int id, Buyer buyer, double amount) {
+        this.id = id;
+        this.bidder = buyer.getUsername();
+        this.amount = amount;
+    }
 
     public int getId() {
         return id;
@@ -27,7 +37,7 @@ public class Bid {
         this.id = id;
     }
 
-    public Auction getAuction() {
+    protected Auction getAuction() {
         return auction;
     }
 
@@ -42,4 +52,21 @@ public class Bid {
     public void setBuyer(Buyer buyer) {
         this.buyer = buyer;
     }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public String getBidder() {
+        return bidder;
+    }
+
+    public void setBidder(String bidder) {
+        this.bidder = bidder;
+    }
+
 }
