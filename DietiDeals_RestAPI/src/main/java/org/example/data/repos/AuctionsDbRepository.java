@@ -1,7 +1,7 @@
 package org.example.data.repos;
 
 import org.example.data.entities.Auction;
-import org.hibernate.Session;
+import org.example.data.entities.Auctioneer;
 
 import java.util.List;
 
@@ -9,8 +9,11 @@ import static org.example.data.DatabaseSession.sessionFactory;
 
 public class AuctionsDbRepository implements AuctionsRepository {
     private static AuctionsDbRepository instance;
+    private static BidsRepository bidsRepo;
 
-    private AuctionsDbRepository() {}
+    private AuctionsDbRepository() {
+        bidsRepo = BidsDbRepository.getInstance();
+    }
 
     public static AuctionsDbRepository getInstance() {
         if (instance == null) {
@@ -27,7 +30,22 @@ public class AuctionsDbRepository implements AuctionsRepository {
 
     @Override
     public Auction getAuctionByID(int id) {
-        return sessionFactory.openSession().getReference(Auction.class, id);
+        return sessionFactory.openSession().find(Auction.class, id);
+    }
+
+    public List<Auction> getAuctionsByAuctioneer(Auctioneer auctioneer) {
+        List<Auction> auctions = getAuctionsThroughQuery_where(auctioneer);
+        for (Auction auction : auctions) {
+            //auction.setAuctioneerUsername(auctioneer.getUsername());
+            auction.setBids(bidsRepo.getBidsByAuction(auction));
+        }
+        return auctions;
+    }
+
+    private List<Auction> getAuctionsThroughQuery_where(Auctioneer auctioneer) {
+        return sessionFactory.openSession()
+                .createSelectionQuery("select new org.example.data.entities.Auction(id, picturePath, objectName, description, date) FROM Auction WHERE auctioneer = :auctioneer", Auction.class)
+                .setParameter("auctioneer", auctioneer).getResultList();
     }
 
     @Override
