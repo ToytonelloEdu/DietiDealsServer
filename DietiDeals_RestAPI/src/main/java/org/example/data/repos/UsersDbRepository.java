@@ -1,15 +1,20 @@
 package org.example.data.repos;
 
 import org.example.auth.AuthCredentials;
-import org.example.data.entities.*;
-import org.hibernate.Session;
+import org.example.data.entities.Auctioneer;
+import org.example.data.entities.Bid;
+import org.example.data.entities.Buyer;
+import org.example.data.entities.User;
 
 import static org.example.data.DatabaseSession.sessionFactory;
 
 public class UsersDbRepository implements UsersRepository {
     private static UsersDbRepository instance;
+    private static AuctionsRepository auctionsRepo;
 
-    private UsersDbRepository() {}
+    private UsersDbRepository() {
+        auctionsRepo = AuctionsDbRepository.getInstance();
+    }
 
     public static UsersDbRepository getInstance() {
         if (instance == null) {
@@ -21,17 +26,14 @@ public class UsersDbRepository implements UsersRepository {
     @Override
     public User getUserByUsername(String username) {
         User subUser = sessionFactory.openSession().find(User.class, username);
+
         if(subUser.getUserType().equals("Auctioneer")) {
             Auctioneer auctioneer = new Auctioneer(subUser);
-            auctioneer.setAuctions(
-                    sessionFactory.openSession()
-                        .createSelectionQuery("FROM Auction WHERE auctioneer = :auctioneer", Auction.class)
-                        .setParameter("auctioneer", auctioneer).getResultList()
-            );
+            auctioneer.setAuctions(auctionsRepo.getAuctionsByAuctioneer(auctioneer));
             return auctioneer;
         } else {
             Buyer buyer = new Buyer(subUser);
-            buyer.setBids(
+            buyer.setBids( //TODO: Implement in BidsRepository
                     sessionFactory.openSession()
                         .createSelectionQuery("FROM Bid WHERE buyer = :buyer", Bid.class)
                         .setParameter("buyer", buyer).getResultList()
@@ -66,4 +68,20 @@ public class UsersDbRepository implements UsersRepository {
         return user.checkCredentials(auth);
     }
 
+
+
+    private UsersDbRepository(AuctionsRepository auctionsRepo) {
+        UsersDbRepository.auctionsRepo = auctionsRepo;
+    }
+
+    public static UsersDbRepository getInstance(AuctionsRepository auctionsRepo){
+        if (instance == null) {
+            instance = new UsersDbRepository(auctionsRepo);
+        } else
+        if(UsersDbRepository.auctionsRepo.getClass() == AuctionsDbRepository.class){
+            throw new IllegalArgumentException("This Repository was already built with default dependencies");
+        }
+        return instance;
+
+    }
 }
