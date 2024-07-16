@@ -15,7 +15,7 @@ public class DatabaseSession {
     public static final SessionFactory sessionFactory =
             new Configuration()
                     .addAnnotatedClass(User.class)
-                    .addAnnotatedClass(Auctioner.class)
+                    .addAnnotatedClass(Auctioneer.class)
                     .addAnnotatedClass(Buyer.class)
                     .addAnnotatedClass(Auction.class)
                     .addAnnotatedClass(Bid.class)
@@ -27,7 +27,10 @@ public class DatabaseSession {
                     .setProperty(AvailableSettings.JAKARTA_JDBC_PASSWORD, password)
                     // Automatic schema export
                     .setProperty(AvailableSettings.JAKARTA_HBM2DDL_DATABASE_ACTION,
-                            Action.SPEC_ACTION_DROP_AND_CREATE)
+                            Action.NONE
+                            //Action.ACTION_UPDATE
+                            //Action.SPEC_ACTION_DROP_AND_CREATE
+                    )
                     // SQL statement logging
                     .setProperty(AvailableSettings.SHOW_SQL, true)
                     .setProperty(AvailableSettings.FORMAT_SQL, true)
