@@ -24,7 +24,8 @@ public class BidsDbRepository implements BidsRepository {
     @Override
     public List<Bid> getBidsByAuction(Auction auction) {
         return sessionFactory.openSession()
-                .createSelectionQuery("SELECT new org.example.data.entities.Bid(id, buyer, amount) FROM Bid WHERE auction = :auction", Bid.class)
+                .createSelectionQuery("SELECT new org.example.data.entities.Bid(id, buyer, amount) " +
+                                         "FROM Bid WHERE auction = :auction", Bid.class)
                 .setParameter("auction", auction).getResultList();
     }
 
