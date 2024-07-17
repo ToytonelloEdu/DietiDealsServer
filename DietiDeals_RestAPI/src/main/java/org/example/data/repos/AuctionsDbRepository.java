@@ -10,9 +10,11 @@ import static org.example.data.DatabaseSession.sessionFactory;
 public class AuctionsDbRepository implements AuctionsRepository {
     private static AuctionsDbRepository instance;
     private static BidsRepository bidsRepo;
+    private static TagsRepository tagsRepo;
 
     private AuctionsDbRepository() {
         bidsRepo = BidsDbRepository.getInstance();
+        tagsRepo = TagsDbRepository.getInstance();
     }
 
     public static AuctionsDbRepository getInstance() {
@@ -24,22 +26,42 @@ public class AuctionsDbRepository implements AuctionsRepository {
 
     @Override
     public List<Auction> getAuctions() {
-        return sessionFactory.openSession()
-                .createQuery("FROM Auction", Auction.class).getResultList();
+        List<Auction> auctions = getAuctionsThroughQuery();
+        for (Auction auction : auctions) {
+            auction.retrieveLastBid(bidsRepo.getBidsByAuction(auction));
+            auction.setTags(tagsRepo.getTagsByAuction(auction));
+        }
+        return auctions;
     }
+
+
 
     @Override
     public Auction getAuctionByID(int id) {
-        return sessionFactory.openSession().find(Auction.class, id);
+        Auction auction = getAuctionThroughQuery_where(id);
+        auction.setBids(bidsRepo.getBidsByAuction(auction));
+        auction.setTags(tagsRepo.getTagsByAuction(auction));
+        return auction;
     }
 
     public List<Auction> getAuctionsByAuctioneer(Auctioneer auctioneer) {
         List<Auction> auctions = getAuctionsThroughQuery_where(auctioneer);
         for (Auction auction : auctions) {
-            //auction.setAuctioneerUsername(auctioneer.getUsername());
             auction.setBids(bidsRepo.getBidsByAuction(auction));
         }
         return auctions;
+    }
+
+    private List<Auction> getAuctionsThroughQuery() {
+        return sessionFactory.openSession()
+                .createSelectionQuery("select new org.example.data.entities.Auction(id, picturePath, objectName, description, auctioneer, date) FROM Auction", Auction.class)
+                .getResultList();
+    }
+
+    private Auction getAuctionThroughQuery_where(Integer id) {
+        return sessionFactory.openSession()
+                .createSelectionQuery("select new org.example.data.entities.Auction(id, picturePath, objectName, description, date, auctioneer) FROM Auction WHERE id = :id", Auction.class)
+                .setParameter("id", id).getSingleResult();
     }
 
     private List<Auction> getAuctionsThroughQuery_where(Auctioneer auctioneer) {
