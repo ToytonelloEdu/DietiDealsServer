@@ -1,0 +1,2 @@
+DietiDeal RESTful API Server
+=============
