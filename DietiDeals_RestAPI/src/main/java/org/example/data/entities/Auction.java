@@ -17,13 +17,14 @@ public class Auction {
 
 
     private String picturePath;
-
+    @Column(nullable = false)
     private String objectName;
+    @Column(nullable = false)
     private String description;
 
-    @ManyToOne
+    @ManyToOne(fetch = LAZY, optional = false)
     private Auctioneer auctioneer;
-
+    @Column(nullable = false)
     private Timestamp date;
 
     @ManyToMany
@@ -34,14 +35,11 @@ public class Auction {
     private List<Bid> bids;
 
     @Transient
-    private Bid lastBid = getLastBid();
+    private Bid lastBid;
     @Transient
     private String auctioneerUsername;
 
     public Auction() {}
-    public Auction(int id) {
-        this.id = id;
-    }
     public Auction(int id, String picturePath, String objectName, String description, Timestamp date) {
         this.id = id;
         this.picturePath = picturePath;
@@ -49,6 +47,16 @@ public class Auction {
         this.description = description;
         this.date = date;
     }
+    public Auction(int id, String picturePath, String objectName, String description, Auctioneer auctioneer, Timestamp date) {
+        this(id, picturePath, objectName, description, date);
+        this.auctioneerUsername = auctioneer.getUsername();
+    }
+
+    public Auction(int id, String picturePath, String objectName, String description, Timestamp date, Auctioneer auctioneer) {
+        this(id, picturePath, objectName, description, date);
+        this.auctioneer = auctioneer;
+    }
+
 
 
     public int getId() {
@@ -113,7 +121,6 @@ public class Auction {
 
     public void setBids(List<Bid> bids) {
         this.bids = bids;
-        this.lastBid = getLastBid();
     }
 
     public String getAuctioneerUsername() {
@@ -125,10 +132,28 @@ public class Auction {
     }
 
     public Bid getLastBid() {
+        return lastBid;
+    }
+
+    public void setLastBid(Bid lastBid) {
+        this.lastBid = lastBid;
+    }
+
+    public Bid updateLastBid() {
         if (bids != null && !bids.isEmpty()) {
             int size = bids.size();
-            return bids.get(size-1);
-        } else return null;
+            return bids.get(size - 1);
+        }
+        return null;
+    }
+
+    public void retrieveLastBid(List<Bid> bids) {
+        if (bids != null && !bids.isEmpty()) {
+            int size = bids.size();
+            setLastBid(bids.get(size - 1));
+        }
+
+
     }
 
     public boolean addBid(Bid bid) {
@@ -138,7 +163,7 @@ public class Auction {
         if(!bids.contains(bid) && bid.getAmount() > lastBid.getAmount())
         {
             boolean res = bids.add(bid);
-            lastBid = getLastBid();
+            lastBid = updateLastBid();
             return true;
         } else return false;
     }

@@ -6,7 +6,7 @@ import org.example.auth.AuthCredentials;
 @Entity(name = "Users")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="usertype", discriminatorType = DiscriminatorType.STRING)
-public class User {
+abstract public class User {
     @Id @Column(length = 50)
     private String username;
     @Column(name = "usertype", insertable = false, updatable = false)
@@ -37,10 +37,6 @@ public class User {
 
     public String getUserType() {
         return userType;
-    }
-
-    public void setUserType(String userType) {
-        this.userType = userType;
     }
 
     public String getEmail() {
