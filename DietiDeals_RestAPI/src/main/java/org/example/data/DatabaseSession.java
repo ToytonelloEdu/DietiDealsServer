@@ -18,6 +18,8 @@ public class DatabaseSession {
                     .addAnnotatedClass(Auctioneer.class)
                     .addAnnotatedClass(Buyer.class)
                     .addAnnotatedClass(Auction.class)
+                    .addAnnotatedClass(IncrementalAuction.class)
+                    .addAnnotatedClass(SilentAuction.class)
                     .addAnnotatedClass(Bid.class)
                     .addAnnotatedClass(Tag.class)
                     // PostgreSQL
