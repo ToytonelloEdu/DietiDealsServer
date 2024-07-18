@@ -4,17 +4,16 @@ import jakarta.persistence.*;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import static jakarta.persistence.FetchType.LAZY;
 
 @Entity(name = "Auction")
-public class Auction {
-
-    //TODO: CREATE AUCTION SUBCLASSES
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+abstract public class Auction {
     @Id @GeneratedValue
     private int id;
-
 
     private String picturePath;
     @Column(nullable = false)
@@ -57,7 +56,18 @@ public class Auction {
         this.auctioneer = auctioneer;
     }
 
-
+    protected Auction(Auction other) {
+        setId(other.getId());
+        setPicturePath(other.getPicturePath());
+        setObjectName(other.getObjectName());
+        setDescription(other.getDescription());
+        setAuctioneer(other.getAuctioneer());
+        setAuctioneerUsername(other.getAuctioneerUsername());
+        setDate(other.getDate());
+        setTags(other.getTags());
+        setBids(other.getBids());
+        setLastBid(other.getLastBid());
+    }
 
     public int getId() {
         return id;
@@ -139,7 +149,16 @@ public class Auction {
         this.lastBid = lastBid;
     }
 
-    public Bid updateLastBid() {
+    abstract public String getAuctionType();
+
+    public void updateLastBid(){
+        if (bids != null && !bids.isEmpty()) {
+            int size = bids.size();
+            setLastBid(bids.get(size - 1));
+        }
+    }
+
+    public Bid retrieveLastBid() {
         if (bids != null && !bids.isEmpty()) {
             int size = bids.size();
             return bids.get(size - 1);
@@ -147,7 +166,7 @@ public class Auction {
         return null;
     }
 
-    public void retrieveLastBid(List<Bid> bids) {
+    public void setLastBid_fromList(List<Bid> bids) {
         if (bids != null && !bids.isEmpty()) {
             int size = bids.size();
             setLastBid(bids.get(size - 1));
@@ -163,8 +182,16 @@ public class Auction {
         if(!bids.contains(bid) && bid.getAmount() > lastBid.getAmount())
         {
             boolean res = bids.add(bid);
-            lastBid = updateLastBid();
+            lastBid = retrieveLastBid();
             return true;
         } else return false;
     }
+
+    abstract public Auction toJsonFriendly();
+
+    public static Comparator<Auction> ComparatorByDate = new Comparator<Auction>() {
+        public int compare(Auction a1, Auction a2) {
+            return a1.getDate().compareTo(a2.getDate());
+        }
+    };
 }

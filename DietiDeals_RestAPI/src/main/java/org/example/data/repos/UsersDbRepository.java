@@ -2,7 +2,6 @@ package org.example.data.repos;
 
 import org.example.auth.AuthCredentials;
 import org.example.data.entities.Auctioneer;
-import org.example.data.entities.Bid;
 import org.example.data.entities.Buyer;
 import org.example.data.entities.User;
 
@@ -11,9 +10,11 @@ import static org.example.data.DatabaseSession.sessionFactory;
 public class UsersDbRepository implements UsersRepository {
     private static UsersDbRepository instance;
     private static AuctionsRepository auctionsRepo;
+    private static BidsRepository bidsRepo;
 
     private UsersDbRepository() {
         auctionsRepo = AuctionsDbRepository.getInstance();
+        bidsRepo = BidsDbRepository.getInstance();
     }
 
     public static UsersDbRepository getInstance() {
@@ -33,11 +34,7 @@ public class UsersDbRepository implements UsersRepository {
             return auctioneer;
         } else {
             Buyer buyer = new Buyer(subUser);
-            buyer.setBids( //TODO: Implement in BidsRepository
-                    sessionFactory.openSession()
-                        .createSelectionQuery("FROM Bid WHERE buyer = :buyer", Bid.class)
-                        .setParameter("buyer", buyer).getResultList()
-            );
+            buyer.setBids(bidsRepo.getBidsByUser(buyer));
             return buyer;
         }
     }
