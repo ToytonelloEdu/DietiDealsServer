@@ -101,6 +101,18 @@ abstract public class User {
         this.setPassword(password);
     }
 
+    public User(String username, String userType, String email, String password, String firstName, String lastName, String proPicPath, String bio, String nationality) {
+        this.username = username;
+        this.userType = userType;
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.proPicPath = proPicPath;
+        this.bio = bio;
+        this.nationality = nationality;
+    }
+
     public Boolean checkCredentials(AuthCredentials auth){
         return username.equals(auth.getUsername()) && password.equals(auth.getPassword());
     }

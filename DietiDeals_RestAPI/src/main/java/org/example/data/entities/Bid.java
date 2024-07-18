@@ -2,6 +2,8 @@ package org.example.data.entities;
 
 import jakarta.persistence.*;
 
+import java.sql.Timestamp;
+
 import static jakarta.persistence.FetchType.LAZY;
 
 @Entity(name = "Bid")
@@ -19,14 +21,26 @@ public class Bid {
     @Column(nullable = false)
     private double amount;
 
+    @Column(nullable = false)
+    private Timestamp time;
+
     @Transient
     private String bidder; //buyer.username
 
     public Bid() {}
-    public Bid(int id, Buyer buyer, double amount) {
+    public Bid(int id, Buyer buyer, double amount, Timestamp time) {
         this.id = id;
         this.bidder = buyer.getUsername();
         this.amount = amount;
+        this.time = time;
+    }
+
+    public Bid(int id, Auction auction, double amount, Timestamp time) {
+        this.id = id;
+        System.out.println(auction.toString());
+        this.auction = auction;
+        this.amount = amount;
+        this.time = time;
     }
 
     public int getId() {
@@ -37,8 +51,11 @@ public class Bid {
         this.id = id;
     }
 
-    protected Auction getAuction() {
-        return auction;
+    public Auction getAuction() {
+        if(auction != null){
+            return auction.toJsonFriendly();
+        }
+        return null;
     }
 
     public void setAuction(Auction auction) {
@@ -59,6 +76,14 @@ public class Bid {
 
     public void setAmount(double amount) {
         this.amount = amount;
+    }
+
+    public Timestamp getTime() {
+        return time;
+    }
+
+    public void setTime(Timestamp time) {
+        this.time = time;
     }
 
     public String getBidder() {

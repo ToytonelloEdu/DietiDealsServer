@@ -29,4 +29,8 @@ public class Auctioneer extends User{
         setBio(user.getBio());
         setNationality(user.getNationality());
     }
+
+    public Auctioneer(String username, String userType, String email, String password, String firstName, String lastName, String proPicPath, String bio, String nationality) {
+        super(username, userType, email, password, firstName, lastName, proPicPath, bio, nationality);
+    }
 }
