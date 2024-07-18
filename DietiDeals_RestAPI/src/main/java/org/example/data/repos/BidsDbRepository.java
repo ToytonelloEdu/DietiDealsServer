@@ -24,13 +24,16 @@ public class BidsDbRepository implements BidsRepository {
     @Override
     public List<Bid> getBidsByAuction(Auction auction) {
         return sessionFactory.openSession()
-                .createSelectionQuery("SELECT new org.example.data.entities.Bid(id, buyer, amount) " +
+                .createSelectionQuery("SELECT new org.example.data.entities.Bid(id, buyer, amount, time) " +
                                          "FROM Bid WHERE auction = :auction", Bid.class)
                 .setParameter("auction", auction).getResultList();
     }
 
     @Override
     public List<Bid> getBidsByUser(Buyer buyer) {
-        return null;
+        return sessionFactory.openSession()
+                .createSelectionQuery("SELECT new org.example.data.entities.Bid(id, auction, amount, time) " +
+                                         "FROM Bid WHERE buyer = :buyer", Bid.class)
+                .setParameter("buyer", buyer).getResultList();
     }
 }
