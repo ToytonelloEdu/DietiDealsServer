@@ -1,6 +1,7 @@
 package org.example.data;
 
 import org.example.data.entities.*;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AvailableSettings;
 import org.hibernate.cfg.Configuration;
@@ -8,8 +9,7 @@ import org.hibernate.tool.schema.Action;
 
 public class DatabaseSession {
     private static final String user = "postgres";
-    private static final String password =
-            "sangio";
+    private static final String password = "sangio";
             //"dd_dealsdieti_p455w0rd!24";
 
     public static final SessionFactory sessionFactory =
@@ -39,4 +39,13 @@ public class DatabaseSession {
                     .setProperty(AvailableSettings.HIGHLIGHT_SQL, true)
                     // Create a new SessionFactory
                     .buildSessionFactory();
+
+    private static Session session;
+
+    public static Session getSession() {
+        if (session == null) {
+            session = sessionFactory.openSession();
+        }
+        return session;
+    }
 }
