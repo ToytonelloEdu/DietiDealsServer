@@ -189,9 +189,9 @@ abstract public class Auction {
 
     abstract public Auction toJsonFriendly();
 
-    public static Comparator<Auction> ComparatorByDate = new Comparator<Auction>() {
+    public static final Comparator<Auction> ComparatorByDate = new Comparator<Auction>() {
         public int compare(Auction a1, Auction a2) {
-            return a1.getDate().compareTo(a2.getDate());
+            return a2.getDate().compareTo(a1.getDate());
         }
     };
 }
