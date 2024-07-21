@@ -1,5 +1,6 @@
 package org.example.data.repos;
 
+import org.example.data.DatabaseSession;
 import org.example.data.entities.Auction;
 import org.example.data.entities.Tag;
 
@@ -35,7 +36,7 @@ public class TagsDbRepository implements TagsRepository {
 
     @Override
     public List<Tag> getTagsByAuction(Auction auction) {
-        return sessionFactory.openSession()
+        return DatabaseSession.getSession()
                 .createSelectionQuery("SELECT tags FROM Auction WHERE id = :id", Tag.class)
                 .setParameter("id", auction.getId()).getResultList();
     }

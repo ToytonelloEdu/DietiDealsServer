@@ -1,5 +1,6 @@
 package org.example.data.repos;
 
+import org.example.data.DatabaseSession;
 import org.example.data.entities.Auction;
 import org.example.data.entities.Auctioneer;
 import org.example.data.entities.IncrementalAuction;
@@ -99,7 +100,7 @@ public class AuctionsDbRepository implements AuctionsRepository {
     }
 
     private List<IncrementalAuction> getIncrAuctionsThroughQuery() {
-        return sessionFactory.openSession()
+        return DatabaseSession.getSession()
                 .createSelectionQuery("select new org.example.data.entities.IncrementalAuction" +
                         "(id, picturePath, objectName, description, auctioneer, date, timeInterval, startingPrice, raisingThreshold) " +
                         "FROM IncrementalAuction ", IncrementalAuction.class)
@@ -107,7 +108,7 @@ public class AuctionsDbRepository implements AuctionsRepository {
     }
 
     private List<SilentAuction> getSilentAuctionsThroughQuery() {
-        return sessionFactory.openSession()
+        return DatabaseSession.getSession()
                 .createSelectionQuery("select new org.example.data.entities.SilentAuction" +
                         "(id, picturePath, objectName, description, auctioneer, date, expirationDate) " +
                         "FROM SilentAuction ", SilentAuction.class)
@@ -123,7 +124,7 @@ public class AuctionsDbRepository implements AuctionsRepository {
     }
 
     private IncrementalAuction getIncrAuctionsThroughQuery_where(Integer id) {
-        return sessionFactory.openSession()
+        return DatabaseSession.getSession()
                 .createSelectionQuery("select new org.example.data.entities.IncrementalAuction" +
                         "(id, picturePath, objectName, description, date, auctioneer, timeInterval, startingPrice, raisingThreshold) " +
                         "FROM IncrementalAuction WHERE id = :id", IncrementalAuction.class)
@@ -131,7 +132,7 @@ public class AuctionsDbRepository implements AuctionsRepository {
     }
 
     private SilentAuction getSilentAuctionsThroughQuery_where(Integer id) {
-        return sessionFactory.openSession()
+        return DatabaseSession.getSession()
                 .createSelectionQuery("select new org.example.data.entities.SilentAuction" +
                         "(id, picturePath, objectName, description, date, auctioneer, expirationDate) " +
                         "FROM SilentAuction WHERE id = :id", SilentAuction.class)
@@ -146,7 +147,7 @@ public class AuctionsDbRepository implements AuctionsRepository {
     }
 
     private List<IncrementalAuction> getIncrAuctionsThroughQuery_where(Auctioneer auctioneer) {
-        return sessionFactory.openSession()
+        return DatabaseSession.getSession()
                 .createSelectionQuery("select new org.example.data.entities.IncrementalAuction" +
                         "(id, picturePath, objectName, description, auctioneer, date, timeInterval, startingPrice, raisingThreshold) " +
                         "FROM IncrementalAuction WHERE auctioneer = :auctioneer", IncrementalAuction.class)
@@ -154,7 +155,7 @@ public class AuctionsDbRepository implements AuctionsRepository {
     }
 
     private List<SilentAuction> getSilentAuctionsThroughQuery_where(Auctioneer auctioneer) {
-        return sessionFactory.openSession()
+        return DatabaseSession.getSession()
                 .createSelectionQuery("select new org.example.data.entities.SilentAuction" +
                         "(id, picturePath, objectName, description, auctioneer, date, expirationDate) " +
                         "FROM SilentAuction WHERE auctioneer = :auctioneer", SilentAuction.class)

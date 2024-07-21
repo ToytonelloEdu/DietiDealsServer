@@ -67,16 +67,22 @@ public class UsersDbRepository implements UsersRepository {
 
 
 
-    private UsersDbRepository(AuctionsRepository auctionsRepo) {
+    private UsersDbRepository(AuctionsRepository auctionsRepo, BidsRepository bidsRepo) {
         UsersDbRepository.auctionsRepo = auctionsRepo;
+        UsersDbRepository.bidsRepo = bidsRepo;
     }
 
-    public static UsersDbRepository getInstance(AuctionsRepository auctionsRepo){
+    public static UsersDbRepository getInstance(AuctionsRepository auctionsRepo, BidsRepository bidsRepo){
         if (instance == null) {
-            instance = new UsersDbRepository(auctionsRepo);
+            instance = new UsersDbRepository(auctionsRepo, bidsRepo);
         } else
-        if(UsersDbRepository.auctionsRepo.getClass() == AuctionsDbRepository.class){
-            throw new IllegalArgumentException("This Repository was already built with default dependencies");
+        {
+            if(UsersDbRepository.auctionsRepo.getClass() == AuctionsDbRepository.class){
+                throw new IllegalArgumentException("This Repository was already built with default dependencies");
+            }
+            if(UsersDbRepository.bidsRepo.getClass() == BidsDbRepository.class){
+                throw new IllegalArgumentException("This Repository was already built with default dependencies");
+            }
         }
         return instance;
 
