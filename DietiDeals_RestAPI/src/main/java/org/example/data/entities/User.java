@@ -39,6 +39,8 @@ abstract public class User {
         return userType;
     }
 
+    public void setUserType(String userType) {}
+
     public String getEmail() {
         return email;
     }
@@ -114,7 +116,11 @@ abstract public class User {
     }
 
     public Boolean checkCredentials(AuthCredentials auth){
-        return username.equals(auth.getUsername()) && password.equals(auth.getPassword());
+        if(auth.getHandle().contains("@")){
+            return email.equals(auth.getHandle()) && password.equals(auth.getPassword());
+        } else {
+            return username.equals(auth.getHandle()) && password.equals(auth.getPassword());
+        }
     }
 
     @Override

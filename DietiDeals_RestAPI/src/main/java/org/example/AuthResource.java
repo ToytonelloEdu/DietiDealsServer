@@ -24,12 +24,13 @@ public class AuthResource {
         System.out.println(auth);
         if(usersRepo.verifyCredentials(auth)){
             return Response
-                    .ok()
+                    .ok("\"Ok\"")
                     //JWT
                     .build();
         } else {
             return Response
                     .status(Response.Status.UNAUTHORIZED)
+                    .entity("\"Wrong credentials\"")
                     .build();
         }
     }

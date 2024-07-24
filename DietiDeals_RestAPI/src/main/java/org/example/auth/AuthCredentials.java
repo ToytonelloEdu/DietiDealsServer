@@ -1,15 +1,15 @@
 package org.example.auth;
 
 public class AuthCredentials {
-    private String username;
+    private String handle;
     private String password;
 
-    public String getUsername() {
-        return username;
+    public String getHandle() {
+        return handle;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setHandle(String handle) {
+        this.handle = handle;
     }
 
     public String getPassword() {
@@ -21,15 +21,15 @@ public class AuthCredentials {
     }
 
     public AuthCredentials() {}
-    public AuthCredentials(String username, String password) {
-        this.username = username;
+    public AuthCredentials(String handle, String password) {
+        this.handle = handle;
         this.password = password;
     }
 
     @Override
     public String toString() {
         return "AuthCredentials{" +
-                "username='" + username + '\'' +
+                "handle='" + handle + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }

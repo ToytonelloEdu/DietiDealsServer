@@ -16,10 +16,10 @@ public class UserResource {
     public UserResource(final UsersRepository usersRepo) {this.usersRepo = usersRepo;}
 
     @GET
-    @Path("{username}")
+    @Path("{handle}")
     @Produces(MediaType.APPLICATION_JSON)
-    public User getUser(@PathParam("username") String username) {
-        return usersRepo.getUserByUsername(username);
+    public User getUser(@PathParam("handle") String handle) {
+        return usersRepo.getUserByHandle(handle);
     }
 
     @PUT

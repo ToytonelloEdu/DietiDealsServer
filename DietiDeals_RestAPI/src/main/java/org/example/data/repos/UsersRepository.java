@@ -7,6 +7,10 @@ public interface UsersRepository {
 
     User getUserByUsername(String username);
 
+    User getUserByEmail(String username);
+
+    User getUserByHandle(String handle);
+
     User addUser(User user);
 
     Boolean verifyCredentials(AuthCredentials auth);

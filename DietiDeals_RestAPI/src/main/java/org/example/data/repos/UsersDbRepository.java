@@ -1,6 +1,7 @@
 package org.example.data.repos;
 
 import org.example.auth.AuthCredentials;
+import org.example.data.DatabaseSession;
 import org.example.data.entities.Auctioneer;
 import org.example.data.entities.Buyer;
 import org.example.data.entities.User;
@@ -26,7 +27,9 @@ public class UsersDbRepository implements UsersRepository {
 
     @Override
     public User getUserByUsername(String username) {
-        User subUser = sessionFactory.openSession().find(User.class, username);
+        User subUser = DatabaseSession.getSession().find(User.class, username);
+
+        if(subUser == null) return null;
 
         if(subUser.getUserType().equals("Auctioneer")) {
             Auctioneer auctioneer = new Auctioneer(subUser);
@@ -36,6 +39,22 @@ public class UsersDbRepository implements UsersRepository {
             Buyer buyer = new Buyer(subUser);
             buyer.setBids(bidsRepo.getBidsByUser(buyer));
             return buyer;
+        }
+    }
+
+    @Override
+    public User getUserByEmail(String email) {
+        return DatabaseSession.getSession()
+                .createSelectionQuery("FROM Users WHERE email = :email", User.class)
+                .setParameter("email", email).getSingleResultOrNull();
+    }
+
+    @Override
+    public User getUserByHandle(String handle) {
+        if (handle.contains("@")) {
+            return getUserByEmail(handle);
+        } else {
+            return getUserByUsername(handle);
         }
     }
 
@@ -61,10 +80,12 @@ public class UsersDbRepository implements UsersRepository {
 
     @Override
     public Boolean verifyCredentials(AuthCredentials auth) {
-        User user = sessionFactory.openSession().find(User.class, auth.getUsername());
-        return user.checkCredentials(auth);
+        User user = getUserByHandle(auth.getHandle());
+        if(user != null)
+            return user.checkCredentials(auth);
+        else
+            return false;
     }
-
 
 
     private UsersDbRepository(AuctionsRepository auctionsRepo, BidsRepository bidsRepo) {
