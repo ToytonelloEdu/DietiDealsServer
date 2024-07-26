@@ -14,6 +14,6 @@ import java.io.IOException;
 public class AuthenticationFilter implements ContainerRequestFilter {
     @Override
     public void filter(ContainerRequestContext containerRequestContext) throws IOException {
-
+        //TODO: Implement
     }
 }
