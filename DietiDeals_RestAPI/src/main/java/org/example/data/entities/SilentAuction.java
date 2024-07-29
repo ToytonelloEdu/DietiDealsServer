@@ -48,7 +48,7 @@ public class SilentAuction extends Auction{
     public Auction toJsonFriendly() {
         SilentAuction auction = new SilentAuction(this);
         auction.setAuctioneer(null);
-        auction.setBids(null);
+        auction.getBids().replaceAll(Bid::toJsonFriendly);
         return auction;
     }
 }

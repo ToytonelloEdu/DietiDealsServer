@@ -74,7 +74,7 @@ public class IncrementalAuction extends Auction {
     public Auction toJsonFriendly() {
         IncrementalAuction auction = new IncrementalAuction(this);
         auction.setAuctioneer(null);
-        auction.setBids(null);
+        auction.getBids().replaceAll(Bid::toJsonFriendly);
         return auction;
     }
 }
