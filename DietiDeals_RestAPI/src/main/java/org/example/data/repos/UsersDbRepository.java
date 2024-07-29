@@ -44,9 +44,20 @@ public class UsersDbRepository implements UsersRepository {
 
     @Override
     public User getUserByEmail(String email) {
-        return DatabaseSession.getSession()
+        User user = DatabaseSession.getSession()
                 .createSelectionQuery("FROM Users WHERE email = :email", User.class)
                 .setParameter("email", email).getSingleResultOrNull();
+
+        if(user instanceof Auctioneer) {
+            Auctioneer auctioneer = (Auctioneer) user;
+            auctioneer.setAuctions(auctionsRepo.getAuctionsByAuctioneer(auctioneer));
+            return auctioneer;
+        } else if (user instanceof Buyer) {
+            Buyer buyer = (Buyer) user;
+            buyer.setBids(bidsRepo.getBidsByUser(buyer));
+            return buyer;
+        }
+        return user;
     }
 
     @Override
