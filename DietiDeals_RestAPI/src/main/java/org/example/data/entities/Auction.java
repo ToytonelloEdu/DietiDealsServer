@@ -181,7 +181,7 @@ abstract public class Auction {
         }
         if(!bids.contains(bid) && bid.getAmount() > lastBid.getAmount())
         {
-            boolean res = bids.add(bid);
+            bids.add(bid);
             lastBid = retrieveLastBid();
             return true;
         } else return false;
@@ -189,9 +189,5 @@ abstract public class Auction {
 
     abstract public Auction toJsonFriendly();
 
-    public static final Comparator<Auction> ComparatorByDate = new Comparator<Auction>() {
-        public int compare(Auction a1, Auction a2) {
-            return a2.getDate().compareTo(a1.getDate());
-        }
-    };
+    public static final Comparator<Auction> ComparatorByDate = (a1, a2) -> a2.getDate().compareTo(a1.getDate());
 }
