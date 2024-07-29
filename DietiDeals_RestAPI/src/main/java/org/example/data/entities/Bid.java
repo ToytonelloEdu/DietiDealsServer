@@ -3,6 +3,7 @@ package org.example.data.entities;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
+import java.util.Comparator;
 
 import static jakarta.persistence.FetchType.LAZY;
 
@@ -37,10 +38,21 @@ public class Bid {
 
     public Bid(int id, Auction auction, double amount, Timestamp time) {
         this.id = id;
-        System.out.println(auction.toString());
         this.auction = auction;
         this.amount = amount;
         this.time = time;
+    }
+
+    protected Bid(Bid other) {
+        setId(other.getId());
+        setAuction(other.auction);
+        setBuyer(other.getBuyer());
+        setAmount(other.getAmount());
+        setTime(other.getTime());
+        if (other.getBidder() != null)
+            setBidder(other.getBidder());
+        else
+            setBidder(other.getBuyer().getUsername());
     }
 
     public int getId() {
@@ -94,4 +106,12 @@ public class Bid {
         this.bidder = bidder;
     }
 
+    public Bid toJsonFriendly() {
+        Bid newBid = new Bid(this);
+        newBid.buyer = null;
+        newBid.auction = null;
+        return newBid;
+    }
+
+    public static Comparator<Bid> compareByTimeDesc = (b1, b2) -> b2.time.compareTo(b1.time);
 }
