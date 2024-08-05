@@ -28,7 +28,8 @@ public class JwtAuthController implements AuthController {
             .withIssuer(ISSUER)
             .build();
 
-    public static String getUsernameClaim(String token) {
+    @Override
+    public String getUsernameClaim(String token) {
         try {
             DecodedJWT decodedJWT = verifier.verify(token);
             return decodedJWT.getClaim("username").asString();
@@ -49,7 +50,8 @@ public class JwtAuthController implements AuthController {
                 .sign(algorithm);
     }
 
-    public static boolean validateToken(String token){
+    @Override
+    public boolean validateToken(String token){
         try {
             DecodedJWT decodedJWT = verifier.verify(token);
             return true;
