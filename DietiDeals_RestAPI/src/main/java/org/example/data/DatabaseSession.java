@@ -22,6 +22,7 @@ public class DatabaseSession {
                     .addAnnotatedClass(SilentAuction.class)
                     .addAnnotatedClass(Bid.class)
                     .addAnnotatedClass(Tag.class)
+                    .addAnnotatedClass(AuctionPhoto.class)
                     // PostgreSQL
                     .setProperty(AvailableSettings.JAKARTA_JDBC_URL, "jdbc:postgresql://localhost:5433/dietideals")
                     // Credentials
@@ -29,8 +30,8 @@ public class DatabaseSession {
                     .setProperty(AvailableSettings.JAKARTA_JDBC_PASSWORD, password)
                     // Automatic schema export
                     .setProperty(AvailableSettings.JAKARTA_HBM2DDL_DATABASE_ACTION,
-                            Action.NONE
-                            //Action.ACTION_UPDATE
+                            //Action.NONE
+                            Action.ACTION_UPDATE
                             //Action.SPEC_ACTION_DROP_AND_CREATE
                     )
                     // SQL statement logging
@@ -43,9 +44,10 @@ public class DatabaseSession {
     private static Session session;
 
     public static Session getSession() {
-        if (session == null) {
-            session = sessionFactory.openSession();
-        }
-        return session;
+//        if (session == null) {
+//            session = sessionFactory.openSession();
+//        }
+//        return session;
+        return sessionFactory.openSession();
     }
 }
