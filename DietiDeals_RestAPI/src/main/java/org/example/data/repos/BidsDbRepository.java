@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static org.example.data.DatabaseSession.sessionFactory;
+
 public class BidsDbRepository implements BidsRepository {
     private static BidsDbRepository instance;
 
@@ -43,5 +45,24 @@ public class BidsDbRepository implements BidsRepository {
         }
         List<Bid> ret = new ArrayList<>(map.values()); ret.sort(Bid.compareByTimeDesc);
         return ret;
+    }
+
+    @Override
+    public Bid addBid(Bid bid) throws IllegalArgumentException {
+        if (bid == null) throw  new IllegalArgumentException("bid is null");
+        try {
+            sessionFactory.inTransaction(session -> {
+                Auction auction = session.find(Auction.class, bid.auctionId());
+                bid.setAuction(auction);
+
+                Buyer buyer = session.find(Buyer.class, bid.getBuyer().getUsername());
+                bid.setBuyer(buyer);
+
+                session.persist(bid);
+            });
+            return bid;
+        } catch (Exception e) {
+            throw new IllegalArgumentException(e);
+        }
     }
 }

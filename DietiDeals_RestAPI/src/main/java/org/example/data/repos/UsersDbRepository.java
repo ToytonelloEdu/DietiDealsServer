@@ -2,9 +2,7 @@ package org.example.data.repos;
 
 import org.example.auth.AuthCredentials;
 import org.example.data.DatabaseSession;
-import org.example.data.entities.Auctioneer;
-import org.example.data.entities.Buyer;
-import org.example.data.entities.User;
+import org.example.data.entities.*;
 
 import static org.example.data.DatabaseSession.sessionFactory;
 
@@ -84,9 +82,24 @@ public class UsersDbRepository implements UsersRepository {
             });
             return user;
         } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
             return null;
         }
 
+    }
+
+    @Override
+    public User updateUser(User user) {
+        if(user == null) return null;
+        try {
+            sessionFactory.inTransaction(session -> {
+                session.merge(user);
+            });
+            return user;
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+            return null;
+        }
     }
 
     @Override

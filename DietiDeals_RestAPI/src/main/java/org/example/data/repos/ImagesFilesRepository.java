@@ -3,7 +3,7 @@ package org.example.data.repos;
 import java.io.*;
 
 public class ImagesFilesRepository implements ImagesRepository{
-    private static ImagesFilesRepository instance;
+    private static volatile ImagesFilesRepository instance;
 
     private ImagesFilesRepository(){}
 
@@ -24,17 +24,17 @@ public class ImagesFilesRepository implements ImagesRepository{
 
 
     @Override
-    public Boolean saveImageByStream(InputStream inputStream, String user) throws IOException {
+    public void saveImageByStream(String name, InputStream inputStream) throws IOException {
         OutputStream os = null;
         try {
-            File fileToUpload = new File("C:/Users/Public/Pictures/"+user +".jpg");
+            File fileToUpload = new File("src/main/java/org/example/files/"+name +".jpg");
             os = new FileOutputStream(fileToUpload);
             byte[] b = new byte[2048];
             int length;
             while ((length = inputStream.read(b)) != -1) {
                 os.write(b, 0, length);
             }
-            return true;
+            os.flush();
         } finally {
             try {
                 assert os != null;

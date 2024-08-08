@@ -3,6 +3,7 @@ package org.example.data.repos;
 import org.example.data.DatabaseSession;
 import org.example.data.entities.Auction;
 import org.example.data.entities.Tag;
+import org.hibernate.Session;
 
 import java.util.List;
 
@@ -29,9 +30,16 @@ public class TagsDbRepository implements TagsRepository {
     @Override
     public Tag addTag(Tag tag) {
         sessionFactory.inTransaction(session -> {
-            session.persist(tag);
+            if (isNewTag(session, tag))
+                session.persist(tag);
         });
         return tag;
+    }
+
+    private boolean isNewTag(Session session, Tag tag) {
+        return session.
+                createSelectionQuery("FROM Tag WHERE tagName = :tagName", Tag.class)
+                .setParameter("tagName", tag.getTagName()).getSingleResultOrNull() == null;
     }
 
     @Override

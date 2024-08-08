@@ -13,5 +13,7 @@ public interface UsersRepository {
 
     User addUser(User user);
 
+    User updateUser(User user);
+
     Boolean verifyCredentials(AuthCredentials auth);
 }

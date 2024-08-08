@@ -9,6 +9,6 @@ public interface ImagesRepository {
 
     File getImageByPath(String path) throws FileNotFoundException;
 
-    Boolean saveImageByStream(InputStream inputStream, String user) throws IOException;
+    void saveImageByStream(String user, InputStream inputStream) throws IOException;
 
 }

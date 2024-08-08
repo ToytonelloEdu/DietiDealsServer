@@ -1,10 +1,8 @@
 package org.example.data.repos;
 
 import org.example.data.DatabaseSession;
-import org.example.data.entities.Auction;
-import org.example.data.entities.Auctioneer;
-import org.example.data.entities.IncrementalAuction;
-import org.example.data.entities.SilentAuction;
+import org.example.data.entities.*;
+import org.hibernate.Session;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,10 +13,12 @@ public class AuctionsDbRepository implements AuctionsRepository {
     private static AuctionsDbRepository instance;
     private static BidsRepository bidsRepo;
     private static TagsRepository tagsRepo;
+    private static PhotosRepository photosRepo;
 
     private AuctionsDbRepository() {
         bidsRepo = BidsDbRepository.getInstance();
         tagsRepo = TagsDbRepository.getInstance();
+        photosRepo = PhotosDbRepository.getInstance();
     }
 
     public static AuctionsDbRepository getInstance() {
@@ -36,6 +36,7 @@ public class AuctionsDbRepository implements AuctionsRepository {
                 auction.setLastBid_fromList(bidsRepo.getBidsByAuction(auction));
             }
             auction.setTags(tagsRepo.getTagsByAuction(auction));
+            auction.setPictures(photosRepo.getPhotosByAuction(auction));
         }
         return auctions;
     }
@@ -45,6 +46,7 @@ public class AuctionsDbRepository implements AuctionsRepository {
         Auction auction = getAuctionThroughQuery_where(id);
         auction.setBids(bidsRepo.getBidsByAuction(auction));
         auction.setTags(tagsRepo.getTagsByAuction(auction));
+        auction.setPictures(photosRepo.getPhotosByAuction(auction));
         return auction;
     }
 
@@ -54,6 +56,7 @@ public class AuctionsDbRepository implements AuctionsRepository {
             auction.setBids(bidsRepo.getBidsByAuction(auction));
             auction.updateLastBid();
             auction.setTags(tagsRepo.getTagsByAuction(auction));
+            auction.setPictures(photosRepo.getPhotosByAuction(auction));
         }
         return auctions;
     }
@@ -67,18 +70,58 @@ public class AuctionsDbRepository implements AuctionsRepository {
         } else throw new IllegalArgumentException("Unsupported auction type: " + auction.getClass());
     }
 
+    @Override
+    public Auction updateAuction(Auction auction) {
+        if(auction == null) throw new IllegalArgumentException("Auction is null");
+        try {
+            sessionFactory.inTransaction(session -> {
+                session.merge(auction);
+            });
+            return auction;
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Unable to update auction: " + auction, e);
+        }
+    }
+
     protected Auction addIncrAuction(IncrementalAuction auction) {
         sessionFactory.inTransaction(session -> {
+            List<Tag> tags = getPesistedTags(auction, session);
+            auction.setTags(tags);
+
             session.persist(auction);
+            System.out.println("Auction created: " + auction);
         });
         return auction;
     }
 
     protected Auction addSilentAuction(SilentAuction auction) {
-        sessionFactory.inTransaction(session -> {
-            session.persist(auction);
-        });
+        try {
+            sessionFactory.inTransaction(session -> {
+                List<Tag> tags = getPesistedTags(auction, session);
+                auction.setTags(tags);
+
+                session.persist(auction);
+                System.out.println("Auction created: " + auction);
+            });
+        }
+        catch (Exception e) {
+            System.out.println("Error creating auction: " + e.getMessage());
+            return null;
+        }
         return auction;
+    }
+
+    private List<Tag> getPesistedTags(Auction auction, Session session) {
+        List<Tag> tags = new ArrayList<>();
+        for (Tag tag : auction.getTags()) {
+            Tag found = session.find(Tag.class, tag.getTagName());
+            if (found != null) {
+                tags.add(found);
+            } else {
+                tags.add(tag);
+            }
+        }
+        return tags;
     }
 
 
@@ -102,7 +145,7 @@ public class AuctionsDbRepository implements AuctionsRepository {
     private List<IncrementalAuction> getIncrAuctionsThroughQuery() {
         return DatabaseSession.getSession()
                 .createSelectionQuery("select new org.example.data.entities.IncrementalAuction" +
-                        "(id, picturePath, objectName, description, auctioneer, date, timeInterval, startingPrice, raisingThreshold) " +
+                        "(id, objectName, description, auctioneer, date, medianColor, timeInterval, startingPrice, raisingThreshold) " +
                         "FROM IncrementalAuction ", IncrementalAuction.class)
                 .getResultList();
     }
@@ -110,7 +153,7 @@ public class AuctionsDbRepository implements AuctionsRepository {
     private List<SilentAuction> getSilentAuctionsThroughQuery() {
         return DatabaseSession.getSession()
                 .createSelectionQuery("select new org.example.data.entities.SilentAuction" +
-                        "(id, picturePath, objectName, description, auctioneer, date, expirationDate) " +
+                        "(id, objectName, description, auctioneer, date, medianColor, expirationDate) " +
                         "FROM SilentAuction ", SilentAuction.class)
                 .getResultList();
     }
@@ -126,7 +169,7 @@ public class AuctionsDbRepository implements AuctionsRepository {
     private IncrementalAuction getIncrAuctionsThroughQuery_where(Integer id) {
         return DatabaseSession.getSession()
                 .createSelectionQuery("select new org.example.data.entities.IncrementalAuction" +
-                        "(id, picturePath, objectName, description, date, auctioneer, timeInterval, startingPrice, raisingThreshold) " +
+                        "(id, objectName, description, date, auctioneer, medianColor, timeInterval, startingPrice, raisingThreshold) " +
                         "FROM IncrementalAuction WHERE id = :id", IncrementalAuction.class)
                 .setParameter("id", id).getSingleResultOrNull();
     }
@@ -134,7 +177,7 @@ public class AuctionsDbRepository implements AuctionsRepository {
     private SilentAuction getSilentAuctionsThroughQuery_where(Integer id) {
         return DatabaseSession.getSession()
                 .createSelectionQuery("select new org.example.data.entities.SilentAuction" +
-                        "(id, picturePath, objectName, description, date, auctioneer, expirationDate) " +
+                        "(id, objectName, description, date, auctioneer, medianColor, expirationDate) " +
                         "FROM SilentAuction WHERE id = :id", SilentAuction.class)
                 .setParameter("id", id).getSingleResultOrNull();
     }
@@ -143,13 +186,14 @@ public class AuctionsDbRepository implements AuctionsRepository {
         List<Auction> auctions = new ArrayList<>();
         auctions.addAll(getIncrAuctionsThroughQuery_where(auctioneer));
         auctions.addAll(getSilentAuctionsThroughQuery_where(auctioneer));
+        auctions.sort(Auction.ComparatorByDate);
         return auctions;
     }
 
     private List<IncrementalAuction> getIncrAuctionsThroughQuery_where(Auctioneer auctioneer) {
         return DatabaseSession.getSession()
                 .createSelectionQuery("select new org.example.data.entities.IncrementalAuction" +
-                        "(id, picturePath, objectName, description, auctioneer, date, timeInterval, startingPrice, raisingThreshold) " +
+                        "(id, objectName, description, auctioneer, date, medianColor, timeInterval, startingPrice, raisingThreshold) " +
                         "FROM IncrementalAuction WHERE auctioneer = :auctioneer", IncrementalAuction.class)
                 .setParameter("auctioneer", auctioneer).getResultList();
     }
@@ -157,7 +201,7 @@ public class AuctionsDbRepository implements AuctionsRepository {
     private List<SilentAuction> getSilentAuctionsThroughQuery_where(Auctioneer auctioneer) {
         return DatabaseSession.getSession()
                 .createSelectionQuery("select new org.example.data.entities.SilentAuction" +
-                        "(id, picturePath, objectName, description, auctioneer, date, expirationDate) " +
+                        "(id, objectName, description, auctioneer, date, medianColor, expirationDate) " +
                         "FROM SilentAuction WHERE auctioneer = :auctioneer", SilentAuction.class)
                 .setParameter("auctioneer", auctioneer).getResultList();
     }

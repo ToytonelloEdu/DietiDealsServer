@@ -16,6 +16,8 @@ public interface AuctionsRepository {
 
     Auction addAuction(Auction auction);
 
+    Auction updateAuction(Auction auction);
+
     Auction deleteAuction(int id);
 
 

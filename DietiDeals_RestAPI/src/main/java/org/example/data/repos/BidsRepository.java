@@ -12,4 +12,5 @@ public interface BidsRepository {
 
     List<Bid> getBidsByUser(Buyer buyer);
 
+    Bid addBid(Bid bid);
 }
