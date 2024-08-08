@@ -1,26 +1,19 @@
 package org.example.data.entities;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+
+import java.util.List;
 
 @Entity(name = "Tag")
 public class Tag {
 
-    @Id @GeneratedValue
-    private int id;
-
-    @Column(nullable = false, unique = true)
+    @Id
     private String tagName;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    @ManyToMany(mappedBy = "tags")
+    private List<Auction> auctions;
 
     public String getTagName() {
         return tagName;
@@ -31,15 +24,13 @@ public class Tag {
     }
 
     public Tag() {}
-    public Tag(int id, String tagName) {
-        this.id = id;
+    public Tag(String tagName) {
         this.tagName = tagName;
     }
 
     @Override
     public String toString() {
         return "Tag{" +
-                "id=" + id +
                 ", tagName='" + tagName + '\'' +
                 '}';
     }

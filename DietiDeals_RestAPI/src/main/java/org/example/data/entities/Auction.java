@@ -15,7 +15,6 @@ abstract public class Auction {
     @Id @GeneratedValue
     private int id;
 
-    private String picturePath;
     @Column(nullable = false)
     private String objectName;
     @Column(nullable = false)
@@ -26,12 +25,20 @@ abstract public class Auction {
     @Column(nullable = false)
     private Timestamp date;
 
-    @ManyToMany
-    @JoinTable(name = "auctionTags")
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "auctionTags",
+            joinColumns = {@JoinColumn(name = "auction_id")},
+            inverseJoinColumns = {@JoinColumn(name = "tags_tagname")}
+    )
     private List<Tag> tags;
 
     @OneToMany(mappedBy= "auction", fetch = LAZY)
     private List<Bid> bids;
+
+    @OneToMany(mappedBy = "auction", fetch = LAZY)
+    private List<AuctionPhoto> pictures;
+    private String medianColor;
 
     @Transient
     private Bid lastBid;
@@ -39,26 +46,50 @@ abstract public class Auction {
     private String auctioneerUsername;
 
     public Auction() {}
-    public Auction(int id, String picturePath, String objectName, String description, Timestamp date) {
+    public Auction(int id, List<AuctionPhoto> pictures, String objectName, String description, Timestamp date, String medianColor) {
         this.id = id;
-        this.picturePath = picturePath;
+        this.pictures = pictures;
         this.objectName = objectName;
         this.description = description;
         this.date = date;
+        this.medianColor = medianColor;
     }
-    public Auction(int id, String picturePath, String objectName, String description, Auctioneer auctioneer, Timestamp date) {
-        this(id, picturePath, objectName, description, date);
+    public Auction(int id, List<AuctionPhoto> pictures, String objectName, String description, Auctioneer auctioneer, Timestamp date, String medianColor) {
+        this(id, pictures, objectName, description, date, medianColor);
         this.auctioneerUsername = auctioneer.getUsername();
     }
 
-    public Auction(int id, String picturePath, String objectName, String description, Timestamp date, Auctioneer auctioneer) {
-        this(id, picturePath, objectName, description, date);
+    public Auction(int id, List<AuctionPhoto> pictures, String objectName, String description, Timestamp date, Auctioneer auctioneer, String medianColor) {
+        this(id, pictures, objectName, description, date, medianColor);
+        this.auctioneer = auctioneer;
+    }
+
+    public Auction(int id, List<AuctionPhoto> pictures, String objectName, String description, Timestamp date, Auctioneer auctioneer, String medianColor, List<Tag> tags) {
+        this(id, pictures, objectName, description, date, medianColor);
+        this.auctioneer = auctioneer;
+        this.tags = tags;
+    }
+
+    public Auction(int id, String objectName, String description, Timestamp date, String medianColor) {
+        this.id = id;
+        this.objectName = objectName;
+        this.description = description;
+        this.date = date;
+        this.medianColor = medianColor;
+    }
+    public Auction(int id, String objectName, String description, Auctioneer auctioneer, Timestamp date, String medianColor) {
+        this(id, objectName, description, date, medianColor);
+        this.auctioneerUsername = auctioneer.getUsername();
+    }
+
+    public Auction(int id, String objectName, String description, Timestamp date, Auctioneer auctioneer, String medianColor) {
+        this(id, objectName, description, date, medianColor);
         this.auctioneer = auctioneer;
     }
 
     protected Auction(Auction other) {
         setId(other.getId());
-        setPicturePath(other.getPicturePath());
+        setPictures(other.getPictures());
         setObjectName(other.getObjectName());
         setDescription(other.getDescription());
         setAuctioneer(other.getAuctioneer());
@@ -67,6 +98,7 @@ abstract public class Auction {
         setTags(other.getTags());
         setBids(other.getBids());
         setLastBid(other.getLastBid());
+        setMedianColor(other.getMedianColor());
     }
 
     public int getId() {
@@ -77,12 +109,12 @@ abstract public class Auction {
         this.id = id;
     }
 
-    public String getPicturePath() {
-        return picturePath;
+    public List<AuctionPhoto> getPictures() {
+        return pictures;
     }
 
-    public void setPicturePath(String picturePath) {
-        this.picturePath = picturePath;
+    public void setPictures(List<AuctionPhoto> picturePath) {
+        this.pictures = picturePath;
     }
 
     public String getObjectName() {
@@ -149,6 +181,14 @@ abstract public class Auction {
         this.lastBid = lastBid;
     }
 
+    public String getMedianColor() {
+        return medianColor;
+    }
+
+    public void setMedianColor(String medianColor) {
+        this.medianColor = medianColor;
+    }
+
     abstract public String getAuctionType();
 
     public void updateLastBid(){
@@ -187,7 +227,16 @@ abstract public class Auction {
         } else return false;
     }
 
+    public AuctionPhoto firstPhoto() {
+        if(pictures != null && !pictures.isEmpty())
+            return pictures.get(0);
+
+        return null;
+    }
+
     abstract public Auction toJsonFriendly();
 
     public static final Comparator<Auction> ComparatorByDate = (a1, a2) -> a2.getDate().compareTo(a1.getDate());
+
+
 }

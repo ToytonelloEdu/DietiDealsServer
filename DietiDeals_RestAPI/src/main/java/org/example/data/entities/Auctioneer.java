@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Transient;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Entity(name = "Auctioneer")
@@ -40,9 +41,23 @@ public class Auctioneer extends User{
         setBio(user.getBio());
         setNationality(user.getNationality());
         setProPicPath(user.getProPicPath());
+        setBirthdate(user.getBirthdate());
+        setGender(user.getGender());
     }
 
-    public Auctioneer(String username, String userType, String email, String password, String firstName, String lastName, String proPicPath, String bio, String nationality) {
-        super(username, userType, email, password, firstName, lastName, proPicPath, bio, nationality);
+    public Auctioneer(
+            String username,
+            String userType,
+            String email,
+            String password,
+            String firstName,
+            String lastName,
+            String proPicPath,
+            String bio,
+            String nationality,
+            String gender,
+            Timestamp birthdate
+    ) {
+        super(username, userType, email, password, firstName, lastName, proPicPath, bio, nationality, gender, birthdate);
     }
 }

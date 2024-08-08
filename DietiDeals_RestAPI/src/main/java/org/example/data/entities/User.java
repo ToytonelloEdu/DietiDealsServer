@@ -3,6 +3,8 @@ package org.example.data.entities;
 import jakarta.persistence.*;
 import org.example.auth.AuthCredentials;
 
+import java.sql.Timestamp;
+
 @Entity(name = "Users")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="usertype", discriminatorType = DiscriminatorType.STRING)
@@ -22,10 +24,14 @@ abstract public class User {
     private String lastName;
 
     private String proPicPath;
-    @Column(length = 100, nullable = false)
+    @Column(length = 100)
     private String bio;
-    @Column(nullable = false)
     private String nationality;
+
+    @Column(nullable = false)
+    private Timestamp birthdate;
+    @Column(nullable = false)
+    private String gender;
 
     public String getUsername() {
         return username;
@@ -89,6 +95,22 @@ abstract public class User {
         this.nationality = nationality;
     }
 
+    public Timestamp getBirthdate() {
+        return birthdate;
+    }
+
+    public void setBirthdate(Timestamp birthdate) {
+        this.birthdate = birthdate;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
     protected String getPassword() {
         return /*TODO: Decrypt*/ password;
     }
@@ -103,7 +125,7 @@ abstract public class User {
         this.setPassword(password);
     }
 
-    public User(String username, String userType, String email, String password, String firstName, String lastName, String proPicPath, String bio, String nationality) {
+    public User(String username, String userType, String email, String password, String firstName, String lastName, String proPicPath, String bio, String nationality, String gender, Timestamp birthdate) {
         this.username = username;
         this.userType = userType;
         this.email = email;
@@ -113,6 +135,8 @@ abstract public class User {
         this.proPicPath = proPicPath;
         this.bio = bio;
         this.nationality = nationality;
+        this.birthdate = birthdate;
+        this.gender = gender;
     }
 
     public Boolean checkCredentials(AuthCredentials auth){

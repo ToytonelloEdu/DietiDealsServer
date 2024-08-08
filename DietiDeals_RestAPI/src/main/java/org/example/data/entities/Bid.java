@@ -5,18 +5,16 @@ import jakarta.persistence.*;
 import java.sql.Timestamp;
 import java.util.Comparator;
 
-import static jakarta.persistence.FetchType.LAZY;
-
 @Entity(name = "Bid")
 public class Bid {
 
     @Id @GeneratedValue
     private int id;
 
-    @ManyToOne(fetch = LAZY, optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     private Auction auction;
 
-    @ManyToOne(fetch = LAZY, optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     private Buyer buyer;
 
     @Column(nullable = false)
@@ -29,6 +27,15 @@ public class Bid {
     private String bidder; //buyer.username
 
     public Bid() {}
+
+    public Bid(int id, Auction auction, Buyer buyer, double amount, Timestamp time) {
+        this.id = id;
+        this.auction = auction;
+        this.buyer = buyer;
+        this.amount = amount;
+        this.time = time;
+    }
+
     public Bid(int id, Buyer buyer, double amount, Timestamp time) {
         this.id = id;
         this.bidder = buyer.getUsername();
@@ -39,6 +46,7 @@ public class Bid {
     public Bid(int id, Auction auction, double amount, Timestamp time) {
         this.id = id;
         this.auction = auction;
+        this.auction.getPictures().replaceAll(AuctionPhoto::toJsonFriendly);
         this.amount = amount;
         this.time = time;
     }
@@ -68,6 +76,10 @@ public class Bid {
             return auction.toJsonFriendly();
         }
         return null;
+    }
+
+    public int auctionId(){
+        return auction.getId();
     }
 
     public void setAuction(Auction auction) {
