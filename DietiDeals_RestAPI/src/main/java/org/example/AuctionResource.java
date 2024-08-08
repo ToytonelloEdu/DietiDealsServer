@@ -36,17 +36,19 @@ public class AuctionResource {
     }
 
     @POST
+    //@RequireAuth
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addAuction(InputAuction auction) {
         try{
             Auction resAuction = auctionsRepo.addAuction(auction.toAuction());
             return Response.status(Response.Status.CREATED).entity(resAuction).build();
         } catch(Exception e){
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e).build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
     }
 
     @DELETE
+    //@RequireAuth
     @Path("{id}")
     public Response deleteAuction(@PathParam("id") int id) {
         try{
@@ -64,6 +66,7 @@ public class AuctionResource {
         private String description;
         private Auctioneer auctioneer;
         private Timestamp date;
+        private String medianColor;
         private List<Tag> tags;
         private List<Bid> bids;
         private Bid lastBid;
@@ -72,7 +75,7 @@ public class AuctionResource {
         private Integer timeInterval;
         private Double startingPrice;
         private Double raisingThreshold;
-        private String picturePath;
+        private List<AuctionPhoto> pictures;
 
         public InputAuction() {}
 
@@ -122,6 +125,14 @@ public class AuctionResource {
 
         public void setDate(Timestamp date) {
             this.date = date;
+        }
+
+        public String getMedianColor() {
+            return medianColor;
+        }
+
+        public void setMedianColor(String medianColor) {
+            this.medianColor = medianColor;
         }
 
         public List<Tag> getTags() {
@@ -188,38 +199,41 @@ public class AuctionResource {
             this.raisingThreshold = raisingThreshold;
         }
 
-        public String getPicturePath() {
-            return picturePath;
+        public List<AuctionPhoto> getPictures() {
+            return pictures;
         }
 
-        public void setPicturePath(String picturePath) {
-            this.picturePath = picturePath;
+        public void setPictures(List<AuctionPhoto> picturePath) {
+            this.pictures = picturePath;
         }
 
         public Auction toAuction() {
             if(auctionType.equals("IncrementalAuction")) {
                 return new IncrementalAuction(
                         id,
-                        picturePath,
+                        pictures,
                         objectName,
                         description,
                         date,
                         auctioneer,
+                        medianColor,
                         timeInterval,
                         startingPrice,
-                        raisingThreshold
+                        raisingThreshold,
+                        tags
 
                 );
             } else if (auctionType.equals("SilentAuction")) {
                 return new SilentAuction(
                         id,
-                        picturePath,
+                        pictures,
                         objectName,
                         description,
                         date,
                         auctioneer,
-                        expirationDate
-
+                        medianColor,
+                        expirationDate,
+                        tags
                 );
             }
             return null;

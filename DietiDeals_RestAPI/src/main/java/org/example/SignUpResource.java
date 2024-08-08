@@ -11,6 +11,8 @@ import org.example.data.entities.User;
 import org.example.data.repos.UsersDbRepository;
 import org.example.data.repos.UsersRepository;
 
+import java.sql.Timestamp;
+
 @Path("signup")
 public class SignUpResource {
     UsersRepository usersRepo;
@@ -42,6 +44,8 @@ public class SignUpResource {
         private String proPicPath;
         private String bio;
         private String nationality;
+        private String gender;
+        private Timestamp birthdate;
         private String password;
 
         public InputUser() {
@@ -119,12 +123,28 @@ public class SignUpResource {
             this.proPicPath = proPicPath;
         }
 
+        public String getGender() {
+            return gender;
+        }
+
+        public void setGender(String gender) {
+            this.gender = gender;
+        }
+
+        public Timestamp getBirthdate() {
+            return birthdate;
+        }
+
+        public void setBirthdate(Timestamp birthdate) {
+            this.birthdate = birthdate;
+        }
+
         public User toUser() {
             if(userType.equals("Auctioneer")) {
-                return new Auctioneer(username, userType, email, password, firstName, lastName, proPicPath, bio, nationality);
+                return new Auctioneer(username, userType, email, password, firstName, lastName, proPicPath, bio, nationality, gender, birthdate);
             }
             else if(userType.equals("Buyer")) {
-                return new Buyer(username, userType, email, password, firstName, lastName, proPicPath, bio, nationality);
+                return new Buyer(username, userType, email, password, firstName, lastName, proPicPath, bio, nationality, gender, birthdate);
             } else throw new IllegalArgumentException("Invalid user type");
         }
     }
