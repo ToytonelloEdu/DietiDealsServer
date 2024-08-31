@@ -9,6 +9,7 @@ import org.example.data.entities.Bid;
 import org.example.data.entities.Buyer;
 import org.example.data.repos.BidsDbRepository;
 import org.example.data.repos.BidsRepository;
+import org.example.filter.RequireAuth;
 
 import java.sql.Timestamp;
 
@@ -25,7 +26,7 @@ public class BidResource {
     }
 
     @POST
-    //@RequireAuth
+    @RequireAuth
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addBid(InputBid bid) {
         try {
@@ -33,7 +34,6 @@ public class BidResource {
             return Response.status(Response.Status.CREATED).entity(resBid.toJsonFriendly()).build();
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            e.printStackTrace();
             return Response.status(Response.Status.BAD_REQUEST).entity(e).build();
         }
     }

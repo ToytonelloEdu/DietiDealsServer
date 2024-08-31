@@ -6,6 +6,8 @@ import jakarta.ws.rs.core.Response;
 import org.example.data.entities.*;
 import org.example.data.repos.UsersDbRepository;
 import org.example.data.repos.UsersRepository;
+import org.example.filter.ModifyOwnProfile;
+import org.example.filter.RequireAuth;
 
 import java.util.List;
 
@@ -26,10 +28,20 @@ public class UserResource {
 
     @PUT
     @Path("{username}")
+    @RequireAuth
+    @ModifyOwnProfile
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response updateUser(@PathParam("username") String username) {
-        //TODO
-        return null;
+    public Response updateUser(@PathParam("username") String username, SignUpResource.InputUser user) {
+        if(usersRepo.getUserByUsername(username) == null) {
+            System.out.println("null");
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+            User updatedUser = usersRepo.updateUser(user.toUser());
+        if(updatedUser == null) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
+
+        return Response.ok(updatedUser).build();
     }
 
     @GET

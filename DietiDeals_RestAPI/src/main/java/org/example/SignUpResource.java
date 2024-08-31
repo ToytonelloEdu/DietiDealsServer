@@ -28,7 +28,6 @@ public class SignUpResource {
         if (resUser != null) {
             return Response.ok()
                     .entity(resUser)
-                    //JWT Token
                     .build();
         } else {
             return Response.status(Response.Status.BAD_REQUEST).build();

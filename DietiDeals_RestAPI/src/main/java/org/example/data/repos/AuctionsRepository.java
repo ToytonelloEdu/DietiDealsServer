@@ -10,9 +10,13 @@ public interface AuctionsRepository {
 
     List<Auction> getAuctions();
 
+    List<Auction> getAuctionsQueried(Query query);
+
     Auction getAuctionByID(int id);
 
     List<Auction> getAuctionsByAuctioneer(Auctioneer auctioneer);
+
+    List<Auction> getAuctionsNotNotified();
 
     Auction addAuction(Auction auction);
 
@@ -20,6 +24,17 @@ public interface AuctionsRepository {
 
     Auction deleteAuction(int id);
 
+    class Query {
+        final String object;
+        final String vendor;
+        final List<String> tags;
+
+        public Query(String vendor, String object, List<String> tags) {
+            this.vendor = vendor;
+            this.object = object;
+            this.tags = tags;
+        }
+    }
 
 }
 

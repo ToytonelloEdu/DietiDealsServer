@@ -7,6 +7,8 @@ import org.hibernate.cfg.AvailableSettings;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.tool.schema.Action;
 
+import java.util.function.Consumer;
+
 public class DatabaseSession {
     private static final String user = "postgres";
     private static final String password = "sangio";
@@ -23,6 +25,7 @@ public class DatabaseSession {
                     .addAnnotatedClass(Bid.class)
                     .addAnnotatedClass(Tag.class)
                     .addAnnotatedClass(AuctionPhoto.class)
+                    .addAnnotatedClass(Notification.class)
                     // PostgreSQL
                     .setProperty(AvailableSettings.JAKARTA_JDBC_URL, "jdbc:postgresql://localhost:5433/dietideals")
                     // Credentials
@@ -41,13 +44,12 @@ public class DatabaseSession {
                     // Create a new SessionFactory
                     .buildSessionFactory();
 
-    private static Session session;
 
     public static Session getSession() {
-//        if (session == null) {
-//            session = sessionFactory.openSession();
-//        }
-//        return session;
         return sessionFactory.openSession();
+    }
+
+    public static void inTransaction(Consumer<Session> action) {
+        sessionFactory.inTransaction(action);
     }
 }

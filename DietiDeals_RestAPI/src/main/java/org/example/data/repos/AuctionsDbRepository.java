@@ -3,6 +3,7 @@ package org.example.data.repos;
 import org.example.data.DatabaseSession;
 import org.example.data.entities.*;
 import org.hibernate.Session;
+import org.hibernate.query.SelectionQuery;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +43,57 @@ public class AuctionsDbRepository implements AuctionsRepository {
     }
 
     @Override
+    public List<Auction> getAuctionsQueried(Query query) {
+        String select = getQueryString(query);
+        System.out.println(select);
+
+        Session session = DatabaseSession.getSession();
+        SelectionQuery<Auction> selectionQuery = session
+                .createSelectionQuery(select ,Auction.class);
+
+        if(query.object != null) selectionQuery.setParameter("object", query.object+"%");
+        if(query.vendor != null) selectionQuery.setParameter("vendor", session.find(Auctioneer.class, query.vendor));
+        if(!query.tags.isEmpty()) {
+            List<String> strings = query.tags;
+            for (int i = 0; i < strings.size(); i++) {
+                String tagName = strings.get(i);
+                Tag tag = session.find(Tag.class, tagName);
+                selectionQuery.setParameter("tag"+(i+1), tag);
+            }
+
+        }
+
+        List<Auction> auctions = selectionQuery.getResultList();
+        auctions.replaceAll(Auction::toHomeJsonFriendly);
+        auctions.sort(Auction.ComparatorByDate);
+        return auctions;
+    }
+
+    private static String getQueryString(Query query) {
+        StringBuilder stringBuilder = new StringBuilder("FROM Auction WHERE ");
+
+        if(query.object != null){
+            stringBuilder.append("objectName LIKE :object ");
+            if(query.vendor != null){stringBuilder.append("AND ");}
+        }
+
+        if(query.vendor != null) stringBuilder.append("auctioneer = :vendor ");
+
+        if(!query.tags.isEmpty()) {
+            if (query.vendor != null || query.object != null) {stringBuilder.append("AND (");}
+            List<String> tags = query.tags;
+            for (int i = 0; i < tags.size(); i++) {
+                stringBuilder.append(":tag").append(i+1).append(" MEMBER OF tags");
+                if(tags.size() > i + 1)
+                    stringBuilder.append(" OR ");
+            }
+            if (query.vendor != null || query.object != null) stringBuilder.append(")");
+        }
+
+        return stringBuilder.toString();
+    }
+
+    @Override
     public Auction getAuctionByID(int id) {
         Auction auction = getAuctionThroughQuery_where(id);
         auction.setBids(bidsRepo.getBidsByAuction(auction));
@@ -59,6 +111,13 @@ public class AuctionsDbRepository implements AuctionsRepository {
             auction.setPictures(photosRepo.getPhotosByAuction(auction));
         }
         return auctions;
+    }
+
+    @Override
+    public List<Auction> getAuctionsNotNotified() {
+        return DatabaseSession.getSession()
+                .createSelectionQuery("FROM Auction WHERE notified = false", Auction.class)
+                .getResultList();
     }
 
     @Override
@@ -84,13 +143,20 @@ public class AuctionsDbRepository implements AuctionsRepository {
     }
 
     protected Auction addIncrAuction(IncrementalAuction auction) {
-        sessionFactory.inTransaction(session -> {
-            List<Tag> tags = getPesistedTags(auction, session);
-            auction.setTags(tags);
+        try {
+            sessionFactory.inTransaction(session -> {
+                List<Tag> tags = getPesistedTags(auction, session);
+                auction.setTags(tags);
 
-            session.persist(auction);
-            System.out.println("Auction created: " + auction);
-        });
+                session.persist(auction);
+                System.out.println("Auction created: " + auction);
+            });
+            NotificationsDbRepository.auctions.add(auction);
+        } catch (Exception e) {
+            System.out.println("Error creating auction: " + e.getMessage());
+            return null;
+        }
+
         return auction;
     }
 
@@ -103,11 +169,13 @@ public class AuctionsDbRepository implements AuctionsRepository {
                 session.persist(auction);
                 System.out.println("Auction created: " + auction);
             });
+            NotificationsDbRepository.auctions.add(auction);
         }
         catch (Exception e) {
             System.out.println("Error creating auction: " + e.getMessage());
             return null;
         }
+
         return auction;
     }
 

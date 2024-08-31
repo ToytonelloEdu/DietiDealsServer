@@ -3,7 +3,6 @@ package org.example.data.entities;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -25,7 +24,7 @@ abstract public class Auction {
     @Column(nullable = false)
     private Timestamp date;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(
             name = "auctionTags",
             joinColumns = {@JoinColumn(name = "auction_id")},
@@ -39,6 +38,9 @@ abstract public class Auction {
     @OneToMany(mappedBy = "auction", fetch = LAZY)
     private List<AuctionPhoto> pictures;
     private String medianColor;
+
+    @Column(nullable = false)
+    private Boolean notified = false;
 
     @Transient
     private Bid lastBid;
@@ -189,7 +191,17 @@ abstract public class Auction {
         this.medianColor = medianColor;
     }
 
+    public Boolean notified() {
+        return notified;
+    }
+
+    public void notified(Boolean notified) {
+        this.notified = notified;
+    }
+
     abstract public String getAuctionType();
+
+    abstract public Boolean isOver();
 
     public void updateLastBid(){
         if (bids != null && !bids.isEmpty()) {
@@ -215,23 +227,17 @@ abstract public class Auction {
 
     }
 
-    public boolean addBid(Bid bid) {
-        if(bids == null) {
-            bids = new ArrayList<>();
-        }
-        if(!bids.contains(bid) && bid.getAmount() > lastBid.getAmount())
-        {
-            bids.add(bid);
-            lastBid = retrieveLastBid();
-            return true;
-        } else return false;
-    }
-
     public AuctionPhoto firstPhoto() {
         if(pictures != null && !pictures.isEmpty())
             return pictures.get(0);
 
         return null;
+    }
+
+    public Auction toHomeJsonFriendly() {
+        Auction auction = this.toJsonFriendly();
+        auction.bids = null;
+        return auction;
     }
 
     abstract public Auction toJsonFriendly();

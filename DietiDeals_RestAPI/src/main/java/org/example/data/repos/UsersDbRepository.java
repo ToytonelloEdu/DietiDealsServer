@@ -12,6 +12,7 @@ public class UsersDbRepository implements UsersRepository {
     private static BidsRepository bidsRepo;
 
     private UsersDbRepository() {
+        PhotosDbRepository.getInstance(this);
         auctionsRepo = AuctionsDbRepository.getInstance();
         bidsRepo = BidsDbRepository.getInstance();
     }

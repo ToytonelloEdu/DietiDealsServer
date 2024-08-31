@@ -101,10 +101,26 @@ public class IncrementalAuction extends Auction {
     }
 
     @Override
+    public Boolean isOver() {
+        Timestamp now = new Timestamp(System.currentTimeMillis());
+        Bid last = retrieveLastBid();
+        Timestamp expiry;
+        if(last != null) {
+            expiry = new Timestamp(last.getTime().getTime() + timeInterval);
+        } else {
+            expiry = new Timestamp(getDate().getTime() + timeInterval);
+        }
+        return now.after(expiry);
+    }
+
+    @Override
     public Auction toJsonFriendly() {
         IncrementalAuction auction = new IncrementalAuction(this);
+        auction.setAuctioneerUsername(this.getAuctioneer().getUsername());
         auction.setAuctioneer(null);
         auction.getBids().replaceAll(Bid::toJsonFriendly);
+        auction.updateLastBid();
+        auction.getPictures().replaceAll(AuctionPhoto::toJsonFriendly);
         return auction;
     }
 }

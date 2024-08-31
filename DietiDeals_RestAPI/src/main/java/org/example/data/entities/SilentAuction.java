@@ -74,10 +74,17 @@ public class SilentAuction extends Auction{
     }
 
     @Override
+    public Boolean isOver() {
+        return (new Timestamp(System.currentTimeMillis())).after(getExpirationDate());
+    }
+
+    @Override
     public Auction toJsonFriendly() {
         SilentAuction auction = new SilentAuction(this);
+        auction.setAuctioneerUsername(this.getAuctioneer().getUsername());
         auction.setAuctioneer(null);
         auction.getBids().replaceAll(Bid::toJsonFriendly);
+        auction.getPictures().replaceAll(AuctionPhoto::toJsonFriendly);
         return auction;
     }
 }

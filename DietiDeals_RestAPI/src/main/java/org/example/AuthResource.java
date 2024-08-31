@@ -14,18 +14,21 @@ import org.example.data.repos.UsersRepository;
 
 import java.util.concurrent.TimeUnit;
 
-//TODO: Separate auth for Buyer and Auctioneer
+
 @Path("auth")
 public class AuthResource {
-    UsersRepository usersRepo;
-    AuthController authController;
+    final UsersRepository usersRepo;
+    final AuthController authController;
 
     public AuthResource() {
         usersRepo = UsersDbRepository.getInstance();
         authController = JwtAuthController.getInstance();
     }
 
-    public AuthResource(UsersRepository usersRepo) {this.usersRepo = usersRepo;}
+    public AuthResource(UsersRepository usersRepo, AuthController authController) {
+        this.usersRepo = usersRepo;
+        this.authController = authController;
+    }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)

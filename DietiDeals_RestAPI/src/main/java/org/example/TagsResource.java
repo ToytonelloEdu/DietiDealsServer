@@ -3,7 +3,6 @@ package org.example;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import org.example.data.entities.Auction;
 import org.example.data.entities.Tag;
 import org.example.data.repos.TagsDbRepository;
 import org.example.data.repos.TagsRepository;
@@ -34,6 +33,7 @@ public class TagsResource {
     }
 
     @POST
+    //@RequireAuth
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addTag(Tag tag) {
         try{

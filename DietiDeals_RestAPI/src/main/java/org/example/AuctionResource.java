@@ -6,8 +6,10 @@ import jakarta.ws.rs.core.Response;
 import org.example.data.entities.*;
 import org.example.data.repos.AuctionsDbRepository;
 import org.example.data.repos.AuctionsRepository;
+import org.example.filter.RequireAuth;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 @Path("auctions")
@@ -22,21 +24,49 @@ public class AuctionResource {
         this.auctionsRepo = auctionsRepo;
     }
 
+//    @GET
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public List<Auction> getAuctions() {
+//        return auctionsRepo.getAuctions();
+//    }
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Auction> getAuction() {
-        return auctionsRepo.getAuctions();
+    public List<Auction> getAuctionsQueried(
+            @QueryParam("vendor") String vendor,
+            @QueryParam("object") String object,
+            @QueryParam("tag1") String tag1,
+            @QueryParam("tag2") String tag2,
+            @QueryParam("tag3") String tag3
+    ) {
+        List<String> tags = getTagsList(tag1, tag2, tag3);
+
+        return auctionsRepo.getAuctionsQueried(
+                new AuctionsRepository.Query(vendor, object, tags)
+        );
+    }
+
+    private static List<String> getTagsList(String tag1, String tag2, String tag3) {
+        List<String> tags = new ArrayList<>();
+        if(tag1 != null) tags.add(tag1);
+        if(tag2 != null) tags.add(tag2);
+        if(tag3 != null) tags.add(tag3);
+        return tags;
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("{id}")
     public Auction getAuctionById(@PathParam("id") int id) {
-        return auctionsRepo.getAuctionByID(id);
+        try{
+            return auctionsRepo.getAuctionByID(id);
+        } catch (NullPointerException e){
+            return null;
+        }
     }
 
     @POST
-    //@RequireAuth
+    @RequireAuth
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addAuction(InputAuction auction) {
         try{
@@ -48,7 +78,7 @@ public class AuctionResource {
     }
 
     @DELETE
-    //@RequireAuth
+    @RequireAuth
     @Path("{id}")
     public Response deleteAuction(@PathParam("id") int id) {
         try{

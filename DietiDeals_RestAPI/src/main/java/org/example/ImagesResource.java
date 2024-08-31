@@ -16,8 +16,8 @@ import java.io.InputStream;
 
 @Path("photos")
 public class ImagesResource {
-    private static ImagesRepository imagesRepo;
-    private static PhotosRepository photosRepo;
+    final ImagesRepository imagesRepo;
+    final PhotosRepository photosRepo;
 
     public ImagesResource() {
         imagesRepo = ImagesFilesRepository.getInstance();
@@ -25,8 +25,8 @@ public class ImagesResource {
     }
 
     public ImagesResource(ImagesRepository imagesRepo, PhotosRepository photosRepo) {
-        ImagesResource.imagesRepo = imagesRepo;
-        ImagesResource.photosRepo = photosRepo;
+        this.imagesRepo = imagesRepo;
+        this.photosRepo = photosRepo;
     }
 
     @GET

@@ -18,6 +18,10 @@ import java.io.IOException;
 public class AuthenticationFilter implements ContainerRequestFilter {
     @Override
     public void filter(ContainerRequestContext containerRequestContext) throws IOException {
+        CheckAuthenticationHeader(containerRequestContext);
+    }
+
+    protected static String CheckAuthenticationHeader(ContainerRequestContext containerRequestContext) {
         System.out.println("Filtering request");
         // Get the HTTP Authorization header from the request
         String authorizationHeader = containerRequestContext.getHeaderString(HttpHeaders.AUTHORIZATION);
@@ -34,9 +38,11 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 
         if( JwtAuthController.getInstance().validateToken(token) ){
             System.out.println("Token is valid: " + token);
+            return token;
         } else {
             System.out.println("Token is NOT valid: " + token);
             containerRequestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).build());
         }
+        return null;
     }
 }

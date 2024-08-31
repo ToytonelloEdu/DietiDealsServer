@@ -16,13 +16,21 @@ import java.util.List;
 public class PhotosDbRepository implements PhotosRepository {
     private static PhotosDbRepository instance;
     private static UsersRepository usersRepo;
-    private static AuctionsRepository auctionsRepo;
 
-    private PhotosDbRepository() {}
+    private PhotosDbRepository(UsersRepository usersRepo) {
+        PhotosDbRepository.usersRepo = usersRepo;
+    }
 
     public static PhotosDbRepository getInstance() {
         if (instance == null) {
-            instance = new PhotosDbRepository();
+            throw new IllegalStateException("PhotosDbRepository not initialized");
+        }
+        return instance;
+    }
+
+    public static PhotosDbRepository getInstance(UsersRepository usersRepo) {
+        if (instance == null) {
+            instance = new PhotosDbRepository(usersRepo);
         }
         return instance;
     }
@@ -49,11 +57,13 @@ public class PhotosDbRepository implements PhotosRepository {
             if(auction == null) { throw new IllegalArgumentException("Auction not found");}
 
             session.beginTransaction();
-            Auction mergedAuction = session.merge(auction);
-            AuctionPhoto photo = new AuctionPhoto(
-                    path, mergedAuction
-            );
-            session.persist(photo);
+            //
+                Auction mergedAuction = session.merge(auction);
+                AuctionPhoto photo = new AuctionPhoto(
+                        path, mergedAuction
+                );
+                session.persist(photo);
+            //
             session.getTransaction().commit();
 
             if(mergedAuction.getPictures().size() == 1)
@@ -68,10 +78,12 @@ public class PhotosDbRepository implements PhotosRepository {
                 .setParameter("auction", auction).getResultList();
     }
 
+
+
     private static class MedianColorCalculator{
 
         public static void asyncMedianColorCalculation(Integer auctionId) {
-            Thread execution = new Thread(() -> {
+            Thread execution = new Thread(()-> {
                 Session session = DatabaseSession.getSession();
                 Auction auction = session.find(Auction.class, auctionId);
 
