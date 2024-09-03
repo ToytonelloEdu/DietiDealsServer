@@ -49,12 +49,12 @@ public class SilentAuction extends Auction{
 
     public SilentAuction(SilentAuction other) {
         super(other);
-        setExpirationDate(other.getExpirationDate());
+        setExpirationDate(other.expirationDate);
         setAcceptedBid(other.getAcceptedBid());
     }
 
     public Timestamp getExpirationDate() {
-        return expirationDate;
+        return new Timestamp(expirationDate.getTime() - 2*60*60*1000);
     }
 
     public void setExpirationDate(Timestamp expirationDate) {
@@ -74,7 +74,7 @@ public class SilentAuction extends Auction{
     }
 
     @Override
-    public Boolean isOver() {
+    public Boolean auctionOver() {
         return (new Timestamp(System.currentTimeMillis())).after(getExpirationDate());
     }
 

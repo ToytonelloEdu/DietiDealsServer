@@ -101,14 +101,14 @@ public class IncrementalAuction extends Auction {
     }
 
     @Override
-    public Boolean isOver() {
+    public Boolean auctionOver() {
         Timestamp now = new Timestamp(System.currentTimeMillis());
         Bid last = retrieveLastBid();
         Timestamp expiry;
         if(last != null) {
-            expiry = new Timestamp(last.getTime().getTime() + timeInterval);
+            expiry = new Timestamp(last.correctTime().getTime() + timeInterval*1000);
         } else {
-            expiry = new Timestamp(getDate().getTime() + timeInterval);
+            expiry = new Timestamp(correctDate().getTime() + timeInterval*1000);
         }
         return now.after(expiry);
     }

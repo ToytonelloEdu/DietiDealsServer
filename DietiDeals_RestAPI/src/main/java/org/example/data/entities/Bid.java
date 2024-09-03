@@ -14,7 +14,7 @@ public class Bid {
     @ManyToOne(optional = false, cascade = CascadeType.ALL)
     private Auction auction;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER ,optional = false, cascade = CascadeType.ALL)
     private Buyer buyer;
 
     @Column(nullable = false)
@@ -106,12 +106,21 @@ public class Bid {
         return time;
     }
 
+    public Timestamp correctTime() {
+        return new Timestamp(time.getTime() - 2*60*60*1000);
+    }
+
     public void setTime(Timestamp time) {
         this.time = time;
     }
 
     public String getBidder() {
-        return bidder;
+        if (bidder != null){
+            return bidder;
+        } else if (buyer != null){
+            return buyer.getUsername();
+        }
+        return null;
     }
 
     public void setBidder(String bidder) {

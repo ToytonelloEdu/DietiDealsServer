@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 import java.util.Comparator;
 import java.util.List;
 
+import static jakarta.persistence.FetchType.EAGER;
 import static jakarta.persistence.FetchType.LAZY;
 
 @Entity(name = "Auction")
@@ -32,7 +33,7 @@ abstract public class Auction {
     )
     private List<Tag> tags;
 
-    @OneToMany(mappedBy= "auction", fetch = LAZY)
+    @OneToMany(mappedBy= "auction", fetch = EAGER)
     private List<Bid> bids;
 
     @OneToMany(mappedBy = "auction", fetch = LAZY)
@@ -96,11 +97,12 @@ abstract public class Auction {
         setDescription(other.getDescription());
         setAuctioneer(other.getAuctioneer());
         setAuctioneerUsername(other.getAuctioneerUsername());
-        setDate(other.getDate());
+        setDate(other.date);
         setTags(other.getTags());
         setBids(other.getBids());
         setLastBid(other.getLastBid());
         setMedianColor(other.getMedianColor());
+        notified(other.notified());
     }
 
     public int getId() {
@@ -145,6 +147,10 @@ abstract public class Auction {
 
     public Timestamp getDate() {
         return date;
+    }
+
+    public Timestamp correctDate() {
+        return new Timestamp(date.getTime() - 2*60*60*1000);
     }
 
     public void setDate(Timestamp date) {
@@ -201,7 +207,7 @@ abstract public class Auction {
 
     abstract public String getAuctionType();
 
-    abstract public Boolean isOver();
+    abstract public Boolean auctionOver();
 
     public void updateLastBid(){
         if (bids != null && !bids.isEmpty()) {

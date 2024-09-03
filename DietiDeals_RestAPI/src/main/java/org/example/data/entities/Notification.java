@@ -1,7 +1,9 @@
 package org.example.data.entities;
 
 import jakarta.persistence.*;
+import org.example.data.DatabaseSession;
 import org.example.data.entities.enums.NotificationType;
+import org.hibernate.Session;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -49,19 +51,24 @@ public class Notification {
     }
 
     private static List<Notification> incrementalNotifications(IncrementalAuction auction) {
+        Session session = DatabaseSession.getSession();
         List<Notification> notifications = new ArrayList<>();
         notifications.add(new Notification(auction, auction.getAuctioneer(), NotificationType.OWNER, LocalDateTime.now()));
 
-        Bid winner = auction.retrieveLastBid();
-        notifications.add(new Notification(auction, winner.getBuyer(), NotificationType.WINNER, LocalDateTime.now()));
-        auction.getBids().remove(winner);
+        auction.getBids().sort(Bid.compareByTimeDesc);
+
+        Bid last = auction.retrieveLastBid();
+        Buyer buyer = last.getBuyer();
+        notifications.add(new Notification(auction, buyer, NotificationType.WINNER, LocalDateTime.now()));
+        auction.getBids().remove(last);
 
         Map<String, Bid> map = new HashMap<>();
         for(Bid bid : auction.getBids()) {
-            map.put(bid.getBuyer().getUsername(), bid);
+            map.put(bid.getBidder(), bid);
         }
         for(Bid bid : map.values()) {
-            notifications.add(new Notification(auction, bid.getBuyer(), NotificationType.PARTICIPANT, LocalDateTime.now()));
+            buyer = bid.getBuyer();
+            notifications.add(new Notification(auction, buyer, NotificationType.PARTICIPANT, LocalDateTime.now()));
         }
 
         return notifications;
