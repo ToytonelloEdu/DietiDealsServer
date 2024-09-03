@@ -39,11 +39,14 @@ public class AuctionResource {
             @QueryParam("tag2") String tag2,
             @QueryParam("tag3") String tag3
     ) {
-        List<String> tags = getTagsList(tag1, tag2, tag3);
-
-        return auctionsRepo.getAuctionsQueried(
-                new AuctionsRepository.Query(vendor, object, tags)
-        );
+        if (vendor == null && object == null && tag1 == null && tag2 == null && tag3 == null) {
+            return auctionsRepo.getAuctions();
+        } else {
+            List<String> tags = getTagsList(tag1, tag2, tag3);
+            return auctionsRepo.getAuctionsQueried(
+                    new AuctionsRepository.Query(vendor, object, tags)
+            );
+        }
     }
 
     private static List<String> getTagsList(String tag1, String tag2, String tag3) {
