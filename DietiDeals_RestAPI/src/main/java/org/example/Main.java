@@ -62,7 +62,7 @@ public class Main {
         PhotosDbRepository.getInstance(usersRepo);
         AuctionsDbRepository.getInstance();
 
-        NotificationsDbRepository.getInstance();
+        //NotificationsDbRepository.getInstance();
     }
 
     /**
