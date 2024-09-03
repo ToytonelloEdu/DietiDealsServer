@@ -43,13 +43,15 @@ public class NotificationsDbRepository implements NotificationsRepository {
     private static void notifsPopulationCycle() {
         boolean interrupted = false;
         while (!interrupted) {
+            System.out.println("Cycle start+++++++++++++++++++++++++++++++++++++++++++++++");
             for (int i = 0, auctionsSize = auctions.size(); i < auctionsSize; i++) {
                 Auction updatedAuction = updateAuction(i);
-                if (updatedAuction != null && updatedAuction.isOver()) {
+                if (updatedAuction != null && updatedAuction.auctionOver()) {
                     notifyAuction(updatedAuction);
                 }
             }
-            try{Thread.sleep(1000);}catch(InterruptedException ignored){interrupted = true;}
+            try{Thread.sleep(5000);}catch(InterruptedException ignored){interrupted = true;}
+
         }
     }
 
@@ -57,6 +59,7 @@ public class NotificationsDbRepository implements NotificationsRepository {
         Session session = DatabaseSession.getSession();
 
         session.beginTransaction();
+
             session.evict(updatedAuction);
 
             List<Notification> notifications = Notification.auctionNotifications(updatedAuction);
@@ -71,7 +74,7 @@ public class NotificationsDbRepository implements NotificationsRepository {
 
     private static Auction updateAuction(int i) {
         int id = auctions.get(i).getId();
-        auctions.set(i, auctionsRepo.getAuctionByID(id));
+        auctions.set(i, DatabaseSession.getSession().find(Auction.class, id));
         return auctions.get(i);
     }
 
