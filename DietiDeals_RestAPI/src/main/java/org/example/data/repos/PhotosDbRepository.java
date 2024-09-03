@@ -66,8 +66,11 @@ public class PhotosDbRepository implements PhotosRepository {
             //
             session.getTransaction().commit();
 
-            if(mergedAuction.getPictures().size() == 1)
-                MedianColorCalculator.asyncMedianColorCalculation(mergedAuction.getId());
+
+        if(mergedAuction.getMedianColor() == null) {
+            MedianColorCalculator.asyncMedianColorCalculation(mergedAuction.getId());
+        }
+
     }
 
     @Override
@@ -87,13 +90,16 @@ public class PhotosDbRepository implements PhotosRepository {
                 Session session = DatabaseSession.getSession();
                 Auction auction = session.find(Auction.class, auctionId);
 
-                String colorHex = averageColorHex(auction.firstPhoto().getPath());
 
-                session.beginTransaction();
-                session.evict(auction);
-                auction.setMedianColor(colorHex);
-                session.merge(auction);
-                session.getTransaction().commit();
+                if (auction.getMedianColor() == null) {
+                    String colorHex = averageColorHex(auction.firstPhoto().getPath());
+
+                    session.beginTransaction();
+                    session.evict(auction);
+                    auction.setMedianColor(colorHex);
+                    session.merge(auction);
+                    session.getTransaction().commit();
+                }
             });
             execution.start();
         }

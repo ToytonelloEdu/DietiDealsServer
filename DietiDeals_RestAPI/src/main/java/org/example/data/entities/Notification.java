@@ -55,11 +55,11 @@ public class Notification {
         List<Notification> notifications = new ArrayList<>();
         notifications.add(new Notification(auction, auction.getAuctioneer(), NotificationType.OWNER, LocalDateTime.now()));
 
-        auction.getBids().sort(Bid.compareByTimeDesc);
+        //auction.getBids().sort(Bid.compareByTimeDesc);
 
         Bid last = auction.retrieveLastBid();
-        Buyer buyer = last.getBuyer();
-        notifications.add(new Notification(auction, buyer, NotificationType.WINNER, LocalDateTime.now()));
+        Buyer winner = last.getBuyer();
+        notifications.add(new Notification(auction, winner, NotificationType.WINNER, LocalDateTime.now()));
         auction.getBids().remove(last);
 
         Map<String, Bid> map = new HashMap<>();
@@ -67,8 +67,9 @@ public class Notification {
             map.put(bid.getBidder(), bid);
         }
         for(Bid bid : map.values()) {
-            buyer = bid.getBuyer();
-            notifications.add(new Notification(auction, buyer, NotificationType.PARTICIPANT, LocalDateTime.now()));
+            Buyer buyer = bid.getBuyer();
+            if (! buyer.getUsername().equals(winner.getUsername()))
+                notifications.add(new Notification(auction, buyer, NotificationType.PARTICIPANT, LocalDateTime.now()));
         }
 
         return notifications;

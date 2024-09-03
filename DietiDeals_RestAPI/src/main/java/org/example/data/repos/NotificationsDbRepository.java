@@ -5,6 +5,7 @@ import org.example.data.entities.Auction;
 import org.example.data.entities.Notification;
 import org.hibernate.Session;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class NotificationsDbRepository implements NotificationsRepository {
@@ -13,8 +14,8 @@ public class NotificationsDbRepository implements NotificationsRepository {
 
     private static volatile Thread population = null;
 
-    //TODO: Implement methods on BlockingQueue, every insert in AuctionsDbRepository adds the auction to this queue
-    protected static volatile List<Auction> auctions = null;
+
+    protected static volatile List<Auction> auctions = new ArrayList<>();
 
     private NotificationsDbRepository() {
         auctionsRepo = AuctionsDbRepository.getInstance();
