@@ -14,8 +14,8 @@ public class NotificationsDbRepository implements NotificationsRepository {
 
     private static volatile Thread population = null;
 
-
-    protected static volatile List<Auction> auctions = new ArrayList<>();
+    //TODO: Change to map and implement that changes do update this Map as well
+    public static volatile List<Auction> auctions = new ArrayList<>();
 
     private NotificationsDbRepository() {
         auctionsRepo = AuctionsDbRepository.getInstance();
