@@ -1,0 +1,32 @@
+services:
+  db:
+    image: postgres:16
+    restart: always
+    ports:
+      - 5432:5432
+    networks:
+      - datalink
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: sangio
+      POSTGRES_DB: dietideals
+
+  rest:
+    build: .
+    ports:
+      - 8080:8080
+    networks:
+      - datalink
+    depends_on:
+      - db
+    restart: no
+
+networks:
+  datalink:
+    driver: bridge
+
+volumes:
+  pgdata:
+    driver: local

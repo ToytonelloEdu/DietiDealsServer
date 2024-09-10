@@ -7,11 +7,11 @@ import org.junit.jupiter.api.Test;
 
 public class NotificationsDbRepositoryTest {
 
-    Session session = DatabaseSession.getSession();
+    //Session session = DatabaseSession.getSession();
 
     @Test
     public void TestNotificationsDbPopulation() {
-        Auctioneer toytonello = session.find(Auctioneer.class, "toytonello");
+//        Auctioneer toytonello = session.find(Auctioneer.class, "toytonello");
 //        NotificationsDbRepository.auctions = List.of(
 //                new IncrementalAuction(
 //                        1, null, "test", "test", toytonello,

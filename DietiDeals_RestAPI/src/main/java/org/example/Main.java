@@ -71,14 +71,17 @@ public class Main {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException {
-        DatabaseSession.getSession();
-        initRepositories();
+        try{
+            DatabaseSession.getSession();
+            initRepositories();
+        } catch (IllegalStateException e){
+            System.out.println("Database session is invalid");
+        }
+
         final HttpServer server = startServer();
         System.out.printf("Jersey app started with endpoints available at "
                              + "%s%nHit Ctrl-C to stop it...%n", BASE_URI);
-        System.in.read();
-        server.stop();
-        NotificationsDbRepository.stopNotifsPopulation();
+        //NotificationsDbRepository.stopNotifsPopulation();
     }
 
 

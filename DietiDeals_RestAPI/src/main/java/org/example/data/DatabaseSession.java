@@ -27,7 +27,7 @@ public class DatabaseSession {
                     .addAnnotatedClass(AuctionPhoto.class)
                     .addAnnotatedClass(Notification.class)
                     // PostgreSQL
-                    .setProperty(AvailableSettings.JAKARTA_JDBC_URL, "jdbc:postgresql://localhost:5433/dietideals")
+                    .setProperty(AvailableSettings.JAKARTA_JDBC_URL, "jdbc:postgresql://db:5432/dietideals")
                     // Credentials
                     .setProperty(AvailableSettings.JAKARTA_JDBC_USER, user)
                     .setProperty(AvailableSettings.JAKARTA_JDBC_PASSWORD, password)
@@ -37,6 +37,7 @@ public class DatabaseSession {
                             Action.ACTION_UPDATE
                             //Action.SPEC_ACTION_DROP_AND_CREATE
                     )
+                    .setProperty(AvailableSettings.JAKARTA_JDBC_DRIVER, "org.postgresql.Driver")
                     // SQL statement logging
                     .setProperty(AvailableSettings.SHOW_SQL, true)
                     .setProperty(AvailableSettings.FORMAT_SQL, true)

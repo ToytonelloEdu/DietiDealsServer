@@ -11,6 +11,9 @@ COPY pom.xml /opt/app/
 COPY src /opt/app/src
 RUN mvn package
 
+COPY ./wait-for-it.sh /usr/local/bin/wait-for-it.sh
+RUN chmod +x /usr/local/bin/wait-for-it.sh
+
 EXPOSE 8080
 
-CMD ["mvn", "exec:java"]
+CMD ["/usr/local/bin/wait-for-it.sh", "db:5432", "--timeout=30", "--", "mvn", "exec:java"]
