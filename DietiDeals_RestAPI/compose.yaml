@@ -15,6 +15,7 @@ services:
 
   rest:
     build: .
+    image: dd-restapi:alfa
     ports:
       - 8080:8080
     networks:
