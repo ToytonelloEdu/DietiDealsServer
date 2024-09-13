@@ -39,6 +39,7 @@ public class ImagesResource {
 
             return Response.ok(file, "image/jpg").build();
         } catch (Exception e){
+            e.printStackTrace();
             return Response.status(404).build();
         }
     }
@@ -58,6 +59,7 @@ public class ImagesResource {
 
             return Response.status(Response.Status.CREATED).build();
         } catch (IOException e){
+            e.printStackTrace();
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
         

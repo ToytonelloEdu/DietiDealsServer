@@ -11,6 +11,8 @@ COPY pom.xml /opt/app/
 COPY src /opt/app/src
 RUN mvn package
 
+RUN chmod -R 777 /opt/app/src/main/java/org/example/files
+
 COPY ./wait-for-it.sh /usr/local/bin/wait-for-it.sh
 RUN chmod +x /usr/local/bin/wait-for-it.sh
 
