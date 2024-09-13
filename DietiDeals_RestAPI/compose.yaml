@@ -20,6 +20,8 @@ services:
       - 8080:8080
     networks:
       - datalink
+    volumes:
+      - photos:/src/main/org/example/files
     depends_on:
       - db
     restart: no
@@ -29,5 +31,7 @@ networks:
     driver: bridge
 
 volumes:
-  pgdata:
-    driver: local
+  - pgdata:
+      driver: local
+  - photos:
+      driver: local
