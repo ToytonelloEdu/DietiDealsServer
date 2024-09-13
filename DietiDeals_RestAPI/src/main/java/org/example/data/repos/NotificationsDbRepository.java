@@ -3,6 +3,7 @@ package org.example.data.repos;
 import org.example.data.DatabaseSession;
 import org.example.data.entities.Auction;
 import org.example.data.entities.Notification;
+import org.example.data.entities.User;
 import org.hibernate.Session;
 
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.List;
 public class NotificationsDbRepository implements NotificationsRepository {
     private static volatile NotificationsDbRepository instance;
     private static volatile AuctionsRepository auctionsRepo;
+    private static volatile UsersRepository usersRepo;
 
     private static volatile Thread population = null;
 
@@ -18,6 +20,7 @@ public class NotificationsDbRepository implements NotificationsRepository {
     public static volatile List<Auction> auctions = new ArrayList<>();
 
     private NotificationsDbRepository() {
+        usersRepo = UsersDbRepository.getInstance();
         auctionsRepo = AuctionsDbRepository.getInstance();
         auctions = auctionsRepo.getAuctionsNotNotified();
         startNotifsPopulation();
@@ -34,6 +37,18 @@ public class NotificationsDbRepository implements NotificationsRepository {
         return population;
     }
 
+    @Override
+    public List<Notification> getNotificationsByUser(String handle) {
+        System.out.println("\nSELECT * FROM Notification WHERE user = ?\n");
+        User user = usersRepo.getUserByHandle(handle);
+        return DatabaseSession.getSession()
+                .createSelectionQuery("FROM Notification WHERE user = :user", Notification.class)
+                .setParameter("user", user).getResultList();
+    }
+
+
+
+
     private static void startNotifsPopulation() {
         population = new Thread(NotificationsDbRepository::notifsPopulationCycle);
         population.start();
@@ -49,7 +64,7 @@ public class NotificationsDbRepository implements NotificationsRepository {
         boolean interrupted = false;
         while (!interrupted) {
             for (int i = 0, auctionsSize = auctions.size(); i < auctionsSize; i++) {
-                Auction updatedAuction = updateAuction(i);
+                Auction updatedAuction = fetchAuctionUpToDate(i);
                 if (updatedAuction != null && updatedAuction.auctionOver()) {
                     notifyAuction(updatedAuction);
                 }
@@ -77,7 +92,7 @@ public class NotificationsDbRepository implements NotificationsRepository {
         session.getTransaction().commit();
     }
 
-    private static Auction updateAuction(int i) {
+    private static Auction fetchAuctionUpToDate(int i) {
         int id = auctions.get(i).getId();
         auctions.set(i, DatabaseSession.getSession().find(Auction.class, id));
         return auctions.get(i);

@@ -8,7 +8,7 @@ import org.hibernate.Session;
 import java.time.LocalDateTime;
 import java.util.*;
 
-@Entity(name = "notification")
+@Entity(name = "Notification")
 public class Notification {
     @Id @GeneratedValue
     private int id;
@@ -17,7 +17,7 @@ public class Notification {
     private Auction auction;
 
     @ManyToOne(optional = false)
-    private User users;
+    private User user;
 
     @Enumerated(EnumType.STRING)
     @Basic(optional = false)
@@ -34,9 +34,9 @@ public class Notification {
 
     public Notification() {}
 
-    public Notification(Auction auction, User users, NotificationType notificationType, LocalDateTime time) {
+    public Notification(Auction auction, User user, NotificationType notificationType, LocalDateTime time) {
         this.auction = auction;
-        this.users = users;
+        this.user = user;
         this.notificationType = notificationType;
         this.time = time;
     }
@@ -91,12 +91,12 @@ public class Notification {
         this.auction = auction;
     }
 
-    public User getUsers() {
-        return users;
+    public User getUser() {
+        return user;
     }
 
-    public void setUsers(User users) {
-        this.users = users;
+    public void setUser(User users) {
+        this.user = users;
     }
 
     public NotificationType getNotificationType() {
