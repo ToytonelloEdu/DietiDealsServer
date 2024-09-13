@@ -21,7 +21,9 @@ services:
     networks:
       - datalink
     volumes:
-      - photos:/src/main/org/example/files
+      - type: volume
+        source: photos
+        target: src/main/java/org/example/files
     depends_on:
       - db
     restart: no
@@ -34,4 +36,3 @@ volumes:
   - pgdata:
       driver: local
   - photos:
-      driver: local
