@@ -38,10 +38,6 @@ public class DatabaseSession {
                             //Action.SPEC_ACTION_DROP_AND_CREATE
                     )
                     .setProperty(AvailableSettings.JAKARTA_JDBC_DRIVER, "org.postgresql.Driver")
-                    // SQL statement logging
-                    .setProperty(AvailableSettings.SHOW_SQL, true)
-                    .setProperty(AvailableSettings.FORMAT_SQL, true)
-                    .setProperty(AvailableSettings.HIGHLIGHT_SQL, true)
                     // Create a new SessionFactory
                     .buildSessionFactory();
 
