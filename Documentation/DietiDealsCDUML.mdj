@@ -82424,7 +82424,8 @@
 																	"_parent": {
 																		"$ref": "AAAAAAGRdTs9/Sp+qPk="
 																	},
-																	"name": "auctionsRepository"
+																	"name": "auctionsRepository",
+																	"type": ""
 																},
 																{
 																	"_type": "UMLAttribute",
@@ -82432,7 +82433,8 @@
 																	"_parent": {
 																		"$ref": "AAAAAAGRdTs9/Sp+qPk="
 																	},
-																	"name": "usersRepository"
+																	"name": "usersRepository",
+																	"type": ""
 																},
 																{
 																	"_type": "UMLAttribute",
@@ -82440,7 +82442,8 @@
 																	"_parent": {
 																		"$ref": "AAAAAAGRdTs9/Sp+qPk="
 																	},
-																	"name": "authRepository"
+																	"name": "authRepository",
+																	"type": ""
 																},
 																{
 																	"_type": "UMLAttribute",
@@ -82448,7 +82451,8 @@
 																	"_parent": {
 																		"$ref": "AAAAAAGRdTs9/Sp+qPk="
 																	},
-																	"name": "tagsRepository"
+																	"name": "tagsRepository",
+																	"type": ""
 																},
 																{
 																	"_type": "UMLAttribute",
@@ -82456,7 +82460,8 @@
 																	"_parent": {
 																		"$ref": "AAAAAAGRdTs9/Sp+qPk="
 																	},
-																	"name": "imagesRepository"
+																	"name": "imagesRepository",
+																	"type": ""
 																},
 																{
 																	"_type": "UMLAttribute",
@@ -82464,7 +82469,8 @@
 																	"_parent": {
 																		"$ref": "AAAAAAGRdTs9/Sp+qPk="
 																	},
-																	"name": "bidsRepository"
+																	"name": "bidsRepository",
+																	"type": ""
 																}
 															]
 														},
@@ -82518,7 +82524,8 @@
 																		"$ref": "AAAAAAGRdTzsJDozBSI="
 																	},
 																	"name": "retrofitService",
-																	"visibility": "private"
+																	"visibility": "private",
+																	"type": ""
 																}
 															]
 														},
@@ -82536,7 +82543,8 @@
 																	"_parent": {
 																		"$ref": "AAAAAAGRf4F6AdMo3CQ="
 																	},
-																	"name": "userState"
+																	"name": "userState",
+																	"type": ""
 																},
 																{
 																	"_type": "UMLAttribute",
@@ -82544,7 +82552,8 @@
 																	"_parent": {
 																		"$ref": "AAAAAAGRf4F6AdMo3CQ="
 																	},
-																	"name": "currentHomeState"
+																	"name": "currentHomeState",
+																	"type": ""
 																},
 																{
 																	"_type": "UMLAttribute",
@@ -82552,7 +82561,8 @@
 																	"_parent": {
 																		"$ref": "AAAAAAGRf4F6AdMo3CQ="
 																	},
-																	"name": "currentAuctionState"
+																	"name": "currentAuctionState",
+																	"type": ""
 																},
 																{
 																	"_type": "UMLAttribute",
@@ -82560,7 +82570,8 @@
 																	"_parent": {
 																		"$ref": "AAAAAAGRf4F6AdMo3CQ="
 																	},
-																	"name": "signUpState"
+																	"name": "signUpState",
+																	"type": ""
 																},
 																{
 																	"_type": "UMLAttribute",
@@ -82568,7 +82579,8 @@
 																	"_parent": {
 																		"$ref": "AAAAAAGRf4F6AdMo3CQ="
 																	},
-																	"name": "newAuctionState"
+																	"name": "newAuctionState",
+																	"type": ""
 																},
 																{
 																	"_type": "UMLAttribute",
@@ -82725,7 +82737,8 @@
 																					"_parent": {
 																						"$ref": "AAAAAAGRf4/FicVg820="
 																					},
-																					"name": "auth"
+																					"name": "auth",
+																					"type": ""
 																				},
 																				{
 																					"_type": "UMLParameter",
