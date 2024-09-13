@@ -48,7 +48,6 @@ public class NotificationsDbRepository implements NotificationsRepository {
     private static void notifsPopulationCycle() {
         boolean interrupted = false;
         while (!interrupted) {
-            System.out.println("Cycle start+++++++++++++++++++++++++++++++++++++++++++++++");
             for (int i = 0, auctionsSize = auctions.size(); i < auctionsSize; i++) {
                 Auction updatedAuction = updateAuction(i);
                 if (updatedAuction != null && updatedAuction.auctionOver()) {
@@ -73,6 +72,7 @@ public class NotificationsDbRepository implements NotificationsRepository {
             updatedAuction.notified(true);
             session.merge(updatedAuction);
             auctions.remove(updatedAuction);
+            System.out.println("\nAuction " + updatedAuction.getId() + " has been notified\n");
 
         session.getTransaction().commit();
     }
