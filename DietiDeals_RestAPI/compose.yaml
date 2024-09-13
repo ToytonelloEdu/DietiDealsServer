@@ -23,7 +23,7 @@ services:
     volumes:
       - type: volume
         source: photos
-        target: src/main/java/org/example/files
+        target: /src/main/java/org/example/files
     depends_on:
       - db
     restart: no
