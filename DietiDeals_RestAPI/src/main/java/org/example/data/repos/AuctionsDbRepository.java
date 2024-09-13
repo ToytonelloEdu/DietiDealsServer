@@ -197,7 +197,7 @@ public class AuctionsDbRepository implements AuctionsRepository {
     public Auction deleteAuction(int id) {
         Auction auction = getAuctionByID(id);
         sessionFactory.inTransaction(session -> {
-            session.detach(auction);
+            session.remove(auction);
         });
         return auction;
     }
