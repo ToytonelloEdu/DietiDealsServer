@@ -39,6 +39,7 @@ public class AuctionsDbRepository implements AuctionsRepository {
             auction.setTags(tagsRepo.getTagsByAuction(auction));
             auction.setPictures(photosRepo.getPhotosByAuction(auction));
         }
+        System.out.println("\nSELECT * FROM Auctions\n");
         return auctions;
     }
 
@@ -66,6 +67,7 @@ public class AuctionsDbRepository implements AuctionsRepository {
         List<Auction> auctions = selectionQuery.getResultList();
         auctions.replaceAll(Auction::toHomeJsonFriendly);
         auctions.sort(Auction.ComparatorByDate);
+        System.out.println("\nSELECT * "+ select +"\n");
         return auctions;
     }
 
@@ -99,6 +101,7 @@ public class AuctionsDbRepository implements AuctionsRepository {
         auction.setBids(bidsRepo.getBidsByAuction(auction));
         auction.setTags(tagsRepo.getTagsByAuction(auction));
         auction.setPictures(photosRepo.getPhotosByAuction(auction));
+        System.out.println("\nSELECT * FROM Auctions WHERE id = ?\n");
         return auction;
     }
 
@@ -110,6 +113,7 @@ public class AuctionsDbRepository implements AuctionsRepository {
             auction.setTags(tagsRepo.getTagsByAuction(auction));
             auction.setPictures(photosRepo.getPhotosByAuction(auction));
         }
+        System.out.println("\nSELECT * FROM Auctions WHERE auctioneer = ?\n");
         return auctions;
     }
 
@@ -123,19 +127,23 @@ public class AuctionsDbRepository implements AuctionsRepository {
     @Override
     public Auction addAuction(Auction auction) {
         if(auction instanceof IncrementalAuction){
+            System.out.println("\nINSERT (?, ?, ...,?) INTO Auction\n");
            return addIncrAuction((IncrementalAuction) auction);
         } else if(auction instanceof SilentAuction){
+            System.out.println("\nINSERT (?, ?, ...,?) INTO Auction\n");
            return addSilentAuction((SilentAuction) auction);
-        } else throw new IllegalArgumentException("Unsupported auction type: " + auction.getClass());
+        } else throw new IllegalArgumentException(auction == null ? "Auction is null" : "Unsupported auction type: " + auction.getClass());
     }
 
     @Override
     public Auction updateAuction(Auction auction) {
         if(auction == null) throw new IllegalArgumentException("Auction is null");
+
         try {
             sessionFactory.inTransaction(session -> {
                 session.merge(auction);
             });
+            System.out.println("\nUPDATE Auction SET ..... WHERE id = ?\n");
             return auction;
         } catch (Exception e) {
             throw new IllegalArgumentException("Unable to update auction: " + auction, e);
@@ -199,6 +207,7 @@ public class AuctionsDbRepository implements AuctionsRepository {
         sessionFactory.inTransaction(session -> {
             session.remove(auction);
         });
+        System.out.println("\nDELETE FROM Auction WHERE id = ?\n");
         return auction;
     }
 
