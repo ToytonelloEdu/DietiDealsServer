@@ -23,6 +23,8 @@ public class Main {
 //    private static final String TRUSTSTORE_LOC = "./certificates/truststore_server";
 //    private static final String TRUSTSTORE_PASS = "antojava";
 
+    private static Thread notifThread;
+
     /**
      * Starts Grizzly HTTP server exposing JAX-RS resources defined in this application.
      * @return Grizzly HTTP server.
@@ -62,7 +64,8 @@ public class Main {
         PhotosDbRepository.getInstance(usersRepo);
         AuctionsDbRepository.getInstance();
 
-        //NotificationsDbRepository.getInstance();
+        NotificationsDbRepository.getInstance();
+        notifThread = NotificationsDbRepository.getPopulationThread();
     }
 
     /**
@@ -81,7 +84,13 @@ public class Main {
         final HttpServer server = startServer();
         System.out.printf("Jersey app started with endpoints available at "
                              + "%s%nHit Ctrl-C to stop it...%n", BASE_URI);
-        //NotificationsDbRepository.stopNotifsPopulation();
+
+        try {
+            notifThread.join();
+        } catch (InterruptedException e) {
+            server.shutdownNow();
+            NotificationsDbRepository.stopNotifsPopulation();
+        }
     }
 
 

@@ -14,7 +14,7 @@ public class NotificationsDbRepository implements NotificationsRepository {
 
     private static volatile Thread population = null;
 
-    //TODO: Change to map and implement that changes do update this Map as well
+    //TODO: Change to map and implement so that changes do update this Map as well
     public static volatile List<Auction> auctions = new ArrayList<>();
 
     private NotificationsDbRepository() {
@@ -28,6 +28,10 @@ public class NotificationsDbRepository implements NotificationsRepository {
             instance = new NotificationsDbRepository();
         }
         return instance;
+    }
+
+    public static Thread getPopulationThread() {
+        return population;
     }
 
     private static void startNotifsPopulation() {
