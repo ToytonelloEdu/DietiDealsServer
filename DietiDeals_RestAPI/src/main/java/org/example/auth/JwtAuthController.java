@@ -22,7 +22,7 @@ public class JwtAuthController implements AuthController {
     }
 
 
-    private static final String ISSUER = "todo-rest-api";
+    private static final String ISSUER = "dietideals-rest-api";
     private static final Algorithm algorithm = Algorithm.HMAC256("very_secret_key_not_to_share");
     private static final JWTVerifier verifier = JWT.require(algorithm)
             .withIssuer(ISSUER)
