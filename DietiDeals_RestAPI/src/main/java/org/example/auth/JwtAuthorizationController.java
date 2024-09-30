@@ -9,14 +9,14 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import java.util.Date;
 import java.util.UUID;
 
-public class JwtAuthController implements AuthController {
-    private static JwtAuthController instance;
+public class JwtAuthorizationController implements AuthorizationController {
+    private static JwtAuthorizationController instance;
 
-    private JwtAuthController() {}
+    private JwtAuthorizationController() {}
 
-    public static JwtAuthController getInstance() {
+    public static JwtAuthorizationController getInstance() {
         if (instance == null) {
-            instance = new JwtAuthController();
+            instance = new JwtAuthorizationController();
         }
         return instance;
     }

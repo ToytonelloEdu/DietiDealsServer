@@ -1,6 +1,6 @@
 package org.example.auth;
 
-public interface AuthController {
+public interface AuthorizationController {
 
     String getUsernameClaim(String token);
 
