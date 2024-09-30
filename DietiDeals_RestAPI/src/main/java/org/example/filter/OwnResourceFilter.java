@@ -6,7 +6,7 @@ import jakarta.ws.rs.container.ContainerRequestContext;
 import jakarta.ws.rs.container.ContainerRequestFilter;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.Provider;
-import org.example.auth.JwtAuthController;
+import org.example.auth.JwtAuthorizationController;
 
 import java.io.IOException;
 
@@ -18,7 +18,7 @@ public class OwnResourceFilter implements ContainerRequestFilter {
     public void filter(ContainerRequestContext containerRequestContext) throws IOException {
         String token = AuthenticationFilter.CheckAuthenticationHeader(containerRequestContext);
         String username = containerRequestContext.getUriInfo().getPathParameters().getFirst("username");
-        String claim = JwtAuthController.getInstance().getUsernameClaim(token);
+        String claim = JwtAuthorizationController.getInstance().getUsernameClaim(token);
 
         if(username != null && claim != null) {
             if(username.equals(claim)) {
