@@ -24,6 +24,8 @@ public interface AuctionsRepository {
 
     Auction deleteAuction(int id);
 
+    Auction acceptBid(int auctionId, int bidId);
+
     class Query {
         final String object;
         final String vendor;
