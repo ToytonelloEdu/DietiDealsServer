@@ -53,6 +53,7 @@ public class Notification {
     private static List<Notification> incrementalNotifications(IncrementalAuction auction) {
         Session session = DatabaseSession.getSession();
         List<Notification> notifications = new ArrayList<>();
+        auctionOwnerCorrection(auction);
         notifications.add(new Notification(auction, auction.getAuctioneer(), NotificationType.OWNER, LocalDateTime.now()));
 
         //auction.getBids().sort(Bid.compareByTimeDesc);
@@ -74,6 +75,20 @@ public class Notification {
         }
 
         return notifications;
+    }
+
+    private static void bidOwnerCorrection(Bid last) {
+        if(last.getBuyer() == null) {
+            last.setBuyer(new Buyer());
+            last.getBuyer().setUsername(last.getBidder());
+        }
+    }
+
+    private static void auctionOwnerCorrection(IncrementalAuction auction) {
+        if(auction.getAuctioneer() == null) {
+            auction.setAuctioneer(new Auctioneer());
+            auction.getAuctioneer().setUsername(auction.getAuctioneerUsername());
+        }
     }
 
     public int getId() {
@@ -130,5 +145,18 @@ public class Notification {
 
     public void setRead(Boolean read) {
         this.read = read;
+    }
+
+    @Override
+    public String toString() {
+        return "Notification{" +
+                "id=" + id +
+                ", auction=" + auction +
+                ", user=" + user +
+                ", notificationType=" + notificationType +
+                ", time=" + time +
+                ", received=" + received +
+                ", read=" + read +
+                '}';
     }
 }

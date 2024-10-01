@@ -92,6 +92,18 @@ public class AuctionResource {
         }
     }
 
+    @PUT
+    @RequireAuth
+    @Path("{id}/accept/{bidId}")
+    public Response acceptBid(@PathParam("id") int id, @PathParam("bidId") int bid) {
+        try{
+            Auction auction = auctionsRepo.getAuctionByID(id);
+            auction.getBids();
+        }catch (Exception e){
+
+        }
+    }
+
     public static class InputAuction{
         private int id;
         private String auctionType;

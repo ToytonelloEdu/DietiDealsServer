@@ -75,9 +75,10 @@ public class NotificationsDbRepository implements NotificationsRepository {
     }
 
     private static void notifyAuction(Auction updatedAuction) {
-        Session session = DatabaseSession.getSession();
+        try {
+            Session session = DatabaseSession.getSession();
 
-        session.beginTransaction();
+            session.beginTransaction();
 
             session.evict(updatedAuction);
 
@@ -87,9 +88,15 @@ public class NotificationsDbRepository implements NotificationsRepository {
             updatedAuction.notified(true);
             session.merge(updatedAuction);
             auctions.remove(updatedAuction);
-            System.out.println("\nAuction " + updatedAuction.getId() + " has been notified\n");
 
-        session.getTransaction().commit();
+
+            session.getTransaction().commit();
+            System.out.println("\nAuction " + updatedAuction.getId() + " has been notified\n");
+        } catch (Exception e) {
+            System.out.println("\nAuction " + updatedAuction.getId() + " could not be notified\n" +
+                                    "CAUSE: " + e.getMessage());
+        }
+
     }
 
     private static Auction fetchAuctionUpToDate(int i) {
