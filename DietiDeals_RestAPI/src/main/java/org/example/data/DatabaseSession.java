@@ -34,8 +34,8 @@ public class DatabaseSession {
                     // Automatic schema export
                     .setProperty(AvailableSettings.JAKARTA_HBM2DDL_DATABASE_ACTION,
                             //Action.NONE
-                            Action.ACTION_UPDATE
-                            //Action.SPEC_ACTION_DROP_AND_CREATE
+                            //Action.ACTION_UPDATE
+                            Action.SPEC_ACTION_DROP_AND_CREATE
                     )
                     // SQL statement logging
                     .setProperty(AvailableSettings.SHOW_SQL, true)
