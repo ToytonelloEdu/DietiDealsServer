@@ -96,6 +96,8 @@ public class UsersDbRepository implements UsersRepository {
         if(user == null) return null;
         try {
             sessionFactory.inTransaction(session -> {
+                if(user.getLinks()  != null)
+                    user.getLinks().setUser(user);
                 session.merge(user);
             });
             System.out.println("\nUPDATE (?, ?, ...) INTO users WHERE username = ?\n");
@@ -105,6 +107,10 @@ public class UsersDbRepository implements UsersRepository {
             return null;
         }
     }
+
+//    Links links = user.getLinks() ;
+//                if(links != null)
+//            session.persist(links);
 
     @Override
     public Boolean verifyCredentials(AuthCredentials auth) {

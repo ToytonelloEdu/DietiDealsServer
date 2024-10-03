@@ -95,7 +95,7 @@ public class AuctionResource {
     @PUT
     @RequireAuth
     @Path("{id}/accept/{bidId}")
-    public Response acceptBid(@PathParam("id") int id, @PathParam("bidId") int bid) {
+    public Response acceptBid(@HeaderParam("Authorization") @PathParam("id") int id, @PathParam("bidId") int bid) {
         try{
             Auction auction = auctionsRepo.acceptBid(id, bid);
             return Response.status(Response.Status.OK).entity(auction).build();
