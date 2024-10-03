@@ -97,10 +97,14 @@ public class UsersDbRepository implements UsersRepository {
         try {
             try{
                 sessionFactory.inTransaction(session -> {
-                    if(user.getLinks() != null)
+                    if(user.getLinks() != null) {
+                        user.getLinks().setUser(user);
                         session.persist(user.getLinks());
+                    }
                 });
-            } catch (Exception ignored) {}
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
             sessionFactory.inTransaction(session -> {
                 session.merge(user);
             });
