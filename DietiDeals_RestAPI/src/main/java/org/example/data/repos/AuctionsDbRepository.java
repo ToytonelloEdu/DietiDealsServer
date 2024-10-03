@@ -223,6 +223,7 @@ public class AuctionsDbRepository implements AuctionsRepository {
 
         Bid acceptedBid = session.find(Bid.class, bidId);
         if(acceptedBid == null) throw new IllegalArgumentException("Bid does not exist");
+        if(acceptedBid.auctionId() != auctionId) throw new IllegalArgumentException("Bid was not done for selected Auction");
 
 
         session.beginTransaction();

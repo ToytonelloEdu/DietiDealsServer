@@ -49,8 +49,7 @@ public class SignUpResource {
         private String password;
         private Links links;
 
-        public InputUser() {
-        }
+        public InputUser() {}
 
         public String getUsername() {
             return username;

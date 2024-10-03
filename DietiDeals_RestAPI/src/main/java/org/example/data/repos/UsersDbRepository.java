@@ -27,7 +27,7 @@ public class UsersDbRepository implements UsersRepository {
     @Override
     public User getUserByUsername(String username) {
         User subUser = DatabaseSession.getSession().find(User.class, username);
-
+        System.out.println("\nSELECT * FROM users WHERE username = ?\n");
         if(subUser == null) return null;
 
         if(subUser.getUserType().equals("Auctioneer")) {
@@ -47,6 +47,7 @@ public class UsersDbRepository implements UsersRepository {
                 .createSelectionQuery("FROM Users WHERE email = :email", User.class)
                 .setParameter("email", email).getSingleResultOrNull();
 
+        System.out.println("\nSELECT * FROM users WHERE email = ?\n");
         if(user instanceof Auctioneer) {
             Auctioneer auctioneer = (Auctioneer) user;
             auctioneer.setAuctions(auctionsRepo.getAuctionsByAuctioneer(auctioneer));
@@ -81,6 +82,7 @@ public class UsersDbRepository implements UsersRepository {
             sessionFactory.inTransaction(session -> {
                 session.persist(subUser);
             });
+            System.out.println("\nINSERT (?, ?, ...) INTO users\n");
             return user;
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
@@ -96,6 +98,7 @@ public class UsersDbRepository implements UsersRepository {
             sessionFactory.inTransaction(session -> {
                 session.merge(user);
             });
+            System.out.println("\nUPDATE (?, ?, ...) INTO users WHERE username = ?\n");
             return user;
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
