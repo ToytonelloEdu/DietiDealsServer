@@ -95,9 +95,8 @@ public class UsersDbRepository implements UsersRepository {
     public User updateUser(User user) {
         if(user == null) return null;
         try {
-
-            if(user.getLinks() != null) {
-                Links links = user.getLinks();
+            Links links = user.getLinks();
+            if(links != null) {
                 links.setUser(user);
                 user.setLinks(links);
             }
@@ -106,7 +105,7 @@ public class UsersDbRepository implements UsersRepository {
                 session.merge(user);
             });
             System.out.println("\nUPDATE (?, ?, ...) INTO users WHERE username = ?\n");
-            user.getLinks().setUser(null);
+            if(links != null) links.setUser(null);
             return user;
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
