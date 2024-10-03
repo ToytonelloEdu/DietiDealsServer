@@ -41,6 +41,7 @@ public class Buyer extends User{
         setProPicPath(user.getProPicPath());
         setBirthdate(user.getBirthdate());
         setGender(user.getGender());
+        setLinks(user.getLinks());
     }
     public Buyer(
             String username,
@@ -53,8 +54,9 @@ public class Buyer extends User{
             String bio,
             String nationality,
             String gender,
-            Timestamp birthdate
+            Timestamp birthdate,
+            Links links
     ) {
-        super(username, userType, email, password, firstName, lastName, proPicPath, bio, nationality, gender, birthdate);
+        super(username, userType, email, password, firstName, lastName, proPicPath, bio, nationality, gender, birthdate, links);
     }
 }

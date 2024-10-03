@@ -19,6 +19,7 @@ public class DatabaseSession {
                     .addAnnotatedClass(User.class)
                     .addAnnotatedClass(Auctioneer.class)
                     .addAnnotatedClass(Buyer.class)
+                    .addAnnotatedClass(Links.class)
                     .addAnnotatedClass(Auction.class)
                     .addAnnotatedClass(IncrementalAuction.class)
                     .addAnnotatedClass(SilentAuction.class)

@@ -33,6 +33,9 @@ abstract public class User {
     @Column(nullable = false)
     private String gender;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private Links links;
+
     public String getUsername() {
         return username;
     }
@@ -119,13 +122,21 @@ abstract public class User {
         this.password = /*TODO: Encrypt*/ password;
     }
 
+    public Links getLinks() {
+        return links;
+    }
+
+    public void setLinks(Links links) {
+        this.links = links;
+    }
+
     public User() {}
     public User(String username, String password) {
         this.username = username;
         this.setPassword(password);
     }
 
-    public User(String username, String userType, String email, String password, String firstName, String lastName, String proPicPath, String bio, String nationality, String gender, Timestamp birthdate) {
+    public User(String username, String userType, String email, String password, String firstName, String lastName, String proPicPath, String bio, String nationality, String gender, Timestamp birthdate, Links links) {
         this.username = username;
         this.userType = userType;
         this.email = email;
@@ -137,6 +148,7 @@ abstract public class User {
         this.nationality = nationality;
         this.birthdate = birthdate;
         this.gender = gender;
+        this.links = links;
     }
 
     public Boolean checkCredentials(AuthCredentials auth){
@@ -154,4 +166,6 @@ abstract public class User {
                 ", password='" + password + '\'' +
                 '}';
     }
+
+
 }
