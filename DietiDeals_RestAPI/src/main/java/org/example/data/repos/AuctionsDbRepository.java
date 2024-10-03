@@ -211,6 +211,27 @@ public class AuctionsDbRepository implements AuctionsRepository {
         return auction;
     }
 
+    @Override
+    public Auction acceptBid(int auctionId, int bidId) {
+        Session session = DatabaseSession.getSession();
+        Auction auction = session.find(Auction.class, auctionId);
+
+        if(auction == null) throw new IllegalArgumentException("Auction does not exist");
+        if(!(auction instanceof SilentAuction)) throw new IllegalArgumentException("Auction is not Silent");
+        SilentAuction silentAuction = (SilentAuction) auction;
+        if(silentAuction.getAcceptedBid() != null) throw new IllegalArgumentException("Auction has already an accepted bid");
+
+        Bid acceptedBid = session.find(Bid.class, bidId);
+        if(acceptedBid == null) throw new IllegalArgumentException("Bid does not exist");
+
+
+        session.beginTransaction();
+            silentAuction.setAcceptedBid(acceptedBid);
+            Auction merged = session.merge(silentAuction);
+        session.getTransaction().commit();
+        return merged;
+    }
+
     private List<Auction> getAuctionsThroughQuery() {
         List<Auction> auctions = new ArrayList<>();
         auctions.addAll(getIncrAuctionsThroughQuery());

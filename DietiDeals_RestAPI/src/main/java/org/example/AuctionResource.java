@@ -97,10 +97,12 @@ public class AuctionResource {
     @Path("{id}/accept/{bidId}")
     public Response acceptBid(@PathParam("id") int id, @PathParam("bidId") int bid) {
         try{
-            Auction auction = auctionsRepo.getAuctionByID(id);
-            auction.getBids();
+            Auction auction = auctionsRepo.acceptBid(id, bid);
+            return Response.status(Response.Status.OK).entity(auction).build();
+        }catch (IllegalArgumentException e){
+            return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
         }catch (Exception e){
-
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e).build();
         }
     }
 

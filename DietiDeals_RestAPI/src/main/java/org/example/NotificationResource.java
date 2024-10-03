@@ -11,6 +11,7 @@ import org.example.data.repos.NotificationsDbRepository;
 import org.example.data.repos.NotificationsRepository;
 import org.example.data.repos.UsersDbRepository;
 import org.example.data.repos.UsersRepository;
+import org.example.filter.RequireAuth;
 
 import java.util.List;
 
@@ -24,6 +25,7 @@ public class NotificationResource {
 
     @GET
     @Path("{handle}")
+    //@RequireAuth
     public List<Notification> getNotifications(@PathParam("handle") String handle) {
         try{
             return notificationsRepo.getNotificationsByUser(handle);
