@@ -95,24 +95,18 @@ public class UsersDbRepository implements UsersRepository {
     public User updateUser(User user) {
         if(user == null) return null;
         try {
-            try{
-                sessionFactory.inTransaction(session -> {
-                    if(user.getLinks() != null) {
-                        Links links = user.getLinks();
-                        links.setUser(user);
-                        user.setLinks(links);
-                        session.persist(user.getLinks());
-                    } else {
-                        System.out.println("\nNo Links\n");
-                    }
-                });
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
+
+            if(user.getLinks() != null) {
+                Links links = user.getLinks();
+                links.setUser(user);
+                user.setLinks(links);
             }
+
             sessionFactory.inTransaction(session -> {
                 session.merge(user);
             });
             System.out.println("\nUPDATE (?, ?, ...) INTO users WHERE username = ?\n");
+            user.getLinks().setUser(null);
             return user;
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
