@@ -102,6 +102,8 @@ public class UsersDbRepository implements UsersRepository {
                         links.setUser(user);
                         user.setLinks(links);
                         session.persist(user.getLinks());
+                    } else {
+                        System.out.println("\nNo Links\n");
                     }
                 });
             } catch (Exception e) {
