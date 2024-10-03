@@ -95,9 +95,13 @@ public class UsersDbRepository implements UsersRepository {
     public User updateUser(User user) {
         if(user == null) return null;
         try {
+            try{
+                sessionFactory.inTransaction(session -> {
+                    if(user.getLinks() != null)
+                        session.persist(user.getLinks());
+                });
+            } catch (Exception ignored) {}
             sessionFactory.inTransaction(session -> {
-                if(user.getLinks()  != null)
-                    user.getLinks().setUser(user);
                 session.merge(user);
             });
             System.out.println("\nUPDATE (?, ?, ...) INTO users WHERE username = ?\n");
