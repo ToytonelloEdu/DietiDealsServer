@@ -98,7 +98,9 @@ public class UsersDbRepository implements UsersRepository {
             try{
                 sessionFactory.inTransaction(session -> {
                     if(user.getLinks() != null) {
-                        user.getLinks().setUser(user);
+                        Links links = user.getLinks();
+                        links.setUser(user);
+                        user.setLinks(links);
                         session.persist(user.getLinks());
                     }
                 });
