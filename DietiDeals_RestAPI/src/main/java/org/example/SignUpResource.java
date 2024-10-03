@@ -7,6 +7,7 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.example.data.entities.Auctioneer;
 import org.example.data.entities.Buyer;
+import org.example.data.entities.Links;
 import org.example.data.entities.User;
 import org.example.data.repos.UsersDbRepository;
 import org.example.data.repos.UsersRepository;
@@ -46,6 +47,7 @@ public class SignUpResource {
         private String gender;
         private Timestamp birthdate;
         private String password;
+        private Links links;
 
         public InputUser() {
         }
@@ -138,12 +140,20 @@ public class SignUpResource {
             this.birthdate = birthdate;
         }
 
+        public Links getLinks() {
+            return links;
+        }
+
+        public void setLinks(Links links) {
+            this.links = links;
+        }
+
         public User toUser() {
             if(userType.equals("Auctioneer")) {
-                return new Auctioneer(username, userType, email, password, firstName, lastName, proPicPath, bio, nationality, gender, birthdate);
+                return new Auctioneer(username, userType, email, password, firstName, lastName, proPicPath, bio, nationality, gender, birthdate, links);
             }
             else if(userType.equals("Buyer")) {
-                return new Buyer(username, userType, email, password, firstName, lastName, proPicPath, bio, nationality, gender, birthdate);
+                return new Buyer(username, userType, email, password, firstName, lastName, proPicPath, bio, nationality, gender, birthdate, links);
             } else throw new IllegalArgumentException("Invalid user type");
         }
     }
