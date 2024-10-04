@@ -29,7 +29,7 @@ public class UsersDbRepository implements UsersRepository {
         User subUser = DatabaseSession.getSession().find(User.class, username);
         System.out.println("\nSELECT * FROM users WHERE username = ?\n");
         if(subUser == null) return null;
-        subUser.getLinks().setUser(null);
+        if(subUser.getLinks() != null) subUser.getLinks().setUser(null);
 
         if(subUser.getUserType().equals("Auctioneer")) {
             Auctioneer auctioneer = new Auctioneer(subUser);
@@ -48,7 +48,7 @@ public class UsersDbRepository implements UsersRepository {
                 .createSelectionQuery("FROM Users WHERE email = :email", User.class)
                 .setParameter("email", email).getSingleResultOrNull();
         if(user == null) return null;
-        user.getLinks().setUser(null);
+        if(user.getLinks() != null) user.getLinks().setUser(null);
 
         System.out.println("\nSELECT * FROM users WHERE email = ?\n");
         if(user instanceof Auctioneer) {
