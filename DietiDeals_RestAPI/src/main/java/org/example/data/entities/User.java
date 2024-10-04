@@ -123,6 +123,7 @@ abstract public class User {
     }
 
     public Links getLinks() {
+        if(links != null) links.setUser(null);
         return links;
     }
 
