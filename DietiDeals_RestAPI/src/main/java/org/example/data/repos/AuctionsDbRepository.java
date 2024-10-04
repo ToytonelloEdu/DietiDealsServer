@@ -253,7 +253,7 @@ public class AuctionsDbRepository implements AuctionsRepository {
     private List<SilentAuction> getSilentAuctionsThroughQuery() {
         return DatabaseSession.getSession()
                 .createSelectionQuery("select new org.example.data.entities.SilentAuction" +
-                        "(id, objectName, description, auctioneer, date, medianColor, expirationDate) " +
+                        "(id, objectName, description, auctioneer, date, medianColor, expirationDate, acceptedBid) " +
                         "FROM SilentAuction ", SilentAuction.class)
                 .getResultList();
     }
@@ -277,7 +277,7 @@ public class AuctionsDbRepository implements AuctionsRepository {
     private SilentAuction getSilentAuctionsThroughQuery_where(Integer id) {
         return DatabaseSession.getSession()
                 .createSelectionQuery("select new org.example.data.entities.SilentAuction" +
-                        "(id, objectName, description, date, auctioneer, medianColor, expirationDate) " +
+                        "(id, objectName, description, date, auctioneer, medianColor, expirationDate, acceptedBid) " +
                         "FROM SilentAuction WHERE id = :id", SilentAuction.class)
                 .setParameter("id", id).getSingleResultOrNull();
     }
@@ -301,7 +301,7 @@ public class AuctionsDbRepository implements AuctionsRepository {
     private List<SilentAuction> getSilentAuctionsThroughQuery_where(Auctioneer auctioneer) {
         return DatabaseSession.getSession()
                 .createSelectionQuery("select new org.example.data.entities.SilentAuction" +
-                        "(id, objectName, description, auctioneer, date, medianColor, expirationDate) " +
+                        "(id, objectName, description, auctioneer, date, medianColor, expirationDate, acceptedBid) " +
                         "FROM SilentAuction WHERE auctioneer = :auctioneer", SilentAuction.class)
                 .setParameter("auctioneer", auctioneer).getResultList();
     }

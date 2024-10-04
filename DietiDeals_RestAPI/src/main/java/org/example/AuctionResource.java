@@ -119,6 +119,7 @@ public class AuctionResource {
         private Bid lastBid;
         private String auctioneerUsername;
         private Timestamp expirationDate;
+        private BidResource.InputBid acceptedBid;
         private Integer timeInterval;
         private Double startingPrice;
         private Double raisingThreshold;
@@ -280,7 +281,8 @@ public class AuctionResource {
                         auctioneer,
                         medianColor,
                         expirationDate,
-                        tags
+                        tags,
+                        acceptedBid.toBid()
                 );
             }
             return null;
