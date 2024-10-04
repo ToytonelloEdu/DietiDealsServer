@@ -97,7 +97,7 @@ public class AuctionResource {
     @Path("{id}/accept/{bidId}")
     public Response acceptBid(@HeaderParam("Authorization") @PathParam("id") int id, @PathParam("bidId") int bid) {
         try{
-            Auction auction = auctionsRepo.acceptBid(id, bid);
+            Auction auction = auctionsRepo.acceptBid(id, bid).toJsonFriendly();
             return Response.status(Response.Status.OK).entity(auction).build();
         }catch (IllegalArgumentException e){
             return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();

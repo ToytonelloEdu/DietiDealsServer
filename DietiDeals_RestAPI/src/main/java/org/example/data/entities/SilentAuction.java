@@ -75,6 +75,8 @@ public class SilentAuction extends Auction{
 
     @Override
     public Boolean auctionOver() {
+        if (acceptedBid != null) return true;
+
         return (new Timestamp(System.currentTimeMillis())).after(getExpirationDate());
     }
 
@@ -84,6 +86,7 @@ public class SilentAuction extends Auction{
         auction.setAuctioneerUsername(this.getAuctioneer().getUsername());
         auction.setAuctioneer(null);
         auction.getBids().replaceAll(Bid::toJsonFriendly);
+        acceptedBid = acceptedBid.toJsonFriendly();
         auction.getPictures().replaceAll(AuctionPhoto::toJsonFriendly);
         return auction;
     }
