@@ -67,7 +67,7 @@ public class SilentAuction extends Auction{
     }
 
     public Bid getAcceptedBid() {
-        return acceptedBid;
+        return acceptedBid.toJsonFriendly();
     }
 
     public void setAcceptedBid(Bid acceptedBid) {
