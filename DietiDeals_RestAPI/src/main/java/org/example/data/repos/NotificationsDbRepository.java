@@ -46,8 +46,9 @@ public class NotificationsDbRepository implements NotificationsRepository {
                 .setParameter("user", user).getResultList();
 
         for(Notification notification : notifications) {
-            notification.getAuction().toHomeJsonFriendly();
-            notification.getUser().toJsonFriendly();
+            notification.setAuction(notification.getAuction().toHomeJsonFriendly());
+            notification.getAuction().setLastBid(null);
+            notification.setUser(notification.getUser().toJsonFriendly());
         }
 
         return notifications;
