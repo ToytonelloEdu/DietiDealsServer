@@ -41,9 +41,15 @@ public class NotificationsDbRepository implements NotificationsRepository {
     public List<Notification> getNotificationsByUser(String handle) {
         System.out.println("\nSELECT * FROM Notification WHERE user = ?\n");
         User user = usersRepo.getUserByHandle(handle);
-        return DatabaseSession.getSession()
+        List<Notification> notifications = DatabaseSession.getSession()
                 .createSelectionQuery("FROM Notification WHERE user = :user", Notification.class)
                 .setParameter("user", user).getResultList();
+
+        for(Notification notification : notifications) {
+            notification.getAuction().toHomeJsonFriendly();
+        }
+
+        return notifications;
     }
 
 
