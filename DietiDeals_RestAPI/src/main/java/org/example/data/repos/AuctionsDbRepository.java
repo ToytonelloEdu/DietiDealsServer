@@ -101,6 +101,7 @@ public class AuctionsDbRepository implements AuctionsRepository {
         auction.setBids(bidsRepo.getBidsByAuction(auction));
         auction.setTags(tagsRepo.getTagsByAuction(auction));
         auction.setPictures(photosRepo.getPhotosByAuction(auction));
+        auction.getAuctioneer().getLinks();
         System.out.println("\nSELECT * FROM Auctions WHERE id = ?\n");
         return auction;
     }
