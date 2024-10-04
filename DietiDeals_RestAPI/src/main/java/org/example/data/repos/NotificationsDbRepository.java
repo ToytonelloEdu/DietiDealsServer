@@ -47,6 +47,7 @@ public class NotificationsDbRepository implements NotificationsRepository {
 
         for(Notification notification : notifications) {
             notification.getAuction().toHomeJsonFriendly();
+            notification.getUser().toJsonFriendly();
         }
 
         return notifications;

@@ -59,4 +59,27 @@ public class Buyer extends User{
     ) {
         super(username, userType, email, password, firstName, lastName, proPicPath, bio, nationality, gender, birthdate, links);
     }
+
+    public Buyer(Buyer other) {
+        setUsername(other.getUsername());
+        setUserType(other.getUserType());
+        setPassword(other.getPassword());
+        setEmail(other.getEmail());
+        setFirstName(other.getFirstName());
+        setLastName(other.getLastName());
+        setBio(other.getBio());
+        setNationality(other.getNationality());
+        setProPicPath(other.getProPicPath());
+        setBirthdate(other.getBirthdate());
+        setGender(other.getGender());
+        setLinks(other.getLinks());
+        bids = other.bids;
+    }
+
+    @Override
+    public Buyer toJsonFriendly() {
+        Buyer other = new Buyer(this);
+        other.setBids(null);
+        return other;
+    }
 }

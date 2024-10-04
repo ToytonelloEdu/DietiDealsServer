@@ -169,4 +169,5 @@ abstract public class User {
     }
 
 
+    public abstract User toJsonFriendly();
 }
