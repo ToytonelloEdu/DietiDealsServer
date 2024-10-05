@@ -2,6 +2,7 @@ package org.example.data.repos;
 
 import org.example.data.DatabaseSession;
 import org.example.data.entities.Auction;
+import org.example.data.entities.Bid;
 import org.example.data.entities.Notification;
 import org.example.data.entities.User;
 import org.hibernate.Session;
@@ -47,7 +48,8 @@ public class NotificationsDbRepository implements NotificationsRepository {
 
         for(Notification notification : notifications) {
             notification.setAuction(notification.getAuction().toHomeJsonFriendly());
-            notification.getAuction().setLastBid(null);
+            Bid jsonBid = notification.getAuction().getLastBid().toJsonFriendly();
+            notification.getAuction().setLastBid(jsonBid);
             notification.setUser(notification.getUser().toJsonFriendly());
         }
 
