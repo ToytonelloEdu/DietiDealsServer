@@ -22,29 +22,34 @@ public class SilentAuction extends Auction{
 
     public SilentAuction() {}
 
-    public SilentAuction(int id, List<AuctionPhoto> pictures, String objectName, String description, Auctioneer auctioneer, Timestamp date, String medianColor, Timestamp expirationDate) {
+    public SilentAuction(int id, List<AuctionPhoto> pictures, String objectName, String description, Auctioneer auctioneer, Timestamp date, String medianColor, Timestamp expirationDate, Bid acceptedBid) {
         super(id, pictures, objectName, description, auctioneer, date, medianColor);
         this.expirationDate = expirationDate;
+        this.acceptedBid = acceptedBid;
     }
 
-    public SilentAuction(int id, List<AuctionPhoto> picturePath, String objectName, String description, Timestamp date, Auctioneer auctioneer, String medianColor, Timestamp expirationDate) {
+    public SilentAuction(int id, List<AuctionPhoto> picturePath, String objectName, String description, Timestamp date, Auctioneer auctioneer, String medianColor, Timestamp expirationDate, Bid acceptedBid) {
         super(id, picturePath, objectName, description, date, auctioneer, medianColor);
         this.expirationDate = expirationDate;
+        this.acceptedBid = acceptedBid;
     }
 
-    public SilentAuction(int id, String objectName, String description, Auctioneer auctioneer, Timestamp date, String medianColor, Timestamp expirationDate) {
+    public SilentAuction(int id, String objectName, String description, Auctioneer auctioneer, Timestamp date, String medianColor, Timestamp expirationDate, Bid acceptedBid) {
         super(id, objectName, description, auctioneer, date, medianColor);
         this.expirationDate = expirationDate;
+        this.acceptedBid = acceptedBid;
     }
 
-    public SilentAuction(int id, String objectName, String description, Timestamp date, Auctioneer auctioneer, String medianColor, Timestamp expirationDate) {
+    public SilentAuction(int id, String objectName, String description, Timestamp date, Auctioneer auctioneer, String medianColor, Timestamp expirationDate, Bid acceptedBid) {
         super(id, objectName, description, date, auctioneer, medianColor);
         this.expirationDate = expirationDate;
+        this.acceptedBid = acceptedBid;
     }
 
-    public SilentAuction(int id, List<AuctionPhoto> picturePath, String objectName, String description, Timestamp date, Auctioneer auctioneer, String medianColor, Timestamp expirationDate, List<Tag> tags) {
+    public SilentAuction(int id, List<AuctionPhoto> picturePath, String objectName, String description, Timestamp date, Auctioneer auctioneer, String medianColor, Timestamp expirationDate, List<Tag> tags, Bid acceptedBid) {
         super(id, picturePath, objectName, description, date, auctioneer, medianColor, tags);
         this.expirationDate = expirationDate;
+        this.acceptedBid = acceptedBid;
     }
 
     public SilentAuction(SilentAuction other) {
@@ -62,7 +67,7 @@ public class SilentAuction extends Auction{
     }
 
     public Bid getAcceptedBid() {
-        return acceptedBid;
+        return acceptedBid.toJsonFriendly();
     }
 
     public void setAcceptedBid(Bid acceptedBid) {
@@ -75,6 +80,8 @@ public class SilentAuction extends Auction{
 
     @Override
     public Boolean auctionOver() {
+        if (acceptedBid != null) return true;
+
         return (new Timestamp(System.currentTimeMillis())).after(getExpirationDate());
     }
 
@@ -84,6 +91,7 @@ public class SilentAuction extends Auction{
         auction.setAuctioneerUsername(this.getAuctioneer().getUsername());
         auction.setAuctioneer(null);
         auction.getBids().replaceAll(Bid::toJsonFriendly);
+        acceptedBid = acceptedBid.toJsonFriendly();
         auction.getPictures().replaceAll(AuctionPhoto::toJsonFriendly);
         return auction;
     }

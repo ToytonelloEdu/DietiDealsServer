@@ -95,9 +95,9 @@ public class AuctionResource {
     @PUT
     @RequireAuth
     @Path("{id}/accept/{bidId}")
-    public Response acceptBid(@PathParam("id") int id, @PathParam("bidId") int bid) {
+    public Response acceptBid(@HeaderParam("Authorization") @PathParam("id") int id, @PathParam("bidId") int bid) {
         try{
-            Auction auction = auctionsRepo.acceptBid(id, bid);
+            Auction auction = auctionsRepo.acceptBid(id, bid).toJsonFriendly();
             return Response.status(Response.Status.OK).entity(auction).build();
         }catch (IllegalArgumentException e){
             return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
@@ -119,6 +119,7 @@ public class AuctionResource {
         private Bid lastBid;
         private String auctioneerUsername;
         private Timestamp expirationDate;
+        private BidResource.InputBid acceptedBid;
         private Integer timeInterval;
         private Double startingPrice;
         private Double raisingThreshold;
@@ -280,7 +281,8 @@ public class AuctionResource {
                         auctioneer,
                         medianColor,
                         expirationDate,
-                        tags
+                        tags,
+                        acceptedBid.toBid()
                 );
             }
             return null;

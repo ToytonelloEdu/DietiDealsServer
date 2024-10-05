@@ -41,6 +41,7 @@ public class Buyer extends User{
         setProPicPath(user.getProPicPath());
         setBirthdate(user.getBirthdate());
         setGender(user.getGender());
+        setLinks(user.getLinks());
     }
     public Buyer(
             String username,
@@ -53,8 +54,32 @@ public class Buyer extends User{
             String bio,
             String nationality,
             String gender,
-            Timestamp birthdate
+            Timestamp birthdate,
+            Links links
     ) {
-        super(username, userType, email, password, firstName, lastName, proPicPath, bio, nationality, gender, birthdate);
+        super(username, userType, email, password, firstName, lastName, proPicPath, bio, nationality, gender, birthdate, links);
+    }
+
+    public Buyer(Buyer other) {
+        setUsername(other.getUsername());
+        setUserType(other.getUserType());
+        setPassword(other.getPassword());
+        setEmail(other.getEmail());
+        setFirstName(other.getFirstName());
+        setLastName(other.getLastName());
+        setBio(other.getBio());
+        setNationality(other.getNationality());
+        setProPicPath(other.getProPicPath());
+        setBirthdate(other.getBirthdate());
+        setGender(other.getGender());
+        setLinks(other.getLinks());
+        bids = other.bids;
+    }
+
+    @Override
+    public Buyer toJsonFriendly() {
+        Buyer other = new Buyer(this);
+        other.setBids(null);
+        return other;
     }
 }

@@ -27,8 +27,9 @@ public class UsersDbRepository implements UsersRepository {
     @Override
     public User getUserByUsername(String username) {
         User subUser = DatabaseSession.getSession().find(User.class, username);
-
+        System.out.println("\nSELECT * FROM users WHERE username = ?\n");
         if(subUser == null) return null;
+        if(subUser.getLinks() != null) subUser.getLinks().setUser(null);
 
         if(subUser.getUserType().equals("Auctioneer")) {
             Auctioneer auctioneer = new Auctioneer(subUser);
@@ -46,7 +47,10 @@ public class UsersDbRepository implements UsersRepository {
         User user = DatabaseSession.getSession()
                 .createSelectionQuery("FROM Users WHERE email = :email", User.class)
                 .setParameter("email", email).getSingleResultOrNull();
+        if(user == null) return null;
+        if(user.getLinks() != null) user.getLinks().setUser(null);
 
+        System.out.println("\nSELECT * FROM users WHERE email = ?\n");
         if(user instanceof Auctioneer) {
             Auctioneer auctioneer = (Auctioneer) user;
             auctioneer.setAuctions(auctionsRepo.getAuctionsByAuctioneer(auctioneer));
@@ -81,6 +85,7 @@ public class UsersDbRepository implements UsersRepository {
             sessionFactory.inTransaction(session -> {
                 session.persist(subUser);
             });
+            System.out.println("\nINSERT (?, ?, ...) INTO users\n");
             return user;
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
@@ -93,15 +98,27 @@ public class UsersDbRepository implements UsersRepository {
     public User updateUser(User user) {
         if(user == null) return null;
         try {
+            Links links = user.getLinks();
+            if(links != null) {
+                links.setUser(user);
+                user.setLinks(links);
+            }
+
             sessionFactory.inTransaction(session -> {
                 session.merge(user);
             });
+            System.out.println("\nUPDATE (?, ?, ...) INTO users WHERE username = ?\n");
+            if(links != null) links.setUser(null);
             return user;
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
             return null;
         }
     }
+
+//    Links links = user.getLinks() ;
+//                if(links != null)
+//            session.persist(links);
 
     @Override
     public Boolean verifyCredentials(AuthCredentials auth) {

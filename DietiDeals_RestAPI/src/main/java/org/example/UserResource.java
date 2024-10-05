@@ -28,12 +28,11 @@ public class UserResource {
 
     @PUT
     @Path("{username}")
-    @RequireAuth
     @ModifyOwnProfile
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateUser(@PathParam("username") String username, SignUpResource.InputUser user) {
         if(usersRepo.getUserByUsername(username) == null) {
-            System.out.println("null");
+            System.out.println("User does not exist");
             return Response.status(Response.Status.NOT_FOUND).build();
         }
             User updatedUser = usersRepo.updateUser(user.toUser());
