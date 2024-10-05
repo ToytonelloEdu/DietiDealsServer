@@ -5,6 +5,7 @@ import org.example.data.DatabaseSession;
 import org.example.data.entities.enums.NotificationType;
 import org.hibernate.Session;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -123,7 +124,11 @@ public class Notification {
         this.notificationType = message;
     }
 
-    public LocalDateTime getTime() {
+    public Timestamp getTime() {
+        return Timestamp.valueOf(time);
+    }
+
+    public LocalDateTime time() {
         return time;
     }
 
