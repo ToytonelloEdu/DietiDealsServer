@@ -41,6 +41,9 @@ public class JwtAuthorizationController implements AuthorizationController {
 
     @Override
     public String createToken(String username, long ttlMillis) {
+        if(username == null || username.isEmpty()){
+            throw new IllegalArgumentException("Pass a valid username");
+        }
         return JWT.create()
                 .withIssuer(ISSUER)
                 .withClaim("username", username)
