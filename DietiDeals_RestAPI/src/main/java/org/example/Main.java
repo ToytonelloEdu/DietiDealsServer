@@ -17,11 +17,11 @@ public class Main {
     // Base URI the Grizzly HTTP server will listen on
     public static final String BASE_URI = "http://0.0.0.0:8080/api/1.0";
 
-//    private static final String KEYSTORE_LOC = "./certificates/keystore_server";
-//    private static final String KEYSTORE_PASS= "antojava";
-//
-//    private static final String TRUSTSTORE_LOC = "./certificates/truststore_server";
-//    private static final String TRUSTSTORE_PASS = "antojava";
+    private static final String KEYSTORE_LOC = "./certificates/keystore_server";
+    private static final String KEYSTORE_PASS= "antojava";
+
+    private static final String TRUSTSTORE_LOC = "./certificates/truststore_server";
+    private static final String TRUSTSTORE_PASS = "antojava";
 
     private static Thread notifThread;
 
