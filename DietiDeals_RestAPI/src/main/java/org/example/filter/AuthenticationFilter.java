@@ -23,12 +23,11 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 
     protected static String CheckAuthenticationHeader(ContainerRequestContext containerRequestContext) {
         System.out.println("Filtering request");
-        // Get the HTTP Authorization header from the request
+
         String authorizationHeader = containerRequestContext.getHeaderString(HttpHeaders.AUTHORIZATION);
 
         System.out.println("Authorization header: " + authorizationHeader);
 
-        // Check if the HTTP Authorization header is present and formatted correctly
         if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
             System.out.println("Invalid authorizationHeader : " + authorizationHeader);
             throw new NotAuthorizedException("Authorization header must be provided");

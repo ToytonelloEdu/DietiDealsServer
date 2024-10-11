@@ -10,6 +10,7 @@ import org.example.auth.JwtAuthorizationController;
 
 import java.io.IOException;
 
+@SuppressWarnings("unused")
 @Provider
 @ModifyOwnProfile
 @Priority(Priorities.AUTHORIZATION)
