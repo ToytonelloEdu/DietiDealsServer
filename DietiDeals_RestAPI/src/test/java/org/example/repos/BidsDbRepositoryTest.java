@@ -8,9 +8,12 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.sql.Timestamp;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class BidsDbRepositoryTest {
+
+class BidsDbRepositoryTest {
 
     static Auctioneer antonio = new Auctioneer(
             "antonioascione", "auctioneer", "antoascio@gmail.com", "test", "antonio", "ascione", "test", "Un ragazzo", "Italia", "Uomo", Timestamp.valueOf("2002-05-20 12:00:00"), null
@@ -26,7 +29,7 @@ public class BidsDbRepositoryTest {
     BidsDbRepository bidsDbRepository = BidsDbRepository.getInstance();
 
     @BeforeAll
-    public static void insertValues(){
+    static void insertValues(){
         Session session = DatabaseSession.getSession();
         session.beginTransaction();
             session.persist(antonio);
@@ -44,21 +47,22 @@ public class BidsDbRepositoryTest {
     }
 
     @Test
-    public void testAddBid_ValidBid(){
+    void testAddBid_ValidBid(){
         Bid offerta = new Bid(
                 0, astaLibro, ciro, 5.00, Timestamp.valueOf("2024-10-09 11:30:20")
         );
-        bidsDbRepository.addBid(offerta);
+
+        assertDoesNotThrow(() -> bidsDbRepository.addBid(offerta));
     }
 
     @Test
-    public void testAddBid_BidNull_throwsException(){
+    void testAddBid_BidNull_throwsException(){
         assertThrows(IllegalArgumentException.class, () -> bidsDbRepository.addBid(null));
     }
 
 
     @Test
-    public void testAddBid_InvalidBidNullAuction_throwsException(){
+    void testAddBid_InvalidBidNullAuction_throwsException(){
         Bid offerta = new Bid(
                 1, null, ciro, 2.00, Timestamp.valueOf("2024-10-09 11:30:00")
         );
@@ -69,7 +73,7 @@ public class BidsDbRepositoryTest {
             0, "Quaderno blu", "Testing", antonio, Timestamp.valueOf("2024-10-07 10:00:00"), "Blue", Timestamp.valueOf("2024-10-18 10:00:00"), null
     );
     @Test
-    public void testAddBid_AuctionNotPersisted_throwsException(){
+    void testAddBid_AuctionNotPersisted_throwsException(){
         Bid offerta = new Bid(
                 1, astaQuaderno, ciro, 2.00, Timestamp.valueOf("2024-10-09 11:30:00")
         );
@@ -78,7 +82,7 @@ public class BidsDbRepositoryTest {
 
 
     @Test
-    public void testAddBid_InvalidBidNullBuyer_throwsException(){
+    void testAddBid_InvalidBidNullBuyer_throwsException(){
         Bid offerta = new Bid(
                 1, astaLibro, null, 2.00, Timestamp.valueOf("2024-10-09 11:30:00")
         );
@@ -89,7 +93,7 @@ public class BidsDbRepositoryTest {
             "matteorossi", "buyer", "matteorossi@gmail.com", "testing", "matteo", "rossi", "test", "Un altro ragazzo", "Italia", "Uomo", Timestamp.valueOf("2002-11-18 15:00:00"), null
     );
     @Test
-    public void testAddBid_BuyerNotPersisted_throwsException(){
+    void testAddBid_BuyerNotPersisted_throwsException(){
         Bid offerta = new Bid(
                 1, astaQuaderno, matteo, 2.00, Timestamp.valueOf("2024-10-09 11:30:00")
         );
@@ -98,7 +102,7 @@ public class BidsDbRepositoryTest {
 
 
     @Test
-    public void testAddBid_InvalidBidNullTime_throwsException(){
+    void testAddBid_InvalidBidNullTime_throwsException(){
         Bid offerta = new Bid(
                 1, null, ciro, 2.00, null
         );
