@@ -11,7 +11,7 @@ import java.util.function.Consumer;
 
 public class DatabaseSession {
     private static final String user = "postgres";
-    private static final String password = "StaniLobo";
+    private static final String password = "sangio";
             //"dd_dealsdieti_p455w0rd!24";
 
     public static final SessionFactory sessionFactory =
@@ -28,7 +28,7 @@ public class DatabaseSession {
                     .addAnnotatedClass(AuctionPhoto.class)
                     .addAnnotatedClass(Notification.class)
                     // PostgreSQL
-                    .setProperty(AvailableSettings.JAKARTA_JDBC_URL, "jdbc:postgresql://db:5432/dietideals")
+                    .setProperty(AvailableSettings.JAKARTA_JDBC_URL, "jdbc:postgresql://localhost:5433/dietideals")
                     // Credentials
                     .setProperty(AvailableSettings.JAKARTA_JDBC_USER, user)
                     .setProperty(AvailableSettings.JAKARTA_JDBC_PASSWORD, password)
