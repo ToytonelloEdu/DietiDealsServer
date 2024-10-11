@@ -28,7 +28,7 @@ public class DatabaseSession {
                     .addAnnotatedClass(AuctionPhoto.class)
                     .addAnnotatedClass(Notification.class)
                     // PostgreSQL
-                    .setProperty(AvailableSettings.JAKARTA_JDBC_URL, "jdbc:postgresql://localhost:5432/DietiDealsTest")
+                    .setProperty(AvailableSettings.JAKARTA_JDBC_URL, "jdbc:postgresql://db:5432/dietideals")
                     // Credentials
                     .setProperty(AvailableSettings.JAKARTA_JDBC_USER, user)
                     .setProperty(AvailableSettings.JAKARTA_JDBC_PASSWORD, password)
