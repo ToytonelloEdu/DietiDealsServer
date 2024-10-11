@@ -1,5 +1,6 @@
 package org.example.data;
 
+import io.github.cdimascio.dotenv.Dotenv;
 import org.example.data.entities.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,9 +11,15 @@ import org.hibernate.tool.schema.Action;
 import java.util.function.Consumer;
 
 public class DatabaseSession {
-    private static final String user = "postgres";
-    private static final String password = "sangio";
-            //"dd_dealsdieti_p455w0rd!24";
+    static {
+        Dotenv dotenv = Dotenv.load();
+        USER = dotenv.get("DB_USER");
+        PASSWORD = dotenv.get("DB_PASSWORD");
+        DB_URL = dotenv.get("DB_URL");
+    }
+    private static final String USER;
+    private static final String PASSWORD;
+    private static final String DB_URL;
 
     public static final SessionFactory sessionFactory =
             new Configuration()
@@ -28,15 +35,15 @@ public class DatabaseSession {
                     .addAnnotatedClass(AuctionPhoto.class)
                     .addAnnotatedClass(Notification.class)
                     // PostgreSQL
-                    .setProperty(AvailableSettings.JAKARTA_JDBC_URL, "jdbc:postgresql://db:5432/dietideals")
+                    .setProperty(AvailableSettings.JAKARTA_JDBC_URL, DB_URL)
                     // Credentials
-                    .setProperty(AvailableSettings.JAKARTA_JDBC_USER, user)
-                    .setProperty(AvailableSettings.JAKARTA_JDBC_PASSWORD, password)
+                    .setProperty(AvailableSettings.JAKARTA_JDBC_USER, USER)
+                    .setProperty(AvailableSettings.JAKARTA_JDBC_PASSWORD, PASSWORD)
                     // Automatic schema export
                     .setProperty(AvailableSettings.JAKARTA_HBM2DDL_DATABASE_ACTION,
                             //Action.NONE
-                            Action.ACTION_UPDATE
-                            //Action.SPEC_ACTION_DROP_AND_CREATE
+                            //Action.ACTION_UPDATE
+                            Action.SPEC_ACTION_DROP_AND_CREATE
                     )
                     .setProperty(AvailableSettings.JAKARTA_JDBC_DRIVER, "org.postgresql.Driver")
                     // Create a new SessionFactory
@@ -46,6 +53,7 @@ public class DatabaseSession {
     public static Session getSession() {
         return sessionFactory.openSession();
     }
+
 
     public static void inTransaction(Consumer<Session> action) {
         sessionFactory.inTransaction(action);
