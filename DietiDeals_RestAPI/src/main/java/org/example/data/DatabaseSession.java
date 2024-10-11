@@ -35,8 +35,8 @@ public class DatabaseSession {
                     // Automatic schema export
                     .setProperty(AvailableSettings.JAKARTA_HBM2DDL_DATABASE_ACTION,
                             //Action.NONE
-                            //Action.ACTION_UPDATE
-                            Action.SPEC_ACTION_DROP_AND_CREATE
+                            Action.ACTION_UPDATE
+                            //Action.SPEC_ACTION_DROP_AND_CREATE
                     )
                     .setProperty(AvailableSettings.JAKARTA_JDBC_DRIVER, "org.postgresql.Driver")
                     // Create a new SessionFactory
