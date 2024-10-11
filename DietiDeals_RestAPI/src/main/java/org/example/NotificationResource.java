@@ -6,12 +6,8 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.WebApplicationException;
 import jakarta.ws.rs.core.Response;
 import org.example.data.entities.Notification;
-import org.example.data.entities.User;
 import org.example.data.repos.NotificationsDbRepository;
 import org.example.data.repos.NotificationsRepository;
-import org.example.data.repos.UsersDbRepository;
-import org.example.data.repos.UsersRepository;
-import org.example.filter.RequireAuth;
 
 import java.util.List;
 

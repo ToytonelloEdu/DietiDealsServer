@@ -6,6 +6,7 @@ import jakarta.ws.rs.core.Response;
 import org.example.data.entities.Tag;
 import org.example.data.repos.TagsDbRepository;
 import org.example.data.repos.TagsRepository;
+import org.example.filter.RequireAuth;
 
 import java.util.List;
 
@@ -13,10 +14,12 @@ import java.util.List;
 public class TagsResource {
     final TagsRepository tagsRepo;
 
+    @SuppressWarnings("unused")
     public TagsResource() {
         tagsRepo = TagsDbRepository.getInstance();
     }
 
+    @SuppressWarnings("unused")
     public TagsResource(TagsRepository tagsRepo) {
         this.tagsRepo = tagsRepo;
     }
@@ -33,7 +36,7 @@ public class TagsResource {
     }
 
     @POST
-    //@RequireAuth
+    @RequireAuth
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addTag(Tag tag) {
         try{

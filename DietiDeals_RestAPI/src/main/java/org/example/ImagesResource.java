@@ -19,11 +19,13 @@ public class ImagesResource {
     final ImagesRepository imagesRepo;
     final PhotosRepository photosRepo;
 
+    @SuppressWarnings("unused")
     public ImagesResource() {
         imagesRepo = ImagesFilesRepository.getInstance();
         photosRepo = PhotosDbRepository.getInstance();
     }
 
+    @SuppressWarnings("unused")
     public ImagesResource(ImagesRepository imagesRepo, PhotosRepository photosRepo) {
         this.imagesRepo = imagesRepo;
         this.photosRepo = photosRepo;

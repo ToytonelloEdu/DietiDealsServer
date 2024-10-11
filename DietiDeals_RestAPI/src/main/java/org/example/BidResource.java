@@ -17,10 +17,12 @@ import java.sql.Timestamp;
 public class BidResource {
     private static BidsRepository bidsRepo;
 
+    @SuppressWarnings("unused")
     public BidResource() {
         bidsRepo = BidsDbRepository.getInstance();
     }
 
+    @SuppressWarnings("unused")
     public BidResource(BidsRepository bidsRepo) {
         BidResource.bidsRepo = bidsRepo;
     }
@@ -73,26 +75,32 @@ public class BidResource {
             this.buyer = buyer;
         }
 
+        @SuppressWarnings("unused")
         public String getBidder() {
             return bidder;
         }
 
+        @SuppressWarnings("unused")
         public void setBidder(String bidder) {
             this.bidder = bidder;
         }
 
+        @SuppressWarnings("unused")
         public Timestamp getTime() {
             return time;
         }
 
+        @SuppressWarnings("unused")
         public void setTime(Timestamp time) {
             this.time = time;
         }
 
+        @SuppressWarnings("unused")
         public double getAmount() {
             return amount;
         }
 
+        @SuppressWarnings("unused")
         public void setAmount(double amount) {
             this.amount = amount;
         }

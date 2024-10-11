@@ -5,8 +5,8 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import org.example.auth.AuthorizationController;
 import org.example.auth.AuthCredentials;
+import org.example.auth.AuthorizationController;
 import org.example.auth.JwtAuthorizationController;
 import org.example.data.entities.User;
 import org.example.data.repos.UsersDbRepository;
@@ -20,11 +20,13 @@ public class AuthResource {
     final UsersRepository usersRepo;
     final AuthorizationController authController;
 
+    @SuppressWarnings("unused")
     public AuthResource() {
         usersRepo = UsersDbRepository.getInstance();
         authController = JwtAuthorizationController.getInstance();
     }
 
+    @SuppressWarnings("unused")
     public AuthResource(UsersRepository usersRepo, AuthorizationController authController) {
         this.usersRepo = usersRepo;
         this.authController = authController;

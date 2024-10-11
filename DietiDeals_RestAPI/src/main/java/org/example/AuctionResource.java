@@ -16,19 +16,15 @@ import java.util.List;
 public class AuctionResource {
     final AuctionsRepository auctionsRepo;
 
+    @SuppressWarnings("unused")
     public AuctionResource(){
         auctionsRepo = AuctionsDbRepository.getInstance();
     }
 
+    @SuppressWarnings("unused")
     public AuctionResource(AuctionsRepository auctionsRepo){
         this.auctionsRepo = auctionsRepo;
     }
-
-//    @GET
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public List<Auction> getAuctions() {
-//        return auctionsRepo.getAuctions();
-//    }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -135,26 +131,32 @@ public class AuctionResource {
             this.id = id;
         }
 
+        @SuppressWarnings("unused")
         public String getAuctionType() {
             return auctionType;
         }
 
+        @SuppressWarnings("unused")
         public void setAuctionType(String auctionType) {
             this.auctionType = auctionType;
         }
 
+        @SuppressWarnings("unused")
         public String getObjectName() {
             return objectName;
         }
 
+        @SuppressWarnings("unused")
         public void setObjectName(String objectName) {
             this.objectName = objectName;
         }
 
+        @SuppressWarnings("unused")
         public String getDescription() {
             return description;
         }
 
+        @SuppressWarnings("unused")
         public void setDescription(String description) {
             this.description = description;
         }
@@ -167,90 +169,112 @@ public class AuctionResource {
             this.auctioneer = auctioneer;
         }
 
+        @SuppressWarnings("unused")
         public Timestamp getDate() {
             return date;
         }
 
+        @SuppressWarnings("unused")
         public void setDate(Timestamp date) {
             this.date = date;
         }
 
+        @SuppressWarnings("unused")
         public String getMedianColor() {
             return medianColor;
         }
 
+        @SuppressWarnings("unused")
         public void setMedianColor(String medianColor) {
             this.medianColor = medianColor;
         }
 
+        @SuppressWarnings("unused")
         public List<Tag> getTags() {
             return tags;
         }
 
+        @SuppressWarnings("unused")
         public void setTags(List<Tag> tags) {
             this.tags = tags;
         }
 
+        @SuppressWarnings("unused")
         public List<Bid> getBids() {
             return bids;
         }
 
+        @SuppressWarnings("unused")
         public void setBids(List<Bid> bids) {
             this.bids = bids;
         }
 
+        @SuppressWarnings("unused")
         public Bid getLastBid() {
             return lastBid;
         }
 
+        @SuppressWarnings("unused")
         public void setLastBid(Bid lastBid) {
             this.lastBid = lastBid;
         }
 
+        @SuppressWarnings("unused")
         public String getAuctioneerUsername() {
             return auctioneerUsername;
         }
 
+        @SuppressWarnings("unused")
         public void setAuctioneerUsername(String auctioneerUsername) {
             this.auctioneerUsername = auctioneerUsername;
         }
 
+        @SuppressWarnings("unused")
         public Timestamp getExpirationDate() {
             return expirationDate;
         }
 
+        @SuppressWarnings("unused")
         public void setExpirationDate(Timestamp expirationDate) {
             this.expirationDate = expirationDate;
         }
 
+        @SuppressWarnings("unused")
         public Integer getTimeInterval() {
             return timeInterval;
         }
 
+        @SuppressWarnings("unused")
         public void setTimeInterval(Integer timeInterval) {
             this.timeInterval = timeInterval;
         }
 
+        @SuppressWarnings("unused")
         public Double getStartingPrice() {
             return startingPrice;
         }
 
+        @SuppressWarnings("unused")
         public void setStartingPrice(Double startingPrice) {
             this.startingPrice = startingPrice;
         }
 
+        @SuppressWarnings("unused")
         public Double getRaisingThreshold() {
             return raisingThreshold;
         }
 
+        @SuppressWarnings("unused")
         public void setRaisingThreshold(Double raisingThreshold) {
             this.raisingThreshold = raisingThreshold;
         }
 
+        @SuppressWarnings("unused")
         public List<AuctionPhoto> getPictures() {
             return pictures;
         }
 
+        @SuppressWarnings("unused")
         public void setPictures(List<AuctionPhoto> picturePath) {
             this.pictures = picturePath;
         }

@@ -7,7 +7,6 @@ import org.example.data.entities.*;
 import org.example.data.repos.UsersDbRepository;
 import org.example.data.repos.UsersRepository;
 import org.example.filter.ModifyOwnProfile;
-import org.example.filter.RequireAuth;
 
 import java.util.List;
 
@@ -15,8 +14,10 @@ import java.util.List;
 public class UserResource {
     UsersRepository usersRepo;
 
+    @SuppressWarnings("unused")
     public UserResource() {usersRepo = UsersDbRepository.getInstance();}
 
+    @SuppressWarnings("unused")
     public UserResource(final UsersRepository usersRepo) {this.usersRepo = usersRepo;}
 
     @GET
