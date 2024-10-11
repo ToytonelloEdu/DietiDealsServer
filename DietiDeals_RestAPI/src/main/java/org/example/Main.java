@@ -17,12 +17,6 @@ public class Main {
     // Base URI the Grizzly HTTP server will listen on
     public static final String BASE_URI = "http://0.0.0.0:8080/api/1.0";
 
-    private static final String KEYSTORE_LOC = "./certificates/keystore_server";
-    private static final String KEYSTORE_PASS= "antojava";
-
-    private static final String TRUSTSTORE_LOC = "./certificates/truststore_server";
-    private static final String TRUSTSTORE_PASS = "antojava";
-
     private static Thread notifThread;
 
     /**
@@ -30,28 +24,12 @@ public class Main {
      * @return Grizzly HTTP server.
      */
     public static HttpServer startServer() {
-        // create a resource config that scans for JAX-RS resources and providers
-        // in org.example package
         final ResourceConfig rc = new ResourceConfig().packages("org.example");
 
-//        SSLContextConfigurator sslCon = new SSLContextConfigurator();
-
-//        sslCon.setKeyStoreFile(KEYSTORE_LOC);
-//        sslCon.setKeyStorePass(KEYSTORE_PASS);
-//
-//        sslCon.setTrustStoreFile(TRUSTSTORE_LOC);
-//        sslCon.setTrustStorePass(TRUSTSTORE_PASS);
-
-        // create and start a new instance of grizzly http server
-        // exposing the Jersey application at BASE_URI
         return GrizzlyHttpServerFactory.createHttpServer(
                 URI.create(BASE_URI),
                 rc
-//                true,
-//                new SSLEngineConfigurator(sslCon)
-//                        .setClientMode(false)
-//                        .setNeedClientAuth(false)
-//                        .setWantClientAuth(false)
+
         );
     }
 
@@ -71,10 +49,11 @@ public class Main {
     /**
      * Main method.
      * @param args defaylt Main args
-     * @throws IOException
+     * @throws IOException when Database connection fails
      */
     public static void main(String[] args) throws IOException {
         try{
+
             DatabaseSession.getSession();
             initRepositories();
         } catch (IllegalStateException e){
@@ -88,8 +67,9 @@ public class Main {
         try {
             notifThread.join();
         } catch (InterruptedException e) {
-            server.shutdownNow();
             NotificationsDbRepository.stopNotifsPopulation();
+        } finally {
+            server.shutdownNow();
         }
     }
 
