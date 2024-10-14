@@ -1,9 +1,10 @@
 package org.example.data.repos;
 
 import java.io.*;
+import java.nio.file.Files;
 
 public class ImagesFilesRepository implements ImagesRepository{
-    private static volatile ImagesFilesRepository instance;
+    private static ImagesFilesRepository instance;
 
     private ImagesFilesRepository(){}
 
@@ -28,7 +29,7 @@ public class ImagesFilesRepository implements ImagesRepository{
         OutputStream os = null;
         try {
             File fileToUpload = new File("src/main/java/org/example/files/"+name +".jpg");
-            os = new FileOutputStream(fileToUpload);
+            os = Files.newOutputStream(fileToUpload.toPath());
             byte[] b = new byte[2048];
             int length;
             while ((length = inputStream.read(b)) != -1) {

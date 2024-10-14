@@ -11,19 +11,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NotificationsDbRepository implements NotificationsRepository {
-    private static volatile NotificationsDbRepository instance;
-    private static volatile AuctionsRepository auctionsRepo;
-    private static volatile UsersRepository usersRepo;
+    private static NotificationsDbRepository instance;
+    private static UsersRepository usersRepo;
 
     private static volatile Thread population = null;
 
-    //TODO: Change to map and implement so that changes do update this Map as well
-    public static volatile List<Auction> auctions = new ArrayList<>();
+    protected static final List<Auction> auctions = new ArrayList<>();
 
     private NotificationsDbRepository() {
         usersRepo = UsersDbRepository.getInstance();
-        auctionsRepo = AuctionsDbRepository.getInstance();
-        auctions = auctionsRepo.getAuctionsNotNotified();
+        AuctionsRepository auctionsRepo = AuctionsDbRepository.getInstance();
+        auctions.addAll(auctionsRepo.getAuctionsNotNotified());
         startNotifsPopulation();
     }
 
@@ -60,7 +58,9 @@ public class NotificationsDbRepository implements NotificationsRepository {
 
 
     private static void startNotifsPopulation() {
-        population = new Thread(NotificationsDbRepository::notifsPopulationCycle);
+        synchronized (NotificationsDbRepository.class) {
+            population = new Thread(NotificationsDbRepository::notifsPopulationCycle);
+        }
         population.start();
     }
 
@@ -74,12 +74,16 @@ public class NotificationsDbRepository implements NotificationsRepository {
         boolean interrupted = false;
         while (!interrupted) {
             for (int i = 0, auctionsSize = auctions.size(); i < auctionsSize; i++) {
-                Auction updatedAuction = fetchAuctionUpToDate(i);
-                if (updatedAuction != null && updatedAuction.auctionOver()) {
-                    notifyAuction(updatedAuction);
+                synchronized (auctions) {
+                    Auction updatedAuction = fetchAuctionUpToDate(i);
+                    if (updatedAuction != null && updatedAuction.auctionOver()) {
+                        notifyAuction(updatedAuction);
+                    }
                 }
             }
-            try{Thread.sleep(5000);}catch(InterruptedException ignored){interrupted = true;}
+            try{Thread.sleep(5000);}catch(InterruptedException ignored){
+                interrupted = true;
+            }
 
         }
     }

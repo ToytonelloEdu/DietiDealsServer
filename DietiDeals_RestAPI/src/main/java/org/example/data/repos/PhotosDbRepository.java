@@ -57,13 +57,13 @@ public class PhotosDbRepository implements PhotosRepository {
             if(auction == null) { throw new IllegalArgumentException("Auction not found");}
 
             session.beginTransaction();
-            //
+
                 Auction mergedAuction = session.merge(auction);
                 AuctionPhoto photo = new AuctionPhoto(
                         path, mergedAuction
                 );
                 session.persist(photo);
-            //
+
             session.getTransaction().commit();
 
 
@@ -137,6 +137,8 @@ public class PhotosDbRepository implements PhotosRepository {
                     count++;
                 }
             }
+
+            if(count == 0) return new Color(0,0,0,0);
 
             int avgRed = (int) (sumRed / count);
             int avgGreen = (int) (sumGreen / count);

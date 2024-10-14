@@ -7,8 +7,6 @@ import org.hibernate.Session;
 
 import java.util.List;
 
-import static org.example.data.DatabaseSession.sessionFactory;
-
 public class TagsDbRepository implements TagsRepository {
     private static TagsDbRepository instance;
 
@@ -23,13 +21,13 @@ public class TagsDbRepository implements TagsRepository {
 
     @Override
     public List<Tag> getAllTags() {
-        return sessionFactory.openSession()
+        return DatabaseSession.getSession()
                 .createQuery("FROM Tag", Tag.class).getResultList();
     }
 
     @Override
     public Tag addTag(Tag tag) {
-        sessionFactory.inTransaction(session -> {
+        DatabaseSession.inTransaction(session -> {
             if (isNewTag(session, tag))
                 session.persist(tag);
         });

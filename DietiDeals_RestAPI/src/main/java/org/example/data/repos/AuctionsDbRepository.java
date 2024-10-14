@@ -8,8 +8,6 @@ import org.hibernate.query.SelectionQuery;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.example.data.DatabaseSession.sessionFactory;
-
 public class AuctionsDbRepository implements AuctionsRepository {
     private static AuctionsDbRepository instance;
     private static BidsRepository bidsRepo;
@@ -141,9 +139,8 @@ public class AuctionsDbRepository implements AuctionsRepository {
         if(auction == null) throw new IllegalArgumentException("Auction is null");
 
         try {
-            sessionFactory.inTransaction(session -> {
-                session.merge(auction);
-            });
+            DatabaseSession.inTransaction(session -> session.merge(auction));
+
             System.out.println("\nUPDATE Auction SET ..... WHERE id = ?\n");
             return auction;
         } catch (Exception e) {
@@ -153,14 +150,16 @@ public class AuctionsDbRepository implements AuctionsRepository {
 
     protected Auction addIncrAuction(IncrementalAuction auction) {
         try {
-            sessionFactory.inTransaction(session -> {
+            DatabaseSession.inTransaction(session -> {
                 List<Tag> tags = getPesistedTags(auction, session);
                 auction.setTags(tags);
 
                 session.persist(auction);
                 System.out.println("Auction created: " + auction);
             });
-            NotificationsDbRepository.auctions.add(auction);
+            synchronized (NotificationsDbRepository.auctions) {
+                NotificationsDbRepository.auctions.add(auction);
+            }
         } catch (Exception e) {
             System.out.println("Error creating auction: " + e.getMessage());
             return null;
@@ -171,14 +170,16 @@ public class AuctionsDbRepository implements AuctionsRepository {
 
     protected Auction addSilentAuction(SilentAuction auction) {
         try {
-            sessionFactory.inTransaction(session -> {
+            DatabaseSession.inTransaction(session -> {
                 List<Tag> tags = getPesistedTags(auction, session);
                 auction.setTags(tags);
 
                 session.persist(auction);
                 System.out.println("Auction created: " + auction);
             });
-            NotificationsDbRepository.auctions.add(auction);
+            synchronized (NotificationsDbRepository.auctions) {
+                NotificationsDbRepository.auctions.add(auction);
+            }
         }
         catch (Exception e) {
             System.out.println("Error creating auction: " + e.getMessage());
@@ -205,9 +206,8 @@ public class AuctionsDbRepository implements AuctionsRepository {
     @Override
     public Auction deleteAuction(int id) {
         Auction auction = getAuctionByID(id);
-        sessionFactory.inTransaction(session -> {
-            session.remove(auction);
-        });
+        DatabaseSession.inTransaction(session -> session.remove(auction));
+
         System.out.println("\nDELETE FROM Auction WHERE id = ?\n");
         return auction;
     }

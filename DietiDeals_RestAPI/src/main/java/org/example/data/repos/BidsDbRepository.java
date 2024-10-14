@@ -10,8 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.example.data.DatabaseSession.sessionFactory;
-
 public class BidsDbRepository implements BidsRepository {
     private static BidsDbRepository instance;
 
@@ -51,7 +49,7 @@ public class BidsDbRepository implements BidsRepository {
     public Bid addBid(Bid bid) throws IllegalArgumentException {
         if (bid == null) throw  new IllegalArgumentException("bid is null");
         try {
-            sessionFactory.inTransaction(session -> {
+            DatabaseSession.inTransaction(session -> {
                 Auction auction = session.find(Auction.class, bid.auctionId());
                 bid.setAuction(auction);
 

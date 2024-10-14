@@ -2,9 +2,10 @@ package org.example.data.repos;
 
 import org.example.auth.AuthCredentials;
 import org.example.data.DatabaseSession;
-import org.example.data.entities.*;
-
-import static org.example.data.DatabaseSession.sessionFactory;
+import org.example.data.entities.Auctioneer;
+import org.example.data.entities.Buyer;
+import org.example.data.entities.Links;
+import org.example.data.entities.User;
 
 public class UsersDbRepository implements UsersRepository {
     private static UsersDbRepository instance;
@@ -82,9 +83,9 @@ public class UsersDbRepository implements UsersRepository {
             } else if(user.getUserType().equals("Buyer")) {
                 subUser = new Buyer(user);
             } else throw new IllegalArgumentException("Invalid user type");
-            sessionFactory.inTransaction(session -> {
-                session.persist(subUser);
-            });
+
+            DatabaseSession.inTransaction(session -> session.persist(subUser));
+
             System.out.println("\nINSERT (?, ?, ...) INTO users\n");
             return user;
         } catch (Exception e) {
@@ -104,9 +105,8 @@ public class UsersDbRepository implements UsersRepository {
                 user.setLinks(links);
             }
 
-            sessionFactory.inTransaction(session -> {
-                session.merge(user);
-            });
+            DatabaseSession.inTransaction(session -> session.merge(user));
+
             System.out.println("\nUPDATE (?, ?, ...) INTO users WHERE username = ?\n");
             if(links != null) links.setUser(null);
             return user;
@@ -116,9 +116,6 @@ public class UsersDbRepository implements UsersRepository {
         }
     }
 
-//    Links links = user.getLinks() ;
-//                if(links != null)
-//            session.persist(links);
 
     @Override
     public Boolean verifyCredentials(AuthCredentials auth) {
