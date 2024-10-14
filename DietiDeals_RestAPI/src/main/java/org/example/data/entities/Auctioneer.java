@@ -31,20 +31,16 @@ public class Auctioneer extends User{
     }
 
     public Auctioneer(){}
+
     public Auctioneer(User user) {
-        setUsername(user.getUsername());
-        setUserType(user.getUserType());
-        setPassword(user.getPassword());
-        setEmail(user.getEmail());
-        setFirstName(user.getFirstName());
-        setLastName(user.getLastName());
-        setBio(user.getBio());
-        setNationality(user.getNationality());
-        setProPicPath(user.getProPicPath());
-        setBirthdate(user.getBirthdate());
-        setGender(user.getGender());
-        setLinks(user.getLinks());
+        copyAllFields(user);
     }
+
+    public Auctioneer(Auctioneer other) {
+        copyAllFields(other);
+        auctions = other.auctions;
+    }
+
 
     public Auctioneer(
             String username,
@@ -63,21 +59,7 @@ public class Auctioneer extends User{
         super(username, userType, email, password, firstName, lastName, proPicPath, bio, nationality, gender, birthdate, links);
     }
 
-    public Auctioneer(Auctioneer other) {
-        setUsername(other.getUsername());
-        setUserType(other.getUserType());
-        setPassword(other.getPassword());
-        setEmail(other.getEmail());
-        setFirstName(other.getFirstName());
-        setLastName(other.getLastName());
-        setBio(other.getBio());
-        setNationality(other.getNationality());
-        setProPicPath(other.getProPicPath());
-        setBirthdate(other.getBirthdate());
-        setGender(other.getGender());
-        setLinks(other.getLinks());
-        auctions = other.auctions;
-    }
+
 
     @Override
     public User toJsonFriendly() {

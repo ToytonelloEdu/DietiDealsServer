@@ -30,19 +30,13 @@ public class Buyer extends User{
 
     public Buyer(){}
     public Buyer(User user) {
-        setUsername(user.getUsername());
-        setUserType(user.getUserType());
-        setPassword(user.getPassword());
-        setEmail(user.getEmail());
-        setFirstName(user.getFirstName());
-        setLastName(user.getLastName());
-        setBio(user.getBio());
-        setNationality(user.getNationality());
-        setProPicPath(user.getProPicPath());
-        setBirthdate(user.getBirthdate());
-        setGender(user.getGender());
-        setLinks(user.getLinks());
+        copyAllFields(user);
     }
+    public Buyer(Buyer other) {
+        copyAllFields(other);
+        bids = other.bids;
+    }
+
     public Buyer(
             String username,
             String userType,
@@ -60,21 +54,6 @@ public class Buyer extends User{
         super(username, userType, email, password, firstName, lastName, proPicPath, bio, nationality, gender, birthdate, links);
     }
 
-    public Buyer(Buyer other) {
-        setUsername(other.getUsername());
-        setUserType(other.getUserType());
-        setPassword(other.getPassword());
-        setEmail(other.getEmail());
-        setFirstName(other.getFirstName());
-        setLastName(other.getLastName());
-        setBio(other.getBio());
-        setNationality(other.getNationality());
-        setProPicPath(other.getProPicPath());
-        setBirthdate(other.getBirthdate());
-        setGender(other.getGender());
-        setLinks(other.getLinks());
-        bids = other.bids;
-    }
 
     @Override
     public Buyer toJsonFriendly() {
