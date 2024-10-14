@@ -115,11 +115,11 @@ abstract public class User {
     }
 
     protected String getPassword() {
-        return /*TODO: Decrypt*/ password;
+        return password;
     }
 
     public void setPassword(String password) {
-        this.password = /*TODO: Encrypt*/ password;
+        this.password = password;
     }
 
     public Links getLinks() {
@@ -152,6 +152,7 @@ abstract public class User {
         this.links = links;
     }
 
+
     public Boolean checkCredentials(AuthCredentials auth){
         if(auth.getHandle().contains("@")){
             return email.equals(auth.getHandle()) && password.equals(auth.getPassword());
@@ -168,6 +169,21 @@ abstract public class User {
                 '}';
     }
 
+
+    protected void copyAllFields(User user) {
+        setUsername(user.getUsername());
+        setUserType(user.getUserType());
+        setPassword(user.getPassword());
+        setEmail(user.getEmail());
+        setFirstName(user.getFirstName());
+        setLastName(user.getLastName());
+        setBio(user.getBio());
+        setNationality(user.getNationality());
+        setProPicPath(user.getProPicPath());
+        setBirthdate(user.getBirthdate());
+        setGender(user.getGender());
+        setLinks(user.getLinks());
+    }
 
     public abstract User toJsonFriendly();
 }
