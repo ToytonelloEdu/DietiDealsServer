@@ -5,8 +5,10 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import io.github.cdimascio.dotenv.Dotenv;
 
 import java.util.Date;
+import java.util.Objects;
 import java.util.UUID;
 
 public class JwtAuthorizationController implements AuthorizationController {
@@ -23,7 +25,9 @@ public class JwtAuthorizationController implements AuthorizationController {
 
 
     private static final String ISSUER = "dietideals-rest-api";
-    private static final Algorithm algorithm = Algorithm.HMAC256("very_secret_key_not_to_share");
+    private static final Algorithm algorithm = Algorithm.HMAC256(
+            Objects.requireNonNull(Dotenv.load().get("JWT_SECRET"))
+    );
     private static final JWTVerifier verifier = JWT.require(algorithm)
             .withIssuer(ISSUER)
             .build();
