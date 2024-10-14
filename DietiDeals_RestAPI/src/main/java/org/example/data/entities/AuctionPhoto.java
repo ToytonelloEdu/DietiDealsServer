@@ -16,6 +16,7 @@ public class AuctionPhoto {
 
     public AuctionPhoto() {}
 
+    @SuppressWarnings("unused")
     public AuctionPhoto(int id, String path, Auction auction) {
         this.id = id;
         this.path = path;

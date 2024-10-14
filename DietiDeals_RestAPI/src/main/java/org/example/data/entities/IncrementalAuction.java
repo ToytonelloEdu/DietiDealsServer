@@ -22,6 +22,7 @@ public class IncrementalAuction extends Auction {
 
     public IncrementalAuction() {}
 
+    @SuppressWarnings("unused")
     public IncrementalAuction(int id, List<AuctionPhoto> pictures, String objectName, String description, Auctioneer auctioneer, Timestamp date, String medianColor, Integer timeInterval, Double startingPrice, Double raisingThreshold) {
         super(id, pictures, objectName, description, auctioneer, date, medianColor);
         this.timeInterval = timeInterval;
@@ -29,6 +30,7 @@ public class IncrementalAuction extends Auction {
         this.raisingThreshold = raisingThreshold;
     }
 
+    @SuppressWarnings("unused")
     public IncrementalAuction(int id, List<AuctionPhoto> pictures, String objectName, String description, Timestamp date, Auctioneer auctioneer, String medianColor, Integer timeInterval, Double startingPrice, Double raisingThreshold) {
         super(id, pictures, objectName, description, date, auctioneer, medianColor);
         this.timeInterval = timeInterval;
@@ -36,6 +38,7 @@ public class IncrementalAuction extends Auction {
         this.raisingThreshold = raisingThreshold;
     }
 
+    @SuppressWarnings("unused")
     public IncrementalAuction(int id, String objectName, String description, Auctioneer auctioneer, Timestamp date, String medianColor, Integer timeInterval, Double startingPrice, Double raisingThreshold) {
         super(id, objectName, description, auctioneer, date, medianColor);
         this.timeInterval = timeInterval;
@@ -43,6 +46,7 @@ public class IncrementalAuction extends Auction {
         this.raisingThreshold = raisingThreshold;
     }
 
+    @SuppressWarnings("unused")
     public IncrementalAuction(int id, String objectName, String description, Timestamp date, Auctioneer auctioneer, String medianColor, Integer timeInterval, Double startingPrice, Double raisingThreshold) {
         super(id, objectName, description, date, auctioneer, medianColor);
         this.timeInterval = timeInterval;

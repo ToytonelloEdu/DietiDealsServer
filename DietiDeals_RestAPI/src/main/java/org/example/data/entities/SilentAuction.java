@@ -22,30 +22,35 @@ public class SilentAuction extends Auction{
 
     public SilentAuction() {}
 
+    @SuppressWarnings("unused")
     public SilentAuction(int id, List<AuctionPhoto> pictures, String objectName, String description, Auctioneer auctioneer, Timestamp date, String medianColor, Timestamp expirationDate, Bid acceptedBid) {
         super(id, pictures, objectName, description, auctioneer, date, medianColor);
         this.expirationDate = expirationDate;
         this.acceptedBid = acceptedBid;
     }
 
+    @SuppressWarnings("unused")
     public SilentAuction(int id, List<AuctionPhoto> picturePath, String objectName, String description, Timestamp date, Auctioneer auctioneer, String medianColor, Timestamp expirationDate, Bid acceptedBid) {
         super(id, picturePath, objectName, description, date, auctioneer, medianColor);
         this.expirationDate = expirationDate;
         this.acceptedBid = acceptedBid;
     }
 
+    @SuppressWarnings("unused")
     public SilentAuction(int id, String objectName, String description, Auctioneer auctioneer, Timestamp date, String medianColor, Timestamp expirationDate, Bid acceptedBid) {
         super(id, objectName, description, auctioneer, date, medianColor);
         this.expirationDate = expirationDate;
         this.acceptedBid = acceptedBid;
     }
 
+    @SuppressWarnings("unused")
     public SilentAuction(int id, String objectName, String description, Timestamp date, Auctioneer auctioneer, String medianColor, Timestamp expirationDate, Bid acceptedBid) {
         super(id, objectName, description, date, auctioneer, medianColor);
         this.expirationDate = expirationDate;
         this.acceptedBid = acceptedBid;
     }
 
+    @SuppressWarnings("unused")
     public SilentAuction(int id, List<AuctionPhoto> picturePath, String objectName, String description, Timestamp date, Auctioneer auctioneer, String medianColor, Timestamp expirationDate, List<Tag> tags, Bid acceptedBid) {
         super(id, picturePath, objectName, description, date, auctioneer, medianColor, tags);
         this.expirationDate = expirationDate;

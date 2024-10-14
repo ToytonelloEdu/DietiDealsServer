@@ -24,8 +24,10 @@ public class Tag {
     }
 
     public Tag() {}
+
+    @SuppressWarnings("unused")
     public Tag(String tagName) {
-        this.tagName = tagName;
+        setTagName(tagName);
     }
 
     @Override
